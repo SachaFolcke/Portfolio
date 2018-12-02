@@ -188,7 +188,7 @@ h1 {
     height: 300px;
     width: 300px;
     display: block;
-    margin: 0 20px 20px 0;
+    margin: 0 10px 20px;
 }
 
 #projects h2 {
@@ -217,7 +217,7 @@ h1 {
     font-size: 20px;
     position: absolute;
     top: 50%;
-    left: 50%;
+    left: 53%;
     transform: translate(-50%, -50%);
     background-color : rgb(119,68,139);
     height: 300px;
@@ -283,6 +283,21 @@ h1 {
     display: none;
 }
 
+.close {
+    border: 1px solid black;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-weight: bold;
+    font-size: 23px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    background-color: rgb(119,68,139);
+    color: white;
+}
+
 @media screen and (min-width: 1080px) and (max-width: 1600px) {
     #presentation {
         margin: 0 0 50px 0;
@@ -326,11 +341,17 @@ h1 {
 
     #nav a {
         padding: 26px 0 0 0;
-        font-size: 20px;
+        font-size: 17px;
+        margin: 0 2px 0;
     }
 
     #parcours {
-        height: 500px;
+        height: 550px;
+    }
+
+    #skills .element {
+        max-width: 80vw;
+        min-width: 70vw;
     }
 
     #info-master, #info-site, #info-2048, #info-rpg {

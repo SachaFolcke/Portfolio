@@ -132,7 +132,6 @@ input:checked + .dot-info span {
     top: -65px;
     left: 0;
     transform: translateX(30%) translateY(-10%) rotateZ(-35deg) ;
-    width: 70px;
     text-indent: -10px;
 }
 
@@ -230,13 +229,14 @@ input[data-description="2000"]:checked ~ #timeline-descriptions-wrapper p[data-d
         margin-left: 0;
     }
     input, .dot-info {
-        width: 60px;
+        width: 75px;
         height: 60px;
-        margin: 0 10px 50px;
+        margin: 0 10px 60px;
     }
     input {
         background-color: transparent !important;
         z-index: 1;
+        transform: translateX(20%);
     }
     input::before, input::after {
         content: none;
@@ -245,16 +245,17 @@ input[data-description="2000"]:checked ~ #timeline-descriptions-wrapper p[data-d
         background-color: rgb(119,68,139);
     }
     input:checked + .dot-info span.year {
-        font-size: 14px;
+        font-size: 16px;
     }
     input:checked + .dot-info span.label {
-        font-size: 12px;
+        font-size: 14px;
     }
     .dot-info {
         visibility: visible;
         border-radius: 50%;
         z-index: 0;
         left: 0;
+        padding-right: 0;
         margin-left: -70px;
         background-color: #AEB6BF;
     }
@@ -276,10 +277,11 @@ input[data-description="2000"]:checked ~ #timeline-descriptions-wrapper p[data-d
         text-indent: 0;
         text-align: center;
     }
-    #timeline-descriptions-wrapper {
+    #timeline-descriptions-wrapper{
         margin-top: 30px;
         margin-left: 0;
         text-align: center;
+        width: 90vw;
     }
 }
 /*
