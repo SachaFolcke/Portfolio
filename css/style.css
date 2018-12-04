@@ -296,6 +296,9 @@ h1 {
     cursor: pointer;
     background-color: rgb(119,68,139);
     color: white;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 30px;
 }
 
 @media screen and (min-width: 1080px) and (max-width: 1600px) {
