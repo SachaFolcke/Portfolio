@@ -34,7 +34,7 @@ p {
     height: 100%
 }
 
-#desktop-nav a, #mobile-nav a, #mobile-nav-overlay a {
+#desktop-nav a, #mobile-nav span, #mobile-nav-overlay a {
     font-family: 'Dosis', sans-serif;
     font-weight: bold;
     font-size: 24px;
@@ -57,6 +57,7 @@ p {
 
 #mobile-nav {
     display: none;
+    cursor: pointer;
 }
 
 #mobile-nav-overlay {
