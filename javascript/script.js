@@ -1,30 +1,36 @@
 function showMaster() {
-    document.getElementById("info-master").style.display = "block"
+    document.getElementById("info-master").style.display = "block";
     document.getElementById("blackBackground").style.display = "block";
 }
 
 function showSite() {
-    document.getElementById("info-site").style.display = "block"
+    document.getElementById("info-site").style.display = "block";
     document.getElementById("blackBackground").style.display = "block";
 }
 
 function show2048() {
-    document.getElementById("info-2048").style.display = "block"
+    document.getElementById("info-2048").style.display = "block";
     document.getElementById("blackBackground").style.display = "block";
 }
 
 function showRPG() {
-    document.getElementById("info-rpg").style.display = "block"
+    document.getElementById("info-rpg").style.display = "block";
     document.getElementById("blackBackground").style.display = "block";
 }
+
 function hideInfo() {
     document.getElementById("blackBackground").style.display = "none";
     document.getElementById("info-master").style.display = "none";
     document.getElementById("info-site").style.display = "none";
     document.getElementById("info-2048").style.display = "none";
     document.getElementById("info-rpg").style.display = "none";
+    document.getElementById("mobile-nav-overlay").style.display = "none";
 }
 
+function showMobileMenu() {
+    document.getElementById("mobile-nav-overlay").style.display = "flex";
+    document.getElementById("blackBackground").style.display = "block";
+}
 
 function next(className) {
     var elements = document.getElementsByClassName(className);

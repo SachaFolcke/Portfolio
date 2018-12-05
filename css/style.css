@@ -21,9 +21,7 @@ p {
 
 #nav {
     position: fixed;
-    display: flex;
     text-align: center;
-    justify-content: space-evenly;
     width: 100vw;
     height: 50px;
     background-color:rgb(119,68,139);
@@ -31,7 +29,12 @@ p {
     z-index: 50;
 }
 
-#nav a {
+#desktop-nav, #mobile-nav {
+    width: 100%;
+    height: 100%
+}
+
+#desktop-nav a, #mobile-nav a, #mobile-nav-overlay a {
     font-family: 'Dosis', sans-serif;
     font-weight: bold;
     font-size: 24px;
@@ -41,6 +44,31 @@ p {
     text-align: center;
     padding: 24px 0 0 0;
     height: 20px;
+}
+
+#mobile-nav-overlay a {
+    padding: 24px 10px 10px 10px;
+}
+
+#desktop-nav {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#mobile-nav {
+    display: none;
+}
+
+#mobile-nav-overlay {
+    display: none;
+    position: fixed;
+    text-align: center;
+    width: 100vw;
+    background-color:rgb(119,68,139);
+    border-bottom: 2px solid rgb(55, 30, 70);
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    z-index: 101;
 }
 
 .justRight:before {
@@ -343,9 +371,23 @@ h1 {
     }
 
     #nav a {
-        padding: 26px 0 0 0;
-        font-size: 17px;
+        padding: 24px 0 0 0;
+        font-size: 24px;
         margin: 0 2px 0;
+    }
+
+    #nav {
+        width: 75px;
+        border-right: 2px solid rgb(55, 30, 70);
+    }
+
+    #desktop-nav {
+        display: none;
+    }
+
+    #mobile-nav {
+        display: flex;
+        justify-content: space-evenly;
     }
 
     #parcours {
