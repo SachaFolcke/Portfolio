@@ -138,62 +138,65 @@
              <h2>Mes projets</h2>
              <p class="infoclic">(Cliquez sur les projets pour plus d'informations)</p>
              <div id="flexcontain">
-                 <div id="mastermind" onclick="showMaster()">
+                 <div id="mastermind" onclick="showProject('info-master')">
                     <img src="img/mastermind_1.jpg">
                      <div class="overlay"><p><b>Mastermind</b><br />Projet de Baccalauréat ISN - 2017</p></div>
                  </div>
-                 <div id="siteweb" onclick="showSite()">
+                 <div id="siteweb" onclick="showProject('info-site')">
                     <img src="img/siteweb_1.jpg">
                      <div class="overlay"><p><b>Site Web "Stages à l'étranger"</b><br />Projet du semestre 1, DUT Informatique - 2017</p></div>
                  </div>
-                 <div id="2048" onclick="show2048()">
+                 <div id="2048" onclick="showProject('info-2048')">
                     <img src="img/2048_1.jpg">
                      <div class="overlay"><p><b>2048</b><br />Projet du semestre 2, DUT Informatique - 2018</p></div>
                  </div>
-                 <div id="rpg" onclick="showRPG()">
+                 <div id="rpg" onclick="showProject('info-rpg')">
                     <div class="noIMG"></div>
                      <div class="overlay"><p><b>Jeu type "RPG"</b><br />Projet personnel mené durant le temps libre</p></div>
                  </div>
              </div>
          </div>
-         <div id="blackBackground" onclick="hideInfo()"></div>
-         <div id="info-master">
-             <span class="close" onclick="hideInfo()">&times</span>
-             <h2>Mastermind</h2> <img class="masterphoto visible" src="img/mastermind_1.jpg" onclick="next('masterphoto')"> <img class="masterphoto invisible" src="img/mastermind_2.jpg" onclick="next('masterphoto')"> <img class="masterphoto invisible" src="img/mastermind_3.jpg" onclick="next('masterphoto')"> <img class="masterphoto invisible" src="img/mastermind_4.jpg" onclick="next('masterphoto')">
-             <p class="infoclic">(Cliquez sur l'image pour en faire défiler d'autres)</p>
-             <p><i>Juin 2017 - (Binôme)</i></p>
-             <p><b>Langage(s) utilisé(s) :</b> HTML, CSS, Javascript</p>
-             <p><b>Description : </b>Ce jeu sur navigateur était mon tout premier projet, à présenter lors de l'oral de Baccalauréat option ISN (Informatique et Sciences du Numérique).
-             Il s'agit d'une réplique jouable du célèbre jeu de plateau, codée notamment en Javascript. Ce projet a très bien été reçu par le Jury et a récolté la note de 18/20.
-             Ce fut mon premier projet de code et d'algorythmie conséquent et m'a appris à établir des objectifs, une marche à suivre et atteindre un but.</p>
-         </div>
-         <div id="info-site">
-             <span class="close" onclick="hideInfo()">&times</span>
-            <h2>Site Web "Stages à l'étranger"</h2> <img class="web visible" src="img/siteweb_1.jpg" onclick="next('web')">  <img class="web invisible" src="img/siteweb_2.jpg" onclick="next('web')"> <img class="web invisible" src="img/siteweb_3.jpg" onclick="next('web')"> <img class="web invisible" src="img/siteweb_4.jpg" onclick="next('web')">
-             <p class="infoclic">(Cliquez sur l'image pour en faire défiler d'autres)</p>
-             <p><i>Décembre 2017 - (Groupe de 3)</i></p>
-             <p><b>Langage(s) utilisé(s) :</b> HTML, CSS, Javascript</p>
-             <p><b>Description : </b>Il s'agit du projet de fin de semestre 1 de mon DUT. L'objectif était de réaliser un site web servant à guider les étudiants voulant partir à l'étranger
-             pour leur stage du 4ème semestre. Le site devait aussi esthétique qu'informatif. Nous nous sommes donc répartis les tâches au sein du groupe afin d'aboutir au résultat final.</p>
-         </div>
-         <div id="info-2048">
-             <span class="close" onclick="hideInfo()">&times</span>
-            <h2>2048</h2> <img src="img/2048_1.jpg" class="2048photo visible" onclick="next('2048photo')"> <img class="2048photo invisible" src="img/2048_2.jpg" onclick="next('2048photo')"> <img class="2048photo invisible" src="img/2048_3.jpg" onclick="next('2048photo')">
-             <p class="infoclic">(Cliquez sur l'image pour en faire défiler d'autres)</p>
-             <p><i>Juin 2018 - (Groupe de 4)</i></p>
-             <p><b>Langage(s) utilisé(s) :</b> Python</p>
-             <p><b>Description :</b> Voici mon projet de fin de semestre 2 de mon DUT. Il fallait recréer le jeu du 2048 avec toutes ses contraintes. Nous avions le choix du langage et nous avons choisi Python
-             et sa librairie PyQt pour l'interface graphique. Ce fut notre le projet de plus avancé et a demandé beaucoup de documentation afin de le mener à bien. Ce projet à renforcé ma cohésion d'équipe
-             et mon sens d'organisation afin de bien répartir les différentes tâches du projet.</p>
-         </div>
-         <div id="info-rpg">
-             <span class="close" onclick="hideInfo()">&times</span>
-            <h2>Jeu type "RPG"</h2>
-             <p><i>En cours... - (Seul)</i></p>
-             <p><b>Langage(s) utilisé(s) :</b> C++11</p>
-             <p><b>Description :</b> Projet strictement personnel. Appréciant le développement logiciel et voulant creuser davantage ce que j'apprends en cours, je me suis lancé dans un projet
-             de jeu type "RPG" dans mon temps libre. J'apprécie beaucoup travailler dessus. Pour le moment, je suis toujours en train de coder la base algorythmique ; une fois terminée, j'ajouterai du contenu
-             ainsi qu'une interface graphique. Voilà pourquoi je n'ai pas de photo à proposer aujourd'hui.</p>
+         <div id="blackBackground" onclick="hideProject()"></div>
+         <div id="all-projects">
+             <div id="info-master">
+                 <span class="close" onclick="hideProject()">&times</span>
+                 <h2>Mastermind</h2> <img class="masterphoto visible" src="img/mastermind_1.jpg" onclick="nextPhoto('masterphoto')"> <img class="masterphoto invisible" src="img/mastermind_2.jpg" onclick="nextPhoto('masterphoto')"> <img class="masterphoto invisible" src="img/mastermind_3.jpg" onclick="nextPhoto('masterphoto')"> <img class="masterphoto invisible" src="img/mastermind_4.jpg" onclick="nextPhoto('masterphoto')">
+                 <p class="infoclic">(Cliquez sur l'image pour en faire défiler d'autres)</p>
+                 <p><i>Juin 2017 - (Binôme)</i></p>
+                 <p><b>Langage(s) utilisé(s) :</b> HTML, CSS, Javascript</p>
+                 <p><b>Description : </b>Ce jeu sur navigateur était mon tout premier projet, à présenter lors de l'oral de Baccalauréat option ISN (Informatique et Sciences du Numérique).
+                 Il s'agit d'une réplique jouable du célèbre jeu de plateau, codée notamment en Javascript. Ce projet a très bien été reçu par le Jury et a récolté la note de 18/20.
+                 Ce fut mon premier projet de code et d'algorythmie conséquent et m'a appris à établir des objectifs, une marche à suivre et atteindre un but.</p>
+             </div>
+
+             <div id="info-site">
+                 <span class="close" onclick="hideProject()">&times</span>
+                <h2>Site Web "Stages à l'étranger"</h2> <img class="web visible" src="img/siteweb_1.jpg" onclick="nextPhoto('web')">  <img class="web invisible" src="img/siteweb_2.jpg" onclick="nextPhoto('web')"> <img class="web invisible" src="img/siteweb_3.jpg" onclick="nextPhoto('web')"> <img class="web invisible" src="img/siteweb_4.jpg" onclick="nextPhoto('web')">
+                 <p class="infoclic">(Cliquez sur l'image pour en faire défiler d'autres)</p>
+                 <p><i>Décembre 2017 - (Groupe de 3)</i></p>
+                 <p><b>Langage(s) utilisé(s) :</b> HTML, CSS, Javascript</p>
+                 <p><b>Description : </b>Il s'agit du projet de fin de semestre 1 de mon DUT. L'objectif était de réaliser un site web servant à guider les étudiants voulant partir à l'étranger
+                 pour leur stage du 4ème semestre. Le site devait aussi esthétique qu'informatif. Nous nous sommes donc répartis les tâches au sein du groupe afin d'aboutir au résultat final.</p>
+             </div>
+             <div id="info-2048">
+                 <span class="close" onclick="hideProject()">&times</span>
+                <h2>2048</h2> <img src="img/2048_1.jpg" class="2048photo visible" onclick="nextPhoto('2048photo')"> <img class="2048photo invisible" src="img/2048_2.jpg" onclick="nextPhoto('2048photo')"> <img class="2048photo invisible" src="img/2048_3.jpg" onclick="nextPhoto('2048photo')">
+                 <p class="infoclic">(Cliquez sur l'image pour en faire défiler d'autres)</p>
+                 <p><i>Juin 2018 - (Groupe de 4)</i></p>
+                 <p><b>Langage(s) utilisé(s) :</b> Python</p>
+                 <p><b>Description :</b> Voici mon projet de fin de semestre 2 de mon DUT. Il fallait recréer le jeu du 2048 avec toutes ses contraintes. Nous avions le choix du langage et nous avons choisi Python
+                 et sa librairie PyQt pour l'interface graphique. Ce fut notre le projet de plus avancé et a demandé beaucoup de documentation afin de le mener à bien. Ce projet à renforcé ma cohésion d'équipe
+                 et mon sens d'organisation afin de bien répartir les différentes tâches du projet.</p>
+             </div>
+             <div id="info-rpg">
+                 <span class="close" onclick="hideProject()">&times</span>
+                <h2>Jeu type "RPG"</h2>
+                 <p><i>En cours... - (Seul)</i></p>
+                 <p><b>Langage(s) utilisé(s) :</b> C++11</p>
+                 <p><b>Description :</b> Projet strictement personnel. Appréciant le développement logiciel et voulant creuser davantage ce que j'apprends en cours, je me suis lancé dans un projet
+                 de jeu type "RPG" dans mon temps libre. J'apprécie beaucoup travailler dessus. Pour le moment, je suis toujours en train de coder la base algorythmique ; une fois terminée, j'ajouterai du contenu
+                 ainsi qu'une interface graphique. Voilà pourquoi je n'ai pas de photo à proposer aujourd'hui.</p>
+             </div>
          </div>
 
      </div>
