@@ -82,24 +82,23 @@ function hideMobileMenu() {
     document.getElementById("mobile-nav-overlay").style.display = "none";
 }
 
-function nextPhoto(className) {
-    var elements = document.getElementsByClassName(className);
-    var done = false;
+function nextPhoto(image) {
+    var elements = image.parentNode.getElementsByTagName("img");
 
-    for(i = 0; i < elements.length -1; i++) {
+    for(i = 0; i < elements.length; i++) {
         if(elements[i].classList.contains("visible")) {
-            elements[i].classList.remove("visible");
-            elements[i].classList.add("invisible");
-            elements[i+1].classList.remove("invisible");
-            elements[i+1].classList.add("visible");
-            done = true;
-            break;
+            if(i != elements.length-1) {
+                elements[i].classList.remove("visible");
+                elements[i].classList.add("invisible");
+                elements[i + 1].classList.remove("invisible");
+                elements[i + 1].classList.add("visible");
+                break;
+            } else {
+                elements[elements.length-1].classList.remove("visible");
+                elements[elements.length-1].classList.add("invisible");
+                elements[0].classList.remove("invisible");
+                elements[0].classList.add("visible")
+            }
         }
-    }
-    if(!done) {
-        elements[elements.length-1].classList.remove("visible");
-        elements[elements.length-1].classList.add("invisible");
-        elements[0].classList.remove("invisible");
-        elements[0].classList.add("visible")
     }
 }
