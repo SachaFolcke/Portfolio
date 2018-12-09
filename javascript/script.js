@@ -1,15 +1,64 @@
 function showProject(id) {
     showBlackBackground();
-    document.getElementById(id).style.display = "block";
+    document.getElementById('all-projects').style.display = "block";
+    document.getElementById(id).classList.remove("invisible");
+    document.getElementById(id).classList.add("visible");
 }
 
+function nextProject() {
+    var elements = document.getElementsByClassName("projet");
+    for(i = 0; i < elements.length; i++){
+        if(elements[i].classList.contains("visible")) {
+            if(i != elements.length-1) {
+                elements[i].classList.remove("visible");
+                elements[i].classList.add("invisible");
+                elements[i + 1].classList.remove("invisible");
+                elements[i + 1].classList.add("visible");
+                break;
+            } else {
+                elements[elements.length-1].classList.remove("visible");
+                elements[elements.length-1].classList.add("invisible");
+                elements[0].classList.remove("invisible");
+                elements[0].classList.add("visible");
+                break;
+            }
+        }
+    }
+}
+
+function previousProject() {
+    var elements = document.getElementsByClassName("projet");
+    for(i = 0; i < elements.length; i++){
+        if(elements[i].classList.contains("visible")) {
+            if(i != 0) {
+                elements[i].classList.remove("visible");
+                elements[i].classList.add("invisible");
+                elements[i - 1].classList.remove("invisible");
+                elements[i - 1].classList.add("visible");
+                break;
+            } else {
+                elements[0].classList.remove("visible");
+                elements[0].classList.add("invisible");
+                elements[elements.length-1].classList.remove("invisible");
+                elements[elements.length-1].classList.add("visible");
+                break;
+            }
+        }
+    }
+}
 
 function hideProject() {
     hideBlackBackground();
-    var projects = document.getElementById("all-projects").getElementsByTagName("div");
+    var projects = document.getElementsByClassName("projet");
     for(var i = 0; i < projects.length; i++){
-        projects[i].style.display = "none";
+        if(projects[i].classList.contains("visible")) {
+            projects[i].classList.remove("visible");
+        }
+        if(!projects[i].classList.contains("invisible")) {
+            projects[i].classList.add("invisible");
+        }
     }
+    document.getElementById("all-projects").style.display = "none";
     document.getElementById("mobile-nav-overlay").style.display = "none";
 }
 

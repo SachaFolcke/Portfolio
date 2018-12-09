@@ -158,8 +158,9 @@
          </div>
          <div id="blackBackground" onclick="hideProject()"></div>
          <div id="all-projects">
-             <div id="info-master">
-                 <span class="close" onclick="hideProject()">&times</span>
+             <span class="close" onclick="hideProject()">&times</span>
+
+             <div id="info-master" class="projet invisible">
                  <h2>Mastermind</h2> <img class="masterphoto visible" src="img/mastermind_1.jpg" onclick="nextPhoto('masterphoto')"> <img class="masterphoto invisible" src="img/mastermind_2.jpg" onclick="nextPhoto('masterphoto')"> <img class="masterphoto invisible" src="img/mastermind_3.jpg" onclick="nextPhoto('masterphoto')"> <img class="masterphoto invisible" src="img/mastermind_4.jpg" onclick="nextPhoto('masterphoto')">
                  <p class="infoclic">(Cliquez sur l'image pour en faire défiler d'autres)</p>
                  <p><i>Juin 2017 - (Binôme)</i></p>
@@ -169,8 +170,7 @@
                  Ce fut mon premier projet de code et d'algorythmie conséquent et m'a appris à établir des objectifs, une marche à suivre et atteindre un but.</p>
              </div>
 
-             <div id="info-site">
-                 <span class="close" onclick="hideProject()">&times</span>
+             <div id="info-site" class="projet invisible">
                 <h2>Site Web "Stages à l'étranger"</h2> <img class="web visible" src="img/siteweb_1.jpg" onclick="nextPhoto('web')">  <img class="web invisible" src="img/siteweb_2.jpg" onclick="nextPhoto('web')"> <img class="web invisible" src="img/siteweb_3.jpg" onclick="nextPhoto('web')"> <img class="web invisible" src="img/siteweb_4.jpg" onclick="nextPhoto('web')">
                  <p class="infoclic">(Cliquez sur l'image pour en faire défiler d'autres)</p>
                  <p><i>Décembre 2017 - (Groupe de 3)</i></p>
@@ -178,8 +178,8 @@
                  <p><b>Description : </b>Il s'agit du projet de fin de semestre 1 de mon DUT. L'objectif était de réaliser un site web servant à guider les étudiants voulant partir à l'étranger
                  pour leur stage du 4ème semestre. Le site devait aussi esthétique qu'informatif. Nous nous sommes donc répartis les tâches au sein du groupe afin d'aboutir au résultat final.</p>
              </div>
-             <div id="info-2048">
-                 <span class="close" onclick="hideProject()">&times</span>
+
+             <div id="info-2048" class="projet invisible">
                 <h2>2048</h2> <img src="img/2048_1.jpg" class="2048photo visible" onclick="nextPhoto('2048photo')"> <img class="2048photo invisible" src="img/2048_2.jpg" onclick="nextPhoto('2048photo')"> <img class="2048photo invisible" src="img/2048_3.jpg" onclick="nextPhoto('2048photo')">
                  <p class="infoclic">(Cliquez sur l'image pour en faire défiler d'autres)</p>
                  <p><i>Juin 2018 - (Groupe de 4)</i></p>
@@ -188,14 +188,18 @@
                  et sa librairie PyQt pour l'interface graphique. Ce fut notre le projet de plus avancé et a demandé beaucoup de documentation afin de le mener à bien. Ce projet à renforcé ma cohésion d'équipe
                  et mon sens d'organisation afin de bien répartir les différentes tâches du projet.</p>
              </div>
-             <div id="info-rpg">
-                 <span class="close" onclick="hideProject()">&times</span>
+
+             <div id="info-rpg" class="projet invisible">
                 <h2>Jeu type "RPG"</h2>
                  <p><i>En cours... - (Seul)</i></p>
                  <p><b>Langage(s) utilisé(s) :</b> C++11</p>
                  <p><b>Description :</b> Projet strictement personnel. Appréciant le développement logiciel et voulant creuser davantage ce que j'apprends en cours, je me suis lancé dans un projet
                  de jeu type "RPG" dans mon temps libre. J'apprécie beaucoup travailler dessus. Pour le moment, je suis toujours en train de coder la base algorythmique ; une fois terminée, j'ajouterai du contenu
                  ainsi qu'une interface graphique. Voilà pourquoi je n'ai pas de photo à proposer aujourd'hui.</p>
+             </div>
+
+             <div id="navProjectBar">
+                <span class="previous" onclick="previousProject()"><</span><span class="next" onclick="nextProject()">></span>
              </div>
          </div>
 
