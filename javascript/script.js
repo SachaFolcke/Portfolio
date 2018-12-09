@@ -77,6 +77,11 @@ function showMobileMenu() {
     document.getElementById("mobile-nav-overlay").style.display = "flex";
 }
 
+function hideMobileMenu() {
+    hideBlackBackground();
+    document.getElementById("mobile-nav-overlay").style.display = "none";
+}
+
 function nextPhoto(className) {
     var elements = document.getElementsByClassName(className);
     var done = false;
