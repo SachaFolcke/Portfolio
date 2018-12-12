@@ -344,6 +344,18 @@ h1 {
     top: initial;
 }
 
+#contact-elements {
+    display: flex;
+    justify-content: space-evenly;
+    color: rgb(119,68,139);
+    margin-bottom: 50px;
+}
+
+#contact-elements > div > h3 {
+    font-family: 'Didact Gothic', sans-serif;
+    color: #424949;
+}
+
 @media screen and (min-width: 1080px) and (max-width: 1600px) {
     #presentation {
         margin: 0 0 50px 0;
