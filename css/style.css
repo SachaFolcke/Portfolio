@@ -346,14 +346,16 @@ h1 {
 
 #contact-elements {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-evenly;
     color: rgb(119,68,139);
     margin-bottom: 50px;
 }
 
-#contact-elements > div > h3 {
+#contact-elements > div > a > h3{
     font-family: 'Didact Gothic', sans-serif;
     color: #424949;
+    text-align: center;
 }
 
 @media screen and (min-width: 1080px) and (max-width: 1600px) {
