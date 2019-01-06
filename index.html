@@ -56,7 +56,7 @@
                     Je suis Sacha Folcke, j'ai 19 ans et je suis actuellement en 2ème année de DUT Informatique
                     à l'IUT de Lens. Je suis depuis longtemps passionné d'Informatique et je souhaite en faire mon métier.
                     Je suis actuellement à la recherche d'un stage en entreprise afin de me perfectionner, je suis ouvert
-                    à toute offre, que ce soit en développement logiciel ou web. Mon CV est disponible ci-dessus !</p>
+                    à toute offre, que ce soit en développement logiciel ou web. Mon CV est disponible dans la section Contact !</p>
          </div>
 
          <div id="parcours" class="justRight">
@@ -153,6 +153,10 @@
                     <div class="noIMG"></div>
                      <div class="overlay"><p><b>Jeu type "RPG"</b><br />Projet personnel mené durant le temps libre</p></div>
                  </div>
+                 <div id="marathon2018" onclick="showProject('marathon')">
+                     <img src="img/marathon_1.jpg">
+                     <div class="overlay"><p><b>Site d'histoires - Projet marathon 2018</b><br />Site créé from scratch en 48h à l'IUT de Lens</p></div>
+                 </div>
              </div>
          </div>
          <div id="blackBackground" onclick="hideProject()"></div>
@@ -197,6 +201,17 @@
                  ainsi qu'une interface graphique. Voilà pourquoi je n'ai pas de photo à proposer aujourd'hui.</p>
              </div>
 
+             <div id="marathon" class="projet invisible">
+                 <h2>Site d'histoires - Projet marathon 2018</h2> <img src="img/marathon_1.jpg" class="visible" onclick="nextPhoto(this)"> <img src="img/marathon_2.jpg" class="invisible" onclick="nextPhoto(this)"> <img src="img/marathon_3.jpg" class="invisible" onclick="nextPhoto(this)"> <img src="img/marathon_4.jpg" class="invisible" onclick="nextPhoto(this)"> <img src="img/marathon_5.jpg" class="invisible" onclick="nextPhoto(this)">
+                 <p class="infoclic">(Cliquez sur l'image pour en faire défiler d'autres)</p>
+                 <p><i>19 et 20 décembre 2018 - (Groupe de 4 Info et 4 MMI)</i></p>
+                 <p><b>Langage(s) utilisé(s) :</b> PHP, avec le framework Lavaral, Ajax</p>
+                 <p><b>Description :</b> Il s'agit du projet phare propre à l'IUT de Lens. Un sujet est donné le mercredi à 9h, il doit être rendu le lendemain à 18h par chaque groupe de 8 personnes. Nous devions
+                     créer un site from scratch répertoriant des histoires à chemins multiples ; il fallait donc tout faire : gérer les histoires, chapitres, choix, leur création, modification, suppression...
+                     Nous avons évidemment utilisé PHP, et son framework Laravel afin de rendre ce projet possible. J'ai même pu me pencher sur Ajax (contenu de dropbox dynamique sans rechargement de page).
+                     Ce projet m'a beaucoup fait progresser en PHP et m'a fait comprendre l'utilité des frameworks, qui rendent le codage bien plus facile ! Deux jours de codage intensif, certes fatiguants, mais une vraie expérience d'équipe.</p>
+             </div>
+
              <div id="navProjectBar">
                 <span class="previous" onclick="previousProject()"><</span><span class="next" onclick="nextProject()">></span>
              </div>
@@ -205,10 +220,10 @@
              <h2>Contact</h2>
              <div id="contact-elements">
                  <div id="mail">
-                     <a href="mailto:folcke.sacha@gmail.com"class="flaticon-gmail"><h3>M'envoyer un mail</h3></a>
+                     <a href="mailto:folcke.sacha@gmail.com" class="flaticon-gmail"><h3>M'envoyer un mail</h3></a>
                  </div>
                  <div id="cv">
-                     <a href="CV_FOLCKE_SACHA.pdf"class="flaticon-cv"><h3>Voir mon CV</h3></a>
+                     <a href="CV_FOLCKE_SACHA.pdf" class="flaticon-cv" target="_blank"><h3>Voir mon CV</h3></a>
                  </div>
                  <div id="linkedIn">
                     <a href="https://www.linkedin.com/in/sacha-folcke-845644176/" target="_blank" class="flaticon-linkedin-sign"><h3>Mon compte LinkedIn</h3></a>
