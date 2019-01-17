@@ -5,6 +5,7 @@ function showProject(id) {
 }
 
 function nextProject() {
+    /**
     var elements = document.getElementsByClassName("projet");
     for(i = 0; i < elements.length; i++){
         if(elements[i].classList.contains("visible")) {
@@ -23,6 +24,17 @@ function nextProject() {
             }
         }
     }
+    */
+    $('#all-projects').children('div').each(function () {
+        if ($(this).is(":visible")) {
+            $(this).fadeOut();
+            $(this).promise().done(function () {
+                $(this).next().fadeIn();
+            });
+            return false;
+        }
+    });
+
 }
 
 function previousProject() {
