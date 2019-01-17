@@ -70,9 +70,8 @@ input::before, input::after {
     top: 50%;
     transform: translateY(-50%);
     background-color: rgb(119,68,139);
-    width: 4vw;
+    width: 80px;
     height: 5px;
-    max-width: 50px;
 }
 
 input::before {
@@ -105,14 +104,14 @@ input:checked + .dot-info span {
 }
 
 .dot-info {
-    width: 25px;
+    width: 35px;
     height: 25px;
     padding-right: 40px;
     display: block;
     visibility: hidden;
     position: relative;
     z-index: -1;
-    left: calc((((80vw - 25px) / 20) * -1) - 1px);
+    left: -75px;
 }
 
 .dot-info span {
@@ -131,7 +130,7 @@ input:checked + .dot-info span {
 .dot-info span.label {
     top: -65px;
     left: 0;
-    transform: translateX(30%) translateY(-10%) rotateZ(-35deg) ;
+    transform: translateX(30%) translateY(-10%) rotateZ(-25deg) ;
     text-indent: -10px;
 }
 
@@ -200,17 +199,16 @@ input[data-description="2000"]:checked ~ #timeline-descriptions-wrapper p[data-d
         margin-left: 62.5px;
     }
     input::before {
-        left: -37.5px;
+        left: -70px;
     }
     input::after {
-        right: -37.5px;
+        right: -70px;
     }
     .dot-info {
-        left: calc((((1000px - 25px) / 20) * -1) - 1px);
         padding-right: 20px;
     }
     .dot-info span.label {
-        transform: translateX(-20%) translateY(-10%) rotateZ(-35deg);
+        transform: translateX(-20%) translateY(-10%) rotateZ(-25deg);
     }
     #timeline-descriptions-wrapper {
         margin-left: -37.5px;
