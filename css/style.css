@@ -123,6 +123,11 @@ h1 {
     justify-content: center;
     align-items: center;
     margin-bottom: 75px;
+    /*
+    animation-name: goIntoView;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+*/
 }
 
 #presentation p {
@@ -288,6 +293,7 @@ h1 {
     left: 50%;
     transform: translate(-50%, -50%);
     border: 2px solid rgb(119,68,139);
+    border-radius: 10px;
     background-color: #fff;
     padding: 20px;
     z-index: 100;
@@ -357,7 +363,18 @@ h1 {
     color: #424949;
     text-align: center;
 }
+/*
+@keyframes goIntoView{
+    from {
+        transform: translateX(0px);
+    }
+    to {
+        transform: translateX(300px);
+    }
 
+}
+
+*/
 @media screen and (min-width: 1080px) and (max-width: 1600px) {
     #presentation {
         margin: 0 0 50px 0;

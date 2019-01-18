@@ -5,31 +5,18 @@ function showProject(id) {
 }
 
 function nextProject() {
-    /**
-    var elements = document.getElementsByClassName("projet");
-    for(i = 0; i < elements.length; i++){
-        if(elements[i].classList.contains("visible")) {
-            if(i != elements.length-1) {
-                elements[i].classList.remove("visible");
-                elements[i].classList.add("invisible");
-                elements[i + 1].classList.remove("invisible");
-                elements[i + 1].classList.add("visible");
-                break;
-            } else {
-                elements[elements.length-1].classList.remove("visible");
-                elements[elements.length-1].classList.add("invisible");
-                elements[0].classList.remove("invisible");
-                elements[0].classList.add("visible");
-                break;
-            }
-        }
-    }
-    */
-    $('#all-projects').children('div').each(function () {
-        if ($(this).is(":visible")) {
+
+    projects = $('#all-projects').find('.projet');
+    projects.each(function () {
+        if ($(this).is(':visible')) {
             $(this).fadeOut();
             $(this).promise().done(function () {
-                $(this).next().fadeIn();
+                if(($(this).next().attr('id') != "navProjectBar")) {
+                    $(this).next().fadeIn();
+                } else {
+                    projects.first().fadeIn();
+
+                }
             });
             return false;
         }
@@ -38,24 +25,23 @@ function nextProject() {
 }
 
 function previousProject() {
-    var elements = document.getElementsByClassName("projet");
-    for(i = 0; i < elements.length; i++){
-        if(elements[i].classList.contains("visible")) {
-            if(i != 0) {
-                elements[i].classList.remove("visible");
-                elements[i].classList.add("invisible");
-                elements[i - 1].classList.remove("invisible");
-                elements[i - 1].classList.add("visible");
-                break;
-            } else {
-                elements[0].classList.remove("visible");
-                elements[0].classList.add("invisible");
-                elements[elements.length-1].classList.remove("invisible");
-                elements[elements.length-1].classList.add("visible");
-                break;
-            }
+
+    projects = $('#all-projects').find('.projet');
+    projects.each(function () {
+        if ($(this).is(':visible')) {
+            $(this).fadeOut();
+            $(this).promise().done(function () {
+                if (($(this).prev().attr('id') != undefined)) {
+                    $(this).prev().fadeIn();
+                } else {
+                    projects.last().fadeIn();
+
+
+                }
+            });
+            return false;
         }
-    }
+    });
 }
 
 function hideProject() {
@@ -85,7 +71,7 @@ function hideBlackBackground() {
 
 function showMobileMenu() {
     showBlackBackground();
-    $("#mobile-nav-overlay").css('display', 'flex');
+    $("#mobile-nav-overlay").css('display', 'flex').hide().fadeIn();
 }
 
 function hideMobileMenu() {
@@ -129,4 +115,25 @@ $(function() {
         }
     });
 });
+
+
+/**
+function isScrolledIntoView($elem, $window) {
+    var docViewTop = $window.scrollTop();
+    var docViewBottom = docViewTop + $window.height();
+
+    var elemTop = $elem.offset().top;
+    var elemBottom = elemTop + $elem.height();
+
+    return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+}
+$(document).on("scroll", function () {
+    var $window = $(window);
+    var elem = $('#presentation');
+    if (isScrolledIntoView($elem, $window)) {
+        alert("yooo");
+        $elem.addClass("animate")
+    }
+});
+ */
 
