@@ -304,7 +304,15 @@ h1 {
     max-height: 100%;
     max-width: 100%;
     margin: auto;
+}
+
+.photoSwap {
     cursor: pointer;
+    color: rgb(119,68,139);
+    font-weight: bold;
+    font-family: 'Didact Gothic', sans-serif;
+    padding: 10px;
+
 }
 
 .visible {
@@ -363,18 +371,9 @@ h1 {
     color: #424949;
     text-align: center;
 }
-/*
-@keyframes goIntoView{
-    from {
-        transform: translateX(0px);
-    }
-    to {
-        transform: translateX(300px);
-    }
 
-}
 
-*/
+
 @media screen and (min-width: 1080px) and (max-width: 1600px) {
     #presentation {
         margin: 0 0 50px 0;

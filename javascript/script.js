@@ -46,15 +46,7 @@ function previousProject() {
 
 function hideProject() {
     hideBlackBackground();
-    var projects = document.getElementsByClassName("projet");
-    for(var i = 0; i < projects.length; i++){
-        if(projects[i].classList.contains("visible")) {
-            projects[i].classList.remove("visible");
-        }
-        if(!projects[i].classList.contains("invisible")) {
-            projects[i].classList.add("invisible");
-        }
-    }
+    $("#all-projects").find('.projet').filter(':visible').fadeOut();
     $("#all-projects").fadeOut();
     $("#mobile-nav-overlay").fadeOut();
 }
@@ -76,28 +68,44 @@ function showMobileMenu() {
 
 function hideMobileMenu() {
     hideBlackBackground();
-    $("#mobile-nav-overlay").hide();
+    $("#mobile-nav-overlay").fadeOut();
 }
 
-function nextPhoto(image) {
-    var elements = image.parentNode.getElementsByTagName("img");
+function nextPhoto() {
 
-    for(i = 0; i < elements.length; i++) {
-        if(elements[i].classList.contains("visible")) {
-            if(i != elements.length-1) {
-                elements[i].classList.remove("visible");
-                elements[i].classList.add("invisible");
-                elements[i + 1].classList.remove("invisible");
-                elements[i + 1].classList.add("visible");
-                break;
-            } else {
-                elements[elements.length-1].classList.remove("visible");
-                elements[elements.length-1].classList.add("invisible");
-                elements[0].classList.remove("invisible");
-                elements[0].classList.add("visible")
-            }
+    var projet = $("#all-projects").find('.projet').filter(':visible');
+    var images = projet.find('img');
+    images.each(function () {
+        if ($(this).is(':visible')) {
+            $(this).fadeOut(150);
+            $(this).promise().done(function () {
+                if (($(this).next().attr('src') != undefined)) {
+                    $(this).next().fadeIn(150);
+                } else {
+                    images.first().fadeIn(150);
+                }
+            });
+            return false;
         }
-    }
+    })
+}
+
+function prevPhoto(){
+    var projet = $("#all-projects").find('.projet').filter(':visible');
+    var images = projet.find('img');
+    images.each(function () {
+        if ($(this).is(':visible')) {
+            $(this).fadeOut(150);
+            $(this).promise().done(function () {
+                if (($(this).prev().attr('src') != undefined)) {
+                    $(this).prev().fadeIn(150);
+                } else {
+                    images.last().fadeIn(150);
+                }
+            });
+            return false;
+        }
+    })
 }
 
 $(function() {
@@ -115,25 +123,4 @@ $(function() {
         }
     });
 });
-
-
-/**
-function isScrolledIntoView($elem, $window) {
-    var docViewTop = $window.scrollTop();
-    var docViewBottom = docViewTop + $window.height();
-
-    var elemTop = $elem.offset().top;
-    var elemBottom = elemTop + $elem.height();
-
-    return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
-}
-$(document).on("scroll", function () {
-    var $window = $(window);
-    var elem = $('#presentation');
-    if (isScrolledIntoView($elem, $window)) {
-        alert("yooo");
-        $elem.addClass("animate")
-    }
-});
- */
 
