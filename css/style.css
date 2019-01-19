@@ -123,12 +123,14 @@ h1 {
     justify-content: center;
     align-items: center;
     margin-bottom: 75px;
+
     /*
     animation-name: goIntoView;
     animation-duration: 2s;
     animation-fill-mode: forwards;
 */
 }
+
 
 #presentation p {
     font-family: 'Didact Gothic', sans-serif;
@@ -149,7 +151,7 @@ h1 {
 #parcours {
     overflow: hidden;
     height: auto;
-    background-color: #e9e6ea;
+    background : linear-gradient(white 0%, #e9e6ea 5%, #e9e6ea 95%, white 100%);
     margin: 0;
     position: static;
 }
@@ -206,8 +208,9 @@ h1 {
 }
 
 #projects {
-    background-color: #e9e6ea;
+    background : linear-gradient(white 0%, #e9e6ea 5%, #e9e6ea 95%, white 100%);
     height: auto;
+    padding-bottom: 40px;
 }
 
 #flexcontain > div {
@@ -285,6 +288,7 @@ h1 {
 #all-projects {
     position: fixed;
     display: none;
+    font-size: 18px;
     width: 50%;
     height: auto;
     max-height: 90%;
