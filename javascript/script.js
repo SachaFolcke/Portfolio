@@ -124,3 +124,10 @@ $(function() {
     });
 });
 
+$(document).ready ( function(){
+    if($(window).width() <= 639) {
+        $('#flexcontain').find('div').attr('data-aos-delay', '0');
+        $('#contain').find('div').attr('data-aos-delay', '0');
+    }
+});
+
