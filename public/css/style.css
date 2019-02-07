@@ -1,0 +1,470 @@
+body {
+    padding:0;
+    margin:0;
+}
+
+body a {
+    text-decoration: none;
+    color: rgb(119,68,139);
+}
+
+p {
+    font-family: 'Didact Gothic', sans-serif;
+}
+#fond {
+    background-image: url(../img/background.jpg);
+    background-size: cover;
+    height: 100vh;
+    background-repeat: no-repeat;
+
+}
+
+#nav {
+    position: fixed;
+    text-align: center;
+    width: 100vw;
+    height: 50px;
+    background-color:rgb(119,68,139);
+    border-bottom: 2px solid rgb(55, 30, 70);
+    z-index: 50;
+}
+
+#desktop-nav, #mobile-nav {
+    width: 100%;
+    height: 100%
+}
+
+#desktop-nav a, #mobile-nav span, #mobile-nav-overlay a {
+    font-family: 'Dosis', sans-serif;
+    font-weight: bold;
+    font-size: 24px;
+    color: #ffffff;
+    text-decoration: none;
+    line-height: 0;
+    text-align: center;
+    padding: 24px 0 0 0;
+    height: 20px;
+}
+
+#mobile-nav-overlay a {
+    padding: 24px 10px 10px 10px;
+}
+
+#desktop-nav {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#mobile-nav {
+    display: none;
+    cursor: pointer;
+}
+
+#mobile-nav-overlay {
+    display: none;
+    position: fixed;
+    text-align: center;
+    width: 100vw;
+    background-color:rgb(119,68,139);
+    border-bottom: 2px solid rgb(55, 30, 70);
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    z-index: 101;
+}
+
+.justRight:before {
+    height: 50px;
+    display: block;
+    content: '';
+}
+
+#basic {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: #ffffff;
+    font-family: 'Amaranth', sans-serif;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    line-height: 20px;
+    text-shadow: -2px -2px rgb(119,68,139), 2px 2px rgb(119,68,139), -2px 2px rgb(119,68,139), 2px -2px rgb(119,68,139);
+    width: 100%
+}
+
+h1 {
+    font-size: 99px;
+    /*margin-bottom: -75px;*/
+}
+
+#etu {
+    font-size: 60px;
+}
+
+#corps {
+    height: auto;
+    text-align: center;
+}
+
+#corps h2 {
+    font-family : 'Amaranth', sans-serif;
+    font-size: 38px;
+    color: #424949;
+    margin-top: 0;
+}
+
+#presentation {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 75px;
+
+    /*
+    animation-name: goIntoView;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+*/
+}
+
+
+#presentation p {
+    font-family: 'Didact Gothic', sans-serif;
+    font-size: 20px;
+    font-weight: normal;
+    text-align: justify;
+    margin: 0 30px 0 0;
+    max-width: 600px;
+}
+
+#presentation img {
+    border-radius: 50%;
+    border: 3px solid rgb(119,68,139);
+    height: 250px;
+    margin: 0 50px 30px 50px;
+}
+
+#parcours {
+    overflow: hidden;
+    height: auto;
+    background : linear-gradient(white 0%, #e9e6ea 5%, #e9e6ea 95%, white 100%);
+    margin: 0;
+    position: static;
+}
+
+#skills {
+    height: auto;
+    margin: 0;
+    position: static;
+}
+
+#contain, #flexcontain{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+    -webkit-flex-flow: row wrap;
+    justify-content: center;
+}
+
+#contain .element {
+    width: calc(100% /3 - 40px);
+    min-width: 200px;
+    max-width: 400px;
+    margin: 0 20px 0 20px;
+    font-family: 'Didact Gothic', sans-serif;
+    font-size: 20px;
+}
+
+#contain .element h3 {
+    font-family: 'Amaranth', sans-serif;
+    font-size: 29px;
+    color: #424949;
+}
+
+#contain .element h4 {
+    margin-bottom: 0px;
+}
+
+#contain .element h6 {
+    font-weight: lighter;
+    font-style: italic;
+    margin-top: 0;
+    margin-bottom: 0px;
+}
+
+.flaticon-conversation, .flaticon-coding, .flaticon-thought {
+    color: rgb(119,68,139);
+}
+
+#projects {
+    background : linear-gradient(white 0%, #e9e6ea 5%, #e9e6ea 95%, white 100%);
+    height: auto;
+    padding-bottom: 40px;
+}
+
+#flexcontain > div {
+    height: 300px;
+    width: 300px;
+    position: relative;
+    margin: 0 20px 20px 0;
+    cursor: pointer;
+}
+
+#flexcontain img, .noIMG {
+    height: 300px;
+    width: 300px;
+    display: block;
+    margin: 0 10px 20px;
+}
+
+#projects h2 {
+    margin-bottom: 0;
+}
+
+.infoclic {
+    margin : 0 0 30px 0;
+}
+
+.noIMG {
+    height: 294px;
+    width: 294px;
+    background: url("../img/no-photo.svg") no-repeat center;
+    background-size: 75px;
+    border-radius: 7px;
+    border: 3px dashed rgb(119,68,139);
+}
+
+.overlay:hover {
+    opacity : 0.90;
+}
+
+.overlay {
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 53%;
+    transform: translate(-50%, -50%);
+    background-color : rgb(119,68,139);
+    height: 300px;
+    width: 300px;
+    opacity: 0;
+    transition: 0.8s;
+}
+
+.overlay p {
+    position : absolute;
+    padding: 20px;
+    font-family: 'Didact Gothic', sans-serif;
+    top: 50%;
+    transform: translate(0%, -75%);
+}
+
+#blackBackground {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 99;
+    cursor: pointer;
+}
+
+#all-projects {
+    position: fixed;
+    display: none;
+    font-size: 18px;
+    width: 50%;
+    height: auto;
+    max-height: 90%;
+    overflow-y: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid rgb(119,68,139);
+    border-radius: 10px;
+    background-color: #fff;
+    padding: 20px;
+    z-index: 100;
+
+}
+
+#all-projects > div > img {
+    max-height: 100%;
+    max-width: 100%;
+    margin: auto;
+}
+
+.photoSwap {
+    cursor: pointer;
+    color: rgb(119,68,139);
+    font-weight: bold;
+    font-family: 'Didact Gothic', sans-serif;
+    padding: 10px;
+
+}
+
+.visible {
+    display: block;
+}
+
+.invisible {
+    display: none;
+}
+
+.close, .previous, .next{
+    border: 1px solid black;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-weight: bold;
+    font-size: 20px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    background-color: rgb(119,68,139);
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 30px;
+}
+
+#navProjectBar {
+    width: 100%;
+    height: 30px;
+    position: relative;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.previous {
+    top: initial;
+    left: 20px;
+}
+
+.next {
+    top: initial;
+}
+
+#contact-elements {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    color: rgb(119,68,139);
+    margin-bottom: 50px;
+}
+
+#contact-elements > div > a > h3{
+    font-family: 'Didact Gothic', sans-serif;
+    color: #424949;
+    text-align: center;
+}
+
+
+
+@media screen and (min-width: 1080px) and (max-width: 1600px) {
+    #presentation {
+        margin: 0 0 50px 0;
+    }
+
+    #all-projects {
+        width: 65%;
+    }
+
+}
+
+@media screen and (min-width: 640px) and (max-width: 1079px) {
+    #nav a {
+        padding: 24px 0 0 0;
+    }
+
+    #presentation {
+        margin: 0 0 50px 0;
+    }
+
+    #all-projects {
+        width: 80%;
+    }
+
+    #presentation img {
+        margin : 0 50px 30px 0;
+        width: 200px;
+        height: 200px;
+    }
+
+    #presentation p {
+        margin: 0 20px 0 20px;
+    }
+    
+}
+
+@media screen and (max-width: 639px){
+    #basic {
+        line-height: 100px;
+    }
+
+    #nav a {
+        padding: 24px 0 0 0;
+        font-size: 24px;
+        margin: 0 2px 0;
+    }
+
+    #nav {
+        width: 75px;
+        border-right: 2px solid rgb(55, 30, 70);
+    }
+
+    #desktop-nav {
+        display: none;
+    }
+
+    #mobile-nav {
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    #parcours {
+        height: 550px;
+    }
+
+    #skills .element {
+        max-width: 80vw;
+        min-width: 70vw;
+    }
+
+    #all-projects {
+        width: 95%;
+    }
+
+    #presentation {
+        flex-direction: column;
+    }
+
+    #presentation img {
+        margin : 0 0 30px 0;
+        width: 200px;
+        height: 200px;
+    }
+
+    #presentation p {
+        min-width: 90vw;
+        text-align: center;
+        margin: 0 20px 0 20px;
+    }
+}
