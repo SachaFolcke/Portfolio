@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "615897f9ab24066d3a45b9b5374f8eab",
+    "content-hash": "8b7b8f3fb0cf3b7101fc29489f0ecf17",
     "packages": [
         {
             "name": "composer/ca-bundle",
