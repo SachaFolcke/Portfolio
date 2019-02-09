@@ -55,15 +55,4 @@ class PhotosProjet
         return $this;
     }
 
-    public static function getFirstPhoto($array, int $id) {
-        $r = null;
-        foreach($array as $elem) {
-            if($elem->getId() == $id) {
-                $r = $elem;
-                break;
-            }
-        }
-        return $r;
-    }
-
 }

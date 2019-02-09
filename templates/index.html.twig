@@ -117,10 +117,10 @@
         <h2 data-aos="fade-zoom-in" data-aos-duration="400">Mes projets</h2>
         <p class="infoclic" data-aos="fade-zoom-in" data-aos-duration="400">(Cliquez sur les projets pour plus d'informations)</p>
         <div id="flexcontain">
-            {% for projet in projets %}
 
+            {% for projet in projets %}
             <div onclick="showProject('#projet{{ projet.id }}')" data-aos="flip-down" data-aos-duration="250" data-aos-delay="{{ 250 * (projet.id - 1) }}">
-                <img src="{{ }}">
+                <img src="{{ asset(photos[projet.id][0].path) }}">
                 <div class="overlay"><p><b>{{ projet.titre }}</b><br />{{ projet.catchPhrase }}</p></div>
             </div>
             {% endfor %}
@@ -131,15 +131,13 @@
         <span class="close" onclick="hideProject()">&times</span>
 
         {% for projet in projets %}
-
         <div id="projet{{ projet.id }}" class="projet invisible">
-            <h2>{{ projet.titre }}</h2> <img class="visible" src="img/mastermind_1.jpg"> <img class="invisible" src="img/mastermind_2.jpg"> <img class="invisible" src="img/mastermind_3.jpg"> <img class="invisible" src="img/mastermind_4.jpg" >
+            <h2>{{ projet.titre }}</h2> {% for photo in photos[projet.id] %}<img{% if photo is same as(photos[projet.id][0]) %} class="visible" {% else %} class="invisible" {% endif %}src="{{ photo.path }}">{% endfor %}
             <p><span class="photoSwap" onclick="prevPhoto()"><< Photo precédente </span>|<span class="photoSwap" onclick="nextPhoto()"> Photo suivante >></span></p>
             <p><i>{{ projet.periode }} - ({{ projet.compoGroupe }})</i></p>
             <p><b>Langage(s) utilisé(s) :</b> {{ projet.langages }}</p>
             <p><b>Description : </b>{{ projet.description }}</p>
         </div>
-
         {% endfor %}
 
         <div id="navProjectBar">
