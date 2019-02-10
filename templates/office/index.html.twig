@@ -1,0 +1,30 @@
+{% extends 'office/base.html.twig' %}
+
+{% block contenu %}
+    <h3>Gérer les projets</h3>
+
+    <a href="{{ path('add_project') }}"><button>Ajouter un projet</button></a>
+
+    <table id="projets">
+        <tr>
+            <th>Titre</th>
+            <th>Période</th>
+            <th>Groupe</th>
+            <th>Résumé</th>
+            <th>Modifier</th>
+            <th>Supprimer</th>
+        </tr>
+        {% for projet in projets %}
+            <tr>
+                <td>{{ projet.titre }}</td>
+                <td>{{ projet.periode }}</td>
+                <td>{{ projet.compoGroupe }}</td>
+                <td>{{ projet.catchPhrase }}</td>
+                <td><button>Modifier</button></td>
+                <td><button>Supprimer</button></td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
+
+

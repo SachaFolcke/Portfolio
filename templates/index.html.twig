@@ -128,12 +128,12 @@
     </div>
     <div id="blackBackground" onclick="hideProject()"></div>
     <div id="all-projects">
-        <span class="close" onclick="hideProject()">&times</span>
+        <span class="close" onclick="hideProject()">&times;</span>
 
         {% for projet in projets %}
         <div id="projet{{ projet.id }}" class="projet invisible">
             <h2>{{ projet.titre }}</h2> {% for photo in photos[projet.id] %}<img{% if photo is same as(photos[projet.id][0]) %} class="visible" {% else %} class="invisible" {% endif %}src="{{ photo.path }}">{% endfor %}
-            <p><span class="photoSwap" onclick="prevPhoto()"><< Photo precédente </span>|<span class="photoSwap" onclick="nextPhoto()"> Photo suivante >></span></p>
+            <p><span class="photoSwap" onclick="prevPhoto()">&lt;&lt; Photo precédente </span>|<span class="photoSwap" onclick="nextPhoto()"> Photo suivante &gt;&gt;</span></p>
             <p><i>{{ projet.periode }} - ({{ projet.compoGroupe }})</i></p>
             <p><b>Langage(s) utilisé(s) :</b> {{ projet.langages }}</p>
             <p><b>Description : </b>{{ projet.description }}</p>
@@ -141,7 +141,7 @@
         {% endfor %}
 
         <div id="navProjectBar">
-            <span class="previous" onclick="previousProject()"><</span><span class="next" onclick="nextProject()">></span>
+            <span class="previous" onclick="previousProject()">&lt;</span><span class="next" onclick="nextProject()">&gt;</span>
         </div>
     </div>
     <div id="contact" class="justRight" data-aos="fade-zoom-in" data-aos-duration="400">

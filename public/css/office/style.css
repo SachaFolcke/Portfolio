@@ -1,0 +1,78 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: url(../../img/background.jpg) fixed;
+    background-size: cover;
+}
+
+h2 {
+    text-align: center;
+    font-family: 'Amaranth', sans-serif;
+    font-size: 70px;
+    text-shadow: -2px -2px rgb(119,68,139), 2px 2px rgb(119,68,139), -2px 2px rgb(119,68,139), 2px -2px rgb(119,68,139);
+    color: #fff;
+    margin: 20px 20px;
+    padding-top: 5px;
+}
+
+h2 a {
+    text-decoration: none;
+    color: #fff;
+}
+
+#contenu {
+    width: 60%;
+    background-color: #fff;
+    border: 2px solid rgb(119,68,139);
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+}
+
+h3 {
+    text-align: center;
+    font-family: 'Amaranth', sans-serif;
+    font-size: 50px;
+    margin: 20px 20px;
+}
+
+#login-form {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-align: left;
+    width: 50%;
+    min-width: 300px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#login-form input, #login-form label {
+    width: 100%;
+    margin: 5px auto;
+}
+
+#login-form label {
+    font-family: 'Didact Gothic', sans-serif;
+    font-size: 24px;
+}
+
+#projets {
+    width: 100%;
+    font-family: 'Didact Gothic', sans-serif;
+}
+
+#projets, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 3px;
+}
+
+#projets button {
+    width: 100%
+}

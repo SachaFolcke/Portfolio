@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Back-office du portfolio{% endblock %}
+
+{% block stylesheets %}
+<link href="{{ asset('css/office/style.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <h2>Gestion du <a href="{{ path('home') }}">portfolio</a></h2>
+
+    <div id="contenu">{% block contenu %}{% endblock %}</div>
+
+
+{% endblock %}

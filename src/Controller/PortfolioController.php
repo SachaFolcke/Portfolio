@@ -19,7 +19,7 @@ use Symfony\Component\HttpFoundation\Response;
 class PortfolioController extends AbstractController
 {
     /**
-     * @Route("/")
+     * @Route("/", name="home")
      */
     public function homepage(EntityManagerInterface $em) {
 
