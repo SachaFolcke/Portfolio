@@ -20,6 +20,27 @@ h2 a {
     color: #fff;
 }
 
+.small_link {
+    color: rgb(119,68,139);
+    text-decoration: none;
+    font-family: 'Didact Gothic', sans-serif;
+    font-weight: bold;
+}
+#errors {
+    height: 50px;
+    background-color: rgb(255, 112, 112);
+    border-bottom: 2px solid #FF0000;
+    margin: -10px;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    text-align: center;
+    display: flex;
+    justify-content:center;
+    align-content:center;
+    flex-direction:column;
+
+}
+
 #contenu {
     width: 60%;
     background-color: #fff;
@@ -35,6 +56,13 @@ h3 {
     font-family: 'Amaranth', sans-serif;
     font-size: 50px;
     margin: 20px 20px;
+}
+
+h4 {
+    text-align: center;
+    font-family: 'Amaranth', sans-serif;
+    font-size: 30px;
+    margin: 20px 5px;
 }
 
 #login-form {
@@ -64,9 +92,11 @@ h3 {
     font-family: 'Didact Gothic', sans-serif;
 }
 
-#projets, th, td {
+table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
+    font-family: 'Didact Gothic', sans-serif;
+    font-size: 20px;
 }
 
 th, td {
@@ -75,4 +105,25 @@ th, td {
 
 #projets button {
     width: 100%
+}
+
+#photo_preview {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.one_photo {
+    display: flex;
+    width: 200px;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.one_photo > img, .one_photo button {
+    width: 100%;
+}
+
+.center_button {
+    display: block;
+    margin: 0 auto 20px;
 }

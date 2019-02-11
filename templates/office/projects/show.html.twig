@@ -1,0 +1,61 @@
+{% extends 'office/base.html.twig' %}
+
+{% block contenu %}
+    {% if projet is empty %}
+
+    <h3>Ce projet n'existe pas, désolé !</h3>
+    <a class="small_link" href="{{ path('office') }}">Retour à la gestion du portfolio</a>
+
+    {% else %}
+    <a class="small_link" href="{{ path('office') }}">&lt;&lt; Retour</a>
+    <h3>Gestion du projet {{ projet.titre }}</h3>
+        <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+            <a href="" style="text-decoration: none"><button>Modifier</button></a>
+            <a href="" style="text-decoration: none"><button>Supprimer</button></a>
+        </div>
+    <table>
+        <tr>
+            <th>Titre</th>
+            <td>{{ projet.titre }}</td>
+        </tr>
+        <tr>
+            <th>Résumé</th>
+            <td>{{ projet.catchPhrase }}</td>
+        </tr>
+        <tr>
+            <th>Période</th>
+            <td>{{ projet.periode }}</td>
+        </tr>
+        <tr>
+            <th>Groupe</th>
+            <td>{{ projet.compoGroupe }}</td>
+        </tr>
+        <tr>
+            <th>Langages utilisés</th>
+            <td>{{ projet.langages }}</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>{{ projet.description }}</td>
+        </tr>
+    </table>
+
+    <h4>Photos du projet</h4>
+        <a href="" style="text-decoration: none"><button class="center_button">Ajouter une photo au projet</button></a>
+    {% if photos is empty %}
+        <p>Aucune photo n'a été associé à ce projet, ajoutez-en !</p>
+    {% else %}
+    <div id="photo_preview">
+        {% for photo in photos %}
+            <div class="one_photo">
+                <img src="{{ asset(photo.path) }}">
+                <a href=""><button>Supprimer</button></a>
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+        <a class="small_link" href="{{ path('office') }}">&lt;&lt; Retour</a>
+    {% endif %}
+
+{% endblock %}
+

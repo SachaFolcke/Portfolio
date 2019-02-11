@@ -3,7 +3,7 @@
 {% block contenu %}
     <h3>Gérer les projets</h3>
 
-    <a href="{{ path('add_project') }}"><button>Ajouter un projet</button></a>
+    <a href="{{ path('add_project') }}" style="text-decoration: none"><button class="center_button">Ajouter un projet</button></a>
 
     <table id="projets">
         <tr>
@@ -11,7 +11,7 @@
             <th>Période</th>
             <th>Groupe</th>
             <th>Résumé</th>
-            <th>Modifier</th>
+            <th>Afficher</th>
             <th>Supprimer</th>
         </tr>
         {% for projet in projets %}
@@ -20,7 +20,7 @@
                 <td>{{ projet.periode }}</td>
                 <td>{{ projet.compoGroupe }}</td>
                 <td>{{ projet.catchPhrase }}</td>
-                <td><button>Modifier</button></td>
+                <td><a href="{{ path('show_project', {'id': projet.id}) }}"><button>Afficher</button></a></td>
                 <td><button>Supprimer</button></td>
             </tr>
         {% endfor %}
