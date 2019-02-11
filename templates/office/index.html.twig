@@ -1,6 +1,13 @@
 {% extends 'office/base.html.twig' %}
 
 {% block contenu %}
+
+    {% for message in app.flashes('success') %}
+        <div id="successes">
+            {{ message }}
+        </div>
+    {% endfor %}
+
     <h3>Gérer les projets</h3>
 
     <a href="{{ path('add_project') }}" style="text-decoration: none"><button class="center_button">Ajouter un projet</button></a>
@@ -21,7 +28,7 @@
                 <td>{{ projet.compoGroupe }}</td>
                 <td>{{ projet.catchPhrase }}</td>
                 <td><a href="{{ path('show_project', {'id': projet.id}) }}"><button>Afficher</button></a></td>
-                <td><button>Supprimer</button></td>
+                <td><a href="{{ path('delete_project', {'id': projet.id}) }}"><button>Supprimer</button></a></td>
             </tr>
         {% endfor %}
     </table>

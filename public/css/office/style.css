@@ -27,7 +27,7 @@ h2 a {
     font-weight: bold;
 }
 #errors {
-    height: 50px;
+    height: auto;
     background-color: rgb(255, 112, 112);
     border-bottom: 2px solid #FF0000;
     margin: -10px;
@@ -38,6 +38,35 @@ h2 a {
     justify-content:center;
     align-content:center;
     flex-direction:column;
+    animation: hideAfter forwards;
+    animation-delay: 5s;
+    animation-duration: 1s;
+}
+
+#successes {
+    height: 50px;
+    background-color: rgb(166, 255, 150);
+    border-bottom: 2px solid #2eff08;
+    margin: -10px;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    text-align: center;
+    display: flex;
+    justify-content:center;
+    align-content:center;
+    flex-direction:column;
+    animation: hideAfter forwards;
+    animation-delay: 5s;
+    animation-duration: 1s;
+}
+
+@keyframes hideAfter {
+    from {
+        opacity: 100%;
+    }
+    to {
+        opacity: 0;
+    }
 
 }
 
@@ -65,7 +94,7 @@ h4 {
     margin: 20px 5px;
 }
 
-#login-form {
+#login-form, #project_form, #photo_form, #form_register {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -77,12 +106,19 @@ h4 {
     margin-right: auto;
 }
 
-#login-form input, #login-form label {
+#login-form input, #login-form label,
+#project_form input, #project_form label, #project_form textarea,
+#photo_form input, #photo_form label,
+#form_register input, #form_register label{
     width: 100%;
     margin: 5px auto;
 }
 
-#login-form label {
+#project_form textarea {
+    resize: vertical;
+}
+
+#login-form label, #project_form label, #photo_form label, #form_register label {
     font-family: 'Didact Gothic', sans-serif;
     font-size: 24px;
 }

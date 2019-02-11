@@ -117,12 +117,17 @@
         <h2 data-aos="fade-zoom-in" data-aos-duration="400">Mes projets</h2>
         <p class="infoclic" data-aos="fade-zoom-in" data-aos-duration="400">(Cliquez sur les projets pour plus d'informations)</p>
         <div id="flexcontain">
-
+            {% set cpt = 0 %}
             {% for projet in projets %}
-            <div onclick="showProject('#projet{{ projet.id }}')" data-aos="flip-down" data-aos-duration="250" data-aos-delay="{{ 250 * (projet.id - 1) }}">
+            <div onclick="showProject('#projet{{ projet.id }}')" data-aos="flip-down" data-aos-duration="250" data-aos-delay="{{ 250 * (cpt) }}">
+                {% if photos[projet.id]|length > 0 %}
                 <img src="{{ asset(photos[projet.id][0].path) }}">
+                {% else %}
+                <div class="noIMG"></div>
+                {% endif %}
                 <div class="overlay"><p><b>{{ projet.titre }}</b><br />{{ projet.catchPhrase }}</p></div>
             </div>
+                {% set cpt = cpt+1 %}
             {% endfor %}
         </div>
     </div>
@@ -133,7 +138,9 @@
         {% for projet in projets %}
         <div id="projet{{ projet.id }}" class="projet invisible">
             <h2>{{ projet.titre }}</h2> {% for photo in photos[projet.id] %}<img{% if photo is same as(photos[projet.id][0]) %} class="visible" {% else %} class="invisible" {% endif %}src="{{ photo.path }}">{% endfor %}
+            {% if photos[projet.id]|length > 1 %}
             <p><span class="photoSwap" onclick="prevPhoto()">&lt;&lt; Photo precédente </span>|<span class="photoSwap" onclick="nextPhoto()"> Photo suivante &gt;&gt;</span></p>
+            {% endif %}
             <p><i>{{ projet.periode }} - ({{ projet.compoGroupe }})</i></p>
             <p><b>Langage(s) utilisé(s) :</b> {{ projet.langages }}</p>
             <p><b>Description : </b>{{ projet.description }}</p>
@@ -159,5 +166,7 @@
         </div>
     </div>
 </div>
+    <div id="office_access"><a href="{{ path('office') }}">Accès à la gestion du portfolio</a></div>
+
 
 {% endblock %}

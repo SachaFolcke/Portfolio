@@ -9,6 +9,12 @@
         <div id="errors">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
 
+    {% for message in app.flashes('success') %}
+        <div id="successes">
+            {{ message }}
+        </div>
+    {% endfor %}
+
     <h3>Connexion</h3>
 
     <form id="login-form" method="post">
@@ -20,6 +26,8 @@
 
         <button type="submit">Se connecter</button>
     </form>
+
+    <p style="text-align: center">Pas de compte ? Vous pouvez vous inscrire <a href="{{ path('registration') }}">ici</a>.</p>
 {% endblock %}
 
 

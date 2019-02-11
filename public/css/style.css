@@ -376,6 +376,23 @@ h1 {
     text-align: center;
 }
 
+#office_access {
+    width: 100%;
+    height: auto;
+    text-align: center;
+    background-color: rgb(119,68,139);
+    border-top: 2px solid rgb(55, 30, 70);
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#office_access a {
+    font-family: 'Amaranth', sans-serif;
+    font-size: 28px;
+    color: #fff;
+    text-decoration: none;
+    margin: 0;
+}
 
 
 @media screen and (min-width: 1080px) and (max-width: 1600px) {
