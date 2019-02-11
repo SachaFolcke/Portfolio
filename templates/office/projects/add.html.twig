@@ -1,6 +1,7 @@
 {% extends 'office/base.html.twig' %}
 
 {% block contenu %}
+    <a class="small_link" href="{{ path('office') }}">&lt;&lt; Retour</a>
     <h3>Ajouter un nouveau projet</h3>
 
     <div id="project_form">
@@ -14,4 +15,5 @@
     <button class="center_button" type="submit">Ajouter le projet !</button>
     {{ form_end(form) }}
     </div>
+    <a class="small_link" href="{{ path('office') }}">&lt;&lt; Retour</a>
 {% endblock %}

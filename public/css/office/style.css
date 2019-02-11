@@ -145,12 +145,14 @@ th, td {
 
 #photo_preview {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-evenly;
 }
 
 .one_photo {
     display: flex;
     width: 200px;
+    min-width: 200px;
     flex-direction: column;
     margin-bottom: 20px;
 }
@@ -162,4 +164,56 @@ th, td {
 .center_button {
     display: block;
     margin: 0 auto 20px;
+}
+
+
+@media screen and (min-width: 1080px) and (max-width: 1600px) {
+    #contenu {
+        width: 80%;
+    }
+}
+
+@media screen and (min-width: 640px) and (max-width: 1079px) {
+    #contenu {
+        width: 95%;
+    }
+
+    table, th, td {
+        font-size: 18px;
+    }
+
+    #projets button {
+        width: 90px;
+        font-size: 14px;
+        padding-left: 0;
+    }
+}
+
+
+@media screen and (max-width: 639px){
+
+    h2 {
+        font-size: 60px;
+    }
+
+    h3 {
+        font-size: 40px;
+    }
+
+    #contenu {
+        width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    table, th, td {
+        font-size: 15px;
+    }
+
+    #projets button {
+        width: 50px;
+        font-size: 10px;
+        padding: 0;
+        border: 1px solid black;
+    }
 }

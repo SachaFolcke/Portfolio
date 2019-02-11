@@ -19,7 +19,7 @@
             <th>Groupe</th>
             <th>Résumé</th>
             <th>Afficher</th>
-            <th>Supprimer</th>
+            <th>Suppr.</th>
         </tr>
         {% for projet in projets %}
             <tr>
@@ -28,7 +28,7 @@
                 <td>{{ projet.compoGroupe }}</td>
                 <td>{{ projet.catchPhrase }}</td>
                 <td><a href="{{ path('show_project', {'id': projet.id}) }}"><button>Afficher</button></a></td>
-                <td><a href="{{ path('delete_project', {'id': projet.id}) }}"><button>Supprimer</button></a></td>
+                <td><a href="{{ path('delete_project', {'id': projet.id}) }}" onclick="return confirm('Voulez-vous vraiment supprimer le projet {{ projet.titre }} ?')"><button>Supprimer</button></a></td>
             </tr>
         {% endfor %}
     </table>

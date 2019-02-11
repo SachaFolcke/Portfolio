@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/errors/basic_errors.css') }}">
+{% endblock %}
+
+{% block fonts_and_stuff %}
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}
+
+
+{% block body %}
+<div id="error_page">
+    <div id="err_num">404</div>
+    <div id="err_mess">Page ou ressource inexistante</div>
+    <div id="err_mess2">Vous vous êtes perdus ?</div>
+</div>
+{% endblock %}

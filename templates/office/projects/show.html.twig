@@ -24,7 +24,7 @@
     <h3>Gestion du projet "{{ projet.titre }}"</h3>
         <div style="display: flex; justify-content: center; margin-bottom: 20px;">
             <a href="{{ path('edit_project', {'id' : projet.id}) }}" style="text-decoration: none"><button>Modifier</button></a>
-            <a href="{{ path('delete_project', {'id': projet.id}) }}" style="text-decoration: none"><button>Supprimer</button></a>
+            <a href="{{ path('delete_project', {'id': projet.id}) }}" style="text-decoration: none" onclick="return confirm('Voulez-vous vraiment supprimer le projet {{ projet.titre }} ?')"><button>Supprimer</button></a>
         </div>
     <table>
         <tr>

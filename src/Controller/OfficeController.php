@@ -43,11 +43,11 @@ class OfficeController extends AbstractController
 
         $rep = $em->getRepository(PhotosProjet::class);
         $photos = $rep->findBy(['id_projet' => $id]);
-/*
+
         if(!$projet) {
             throw new NotFoundHttpException("Ce projet n'existe pas !");
         }
-*/
+
         return $this->render('office/projects/show.html.twig', [
             'projet' => $projet,
             'photos' => $photos
@@ -89,6 +89,11 @@ class OfficeController extends AbstractController
     public function modifierProjet(Request $request, $id, EntityManagerInterface $em) {
 
         $projet = $em->getRepository(Projet::class)->findOneBy(['id' => $id]);
+
+        if(!$projet) {
+            throw new NotFoundHttpException();
+        }
+
         $form = $this->createForm(ProjectType::class, $projet);
         $form->handleRequest($request);
 
@@ -115,8 +120,21 @@ class OfficeController extends AbstractController
     public function supprimerProjet($id, EntityManagerInterface $em) {
 
         $projet = $em->getRepository(Projet::class)->findOneBy(['id' => $id]);
+        $photos = $em->getRepository(PhotosProjet::class)->findBy(['id_projet' => $id]);
+
+        if(!$projet) {
+            throw new NotFoundHttpException();
+        }
+        
+        $filesystem = new Filesystem();
+        foreach($photos as $photo) {
+            $filesystem->remove($photo->getPath());
+        }
+
         $em->remove($projet);
         $em->flush();
+
+
         $this->addFlash('success', 'Projet correctement supprimé !');
 
         return $this->redirectToRoute('office');
