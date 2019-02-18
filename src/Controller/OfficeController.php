@@ -125,7 +125,7 @@ class OfficeController extends AbstractController
         if(!$projet) {
             throw new NotFoundHttpException();
         }
-        
+
         $filesystem = new Filesystem();
         foreach($photos as $photo) {
             $filesystem->remove($photo->getPath());
