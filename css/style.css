@@ -131,13 +131,24 @@ h1 {
 */
 }
 
+.pres-text {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+hr {
+    width: 90%;
+    color: rgb(119,68,139);
+}
+
+
 
 #presentation p {
     font-family: 'Didact Gothic', sans-serif;
     font-size: 20px;
     font-weight: normal;
     text-align: justify;
-    margin: 0 30px 0 0;
     max-width: 600px;
 }
 
@@ -209,8 +220,7 @@ h1 {
 
 #projects {
     background : linear-gradient(white 0%, #e9e6ea 5%, #e9e6ea 95%, white 100%);
-    height: auto;
-    padding-bottom: 40px;
+    padding-bottom: 50px;
 }
 
 #flexcontain > div {
@@ -409,7 +419,7 @@ h1 {
     }
 
     #presentation p {
-        margin: 0 20px 0 20px;
+        margin: 20px;
     }
     
 }
@@ -465,6 +475,6 @@ h1 {
     #presentation p {
         min-width: 90vw;
         text-align: center;
-        margin: 0 20px 0 20px;
+        margin: 20px;
     }
 }
