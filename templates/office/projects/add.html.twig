@@ -4,16 +4,15 @@
     <a class="small_link" href="{{ path('office') }}">&lt;&lt; Retour</a>
     <h3>Ajouter un nouveau projet</h3>
 
-    <div id="project_form">
-    {{ form_start(form) }}
-        {{ form_row(form.titre) }}
-        {{ form_row(form.catch_phrase) }}
-        {{ form_row(form.periode) }}
-        {{ form_row(form.compo_groupe) }}
-        {{ form_row(form.langages) }}
-        {{ form_row(form.description) }}
-    <button class="center_button" type="submit">Ajouter le projet !</button>
+    {{ form_start(form, { 'attr' : { 'id' : 'project-form' }}) }}
+        {{ form_row(form.titre, { 'attr' : { 'class' : 'form-control' } }) }}
+        {{ form_row(form.catch_phrase, { 'attr' : { 'class' : 'form-control' } }) }}
+        {{ form_row(form.periode, { 'attr' : { 'class' : 'form-control' } }) }}
+        {{ form_row(form.compo_groupe, { 'attr' : { 'class' : 'form-control' } }) }}
+        {{ form_row(form.langages, { 'attr' : { 'class' : 'form-control' } }) }}
+        {{ form_row(form.description, { 'attr' : { 'class' : 'form-control' } }) }}
+    <button class="center-button btn btn-success" type="submit">Ajouter le projet !</button>
     {{ form_end(form) }}
-    </div>
+
     <a class="small_link" href="{{ path('office') }}">&lt;&lt; Retour</a>
 {% endblock %}

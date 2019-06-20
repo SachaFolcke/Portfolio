@@ -23,13 +23,18 @@
     <a class="small_link" href="{{ path('office') }}">&lt;&lt; Retour</a>
     <h3>Gestion du projet "{{ projet.titre }}"</h3>
         <div style="display: flex; justify-content: center; margin-bottom: 20px;">
-            <a href="{{ path('edit_project', {'id' : projet.id}) }}" style="text-decoration: none"><button>Modifier</button></a>
-            <a href="{{ path('delete_project', {'id': projet.id}) }}" style="text-decoration: none" onclick="return confirm('Voulez-vous vraiment supprimer le projet {{ projet.titre }} ?')"><button>Supprimer</button></a>
+            <button onclick="location.href='{{ path('edit_project', {'id' : projet.id}) }}'" class="btn btn-warning">
+                Modifier
+            </button>
+            <a href="{{ path('delete_project', {'id': projet.id}) }}" style="text-decoration: none"
+               onclick="return confirm('Voulez-vous vraiment supprimer le projet {{ projet.titre }} ?')">
+                <button class="btn btn-danger">Supprimer</button>
+            </a>
         </div>
-    <table>
+    <table class="table table-striped table-bordered">
         <tr>
-            <th>Titre</th>
-            <td>{{ projet.titre }}</td>
+            <th width="20%">Titre</th>
+            <td width="80%">{{ projet.titre }}</td>
         </tr>
         <tr>
             <th>Résumé</th>
@@ -54,7 +59,11 @@
     </table>
 
     <h4>Photos du projet</h4>
-        <a href="{{ path('add_photo', {'id': projet.id}) }}" style="text-decoration: none"><button class="center_button">Ajouter une photo au projet</button></a>
+
+        <button onclick="location.href='{{ path('add_photo', {'id': projet.id}) }}'" class="center-button btn btn-custom">
+            Ajouter une photo au projet
+        </button>
+
     {% if photos is empty %}
         <p style="text-align: center">Aucune photo n'a été associée à ce projet, ajoutez-en !</p>
     {% else %}

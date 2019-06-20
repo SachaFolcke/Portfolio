@@ -18,13 +18,15 @@
     <h3>Connexion</h3>
 
     <form id="login-form" method="post">
-        <label for="username">Username :</label>
-        <input type="text" id="username" name="_username" value="{{ last_username }}">
+        <div class="form-group">
+            <label for="username">Username :</label>
+            <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}">
 
-        <label for="password">Password :</label>
-        <input type="password" id="password" name="_password">
+            <label for="password">Password :</label>
+            <input class="form-control" type="password" id="password" name="_password">
 
-        <button type="submit">Se connecter</button>
+            <button type="submit" class="center-button btn btn-primary">Se connecter</button>
+        </div>
     </form>
 
     <p style="text-align: center">Pas de compte ? Vous pouvez vous inscrire rapidement <a href="{{ path('registration') }}">ici</a>.</p>
