@@ -1,0 +1,14 @@
+{% extends 'office/base.html.twig' %}
+
+{% block contenu %}
+
+    <a class="small_link" href="{{ path('show_project', {'id': id}) }}">&lt;&lt; Retour</a>
+    <h3>Ajouter une photo</h3>
+    <div id="photo_form">
+    {{ form_start(form) }}
+        {{ form_row(form.photo) }}
+        <button class="center_button" type="submit">Envoyer</button>
+    {{ form_end(form) }}
+    </div>
+{% endblock %}
+

@@ -1,0 +1,22 @@
+{% extends 'office/base.html.twig' %}
+
+{% block title %}
+    Créer un User
+{% endblock %}
+
+{% block contenu %}
+
+    <h3>S'inscrire</h3>
+    <div id="form_register">
+        {{ form_start(form) }}
+            {{ form_row(form.username) }}
+            {{ form_row(form.plainpassword.first) }}
+            {{ form_row(form.plainpassword.second) }}
+
+            <button type="submit">S'incrire</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+
+
+

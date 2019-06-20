@@ -1,0 +1,37 @@
+{% extends 'office/base.html.twig' %}
+
+{% block contenu %}
+
+    {% for message in app.flashes('success') %}
+        <div id="successes">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <h3>Gérer les projets</h3>
+
+    <a href="{{ path('add_project') }}" style="text-decoration: none"><button class="center_button">Ajouter un projet</button></a>
+
+    <table id="projets">
+        <tr>
+            <th>Titre</th>
+            <th>Période</th>
+            <th>Groupe</th>
+            <th>Résumé</th>
+            <th>Afficher</th>
+            <th>Suppr.</th>
+        </tr>
+        {% for projet in projets %}
+            <tr>
+                <td>{{ projet.titre }}</td>
+                <td>{{ projet.periode }}</td>
+                <td>{{ projet.compoGroupe }}</td>
+                <td>{{ projet.catchPhrase }}</td>
+                <td><a href="{{ path('show_project', {'id': projet.id}) }}"><button>Afficher</button></a></td>
+                <td><a href="{{ path('delete_project', {'id': projet.id}) }}" onclick="return confirm('Voulez-vous vraiment supprimer le projet {{ projet.titre }} ?')"><button>Supprimer</button></a></td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
+
+

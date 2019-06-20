@@ -1,0 +1,172 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+{{ parent() }}
+<div id="nav">
+    <div id="desktop-nav" data-aos="fade-down" data-aos-duration="1000">
+        <a href="#corps">Présentation</a>
+        <a href="#parcours">Diplômes</a>
+        <a href="#skills">Compétences</a>
+        <a href="#projects">Projets</a>
+        <a href="#contact">Contact</a>
+    </div>
+    <div id="mobile-nav" onclick="showMobileMenu()">
+        <span>Menu</span>
+    </div>
+</div>
+<div id="mobile-nav-overlay">
+    <a href="#corps" onclick="hideMobileMenu()">Présentation</a>
+    <a href="#parcours" onclick="hideMobileMenu()">Diplômes</a>
+    <a href="#skills" onclick="hideMobileMenu()">Compétences</a>
+    <a href="#projects" onclick="hideMobileMenu()">Projets</a>
+    <a href="#contact" onclick="hideMobileMenu()">Contact</a>
+</div>
+<div id="fond"></div>
+<div id="basic" data-aos="zoom-out" data-aos-duration="3000">
+    <h1>Sacha Folcke</h1>
+    <h2 id="etu">Étudiant</h2>
+</div>
+<div id="corps" class="justRight">
+    <h2 data-aos="fade-zoom-in" data-aos-duration="400">Bienvenue sur mon portfolio</h2>
+    <div id="presentation" data-aos="fade-right">
+        <img src="{{ asset('img/portrait_sqr.jpg') }}" />
+        <p><i>Bonjour !</i><br />
+            Je suis Sacha Folcke, j'ai 19 ans et je suis actuellement en 2ème année de DUT Informatique
+            à l'IUT de Lens. Je suis depuis longtemps passionné d'Informatique et je souhaite en faire mon métier.
+            Je suis actuellement à la recherche d'un stage en entreprise afin de me perfectionner, je suis ouvert
+            à toute offre, que ce soit en développement logiciel ou web. Mon CV est disponible dans la section Contact !</p>
+    </div>
+
+    <div id="parcours" class="justRight" >
+        <h2 data-aos="fade-zoom-in" data-aos-duration="400">Mon parcours et diplômes</h2>
+        <div class="flex-parent">
+            <div class="input-flex-container" data-aos="zoom-in">
+                <input type="radio" name="timeline-dot" data-description="2015-2017">
+                <div class="dot-info" data-description="2015-2017">
+                    <span class="year">2015-2017</span>
+                    <span class="label">Baccalauréat S Obtenu</span>
+                </div>
+                <input type="radio" name="timeline-dot" data-description="sept2017">
+                <div class="dot-info" data-description="sept2017">
+                    <span class="year">Sept. 2017</span>
+                    <span class="label">Entrée en DUT Informatique</span>
+                </div>
+                <input type="radio" name="timeline-dot" data-description="juil2018" checked>
+                <div class="dot-info" data-description="juil2018">
+                    <span class="year">Juil. 2018</span>
+                    <span class="label">Fin 1ère année</span>
+                </div>
+                <input type="radio" name="timeline-dot" data-description="avr2019">
+                <div class="dot-info" data-description="avr2019">
+                    <span class="year">Avr. 2019</span>
+                    <span class="label">Début Stage</span>
+                </div>
+                <input type="radio" name="timeline-dot" data-description="juil2019">
+                <div class="dot-info" data-description="juil2019">
+                    <span class="year">Juil. 2019</span>
+                    <span class="label">Fin 2ème année</span>
+                </div>
+                <input type="radio" name="timeline-dot" data-description="sept2019">
+                <div class="dot-info" data-description="sept2019">
+                    <span class="year">Sept. 2019</span>
+                    <span class="label">Entrée école Ingénieur ?</span>
+                </div>
+
+                <div id="timeline-descriptions-wrapper">
+                    <p data-description="2015-2017">Baccalauréat Scientifique mention <i>Assez Bien Euro Anglais</i> au Lycée Guy Mollet d'Arras</p>
+                    <p data-description="sept2017">Entrée en 1ère année de DUT Informatique à l'IUT de Lens.</p>
+                    <p data-description="juil2018">Obtention avec brio de la 1ère année de DUT Informatique.</p>
+                    <p data-description="avr2019">Projection : Début d'un stage en entreprise. Je suis toujours en recherche de stage.</p>
+                    <p data-description="juil2019">Projection : Obtention de la 2ème année de DUT Informatique.</p>
+                    <p data-description="sept2019">Supposition : J'aimerais entrer en école d'ingénieur et me spécialiser dans le domaine de la sécurité Informatique.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="skills" class="justRight">
+        <h2 data-aos="fade-zoom-in" data-aos-duration="400">Compétences et personnalité</h2>
+        <div id="contain">
+            <div class="element" data-aos="fade-zoom-in" data-aos-duration="400">
+                <div class="flaticon-coding"></div>
+                <h3>Informatique</h3>
+                <h4>Familier avec ces langages</h4>
+                <p>C++, Python, Java</p>
+                <p>HTML/CSS/Javascript, jQuery, TypeScript, Ajax</p>
+                <p>SQL, PHP, Framework Laravel</p>
+                <p>UML, <a href="https://github.com/SachaFolcke" target="_blank">GitHub</a>, Design Paterns</p>
+                <p>Utilisation courante des systèmes Unix et Windows</p>
+            </div>
+            <div class="element" data-aos="fade-zoom-in" data-aos-duration="400" data-aos-delay="400">
+                <div class="flaticon-conversation"></div>
+                <h3>Communication</h3>
+                <p>Compréhension et expression avancée de l'anglais (TOEIC à venir)</p>
+                <p>Maîtrise orale et écrite du français (<a href="https://www.certificat-voltaire.fr/orthographe-recruteur?code=M3CF6W" target="_blank">Certification Voltaire</a>)</p>
+            </div>
+            <div class="element" data-aos="fade-zoom-in" data-aos-duration="400" data-aos-delay="800">
+                <div class="flaticon-thought"></div>
+                <h3>Personnalité</h3>
+                <p>Dynamique et motivé</p>
+                <p>Extraverti, préfère le travail en équipe</p>
+                <p>Envie d'apprendre (projets personnels)</p>
+                <p>Sens de logique</p>
+            </div>
+        </div>
+    </div>
+    <div id="projects" class="justRight">
+        <h2 data-aos="fade-zoom-in" data-aos-duration="400">Mes projets</h2>
+        <p class="infoclic" data-aos="fade-zoom-in" data-aos-duration="400">(Cliquez sur les projets pour plus d'informations)</p>
+        <div id="flexcontain">
+            {% set cpt = 0 %}
+            {% for projet in projets %}
+            <div onclick="showProject('#projet{{ projet.id }}')" data-aos="flip-down" data-aos-duration="250" data-aos-delay="{{ 250 * (cpt) }}">
+                {% if photos[projet.id]|length > 0 %}
+                <img src="{{ asset(photos[projet.id][0].path) }}">
+                {% else %}
+                <div class="noIMG"></div>
+                {% endif %}
+                <div class="overlay"><p><b>{{ projet.titre }}</b><br />{{ projet.catchPhrase }}</p></div>
+            </div>
+                {% set cpt = cpt+1 %}
+            {% endfor %}
+        </div>
+    </div>
+    <div id="blackBackground" onclick="hideProject()"></div>
+    <div id="all-projects">
+        <span class="close" onclick="hideProject()">&times;</span>
+
+        {% for projet in projets %}
+        <div id="projet{{ projet.id }}" class="projet invisible">
+            <h2>{{ projet.titre }}</h2> {% for photo in photos[projet.id] %}<img{% if photo is same as(photos[projet.id][0]) %} class="visible" {% else %} class="invisible" {% endif %}src="{{ photo.path }}">{% endfor %}
+            {% if photos[projet.id]|length > 1 %}
+            <p><span class="photoSwap" onclick="prevPhoto()">&lt;&lt; Photo precédente </span>|<span class="photoSwap" onclick="nextPhoto()"> Photo suivante &gt;&gt;</span></p>
+            {% endif %}
+            <p><i>{{ projet.periode }} - ({{ projet.compoGroupe }})</i></p>
+            <p><b>Langage(s) utilisé(s) :</b> {{ projet.langages }}</p>
+            <p><b>Description : </b>{{ projet.description }}</p>
+        </div>
+        {% endfor %}
+
+        <div id="navProjectBar">
+            <span class="previous" onclick="previousProject()">&lt;</span><span class="next" onclick="nextProject()">&gt;</span>
+        </div>
+    </div>
+    <div id="contact" class="justRight" data-aos="fade-zoom-in" data-aos-duration="400">
+        <h2>Contact</h2>
+        <div id="contact-elements" data-aos="fade-up" data-aos-anchor-placement="top">
+            <div id="mail">
+                <a href="mailto:folcke.sacha@gmail.com" class="flaticon-gmail"><h3>M'envoyer un mail</h3></a>
+            </div>
+            <div id="cv">
+                <a href="{{ asset('pdf/CV_FOLCKE_SACHA.pdf') }}" class="flaticon-cv" target="_blank"><h3>Voir mon CV</h3></a>
+            </div>
+            <div id="linkedIn">
+                <a href="https://www.linkedin.com/in/sacha-folcke" target="_blank" class="flaticon-linkedin-sign"><h3>Mon compte LinkedIn</h3></a>
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="office_access"><a href="{{ path('office') }}">Accès à la gestion du portfolio</a></div>
+
+
+{% endblock %}

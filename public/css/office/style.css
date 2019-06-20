@@ -1,0 +1,219 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: url(../../img/background.jpg) fixed;
+    background-size: cover;
+}
+
+h2 {
+    text-align: center;
+    font-family: 'Amaranth', sans-serif;
+    font-size: 70px;
+    text-shadow: -2px -2px rgb(119,68,139), 2px 2px rgb(119,68,139), -2px 2px rgb(119,68,139), 2px -2px rgb(119,68,139);
+    color: #fff;
+    margin: 20px 20px;
+    padding-top: 5px;
+}
+
+h2 a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.small_link {
+    color: rgb(119,68,139);
+    text-decoration: none;
+    font-family: 'Didact Gothic', sans-serif;
+    font-weight: bold;
+}
+#errors {
+    height: auto;
+    background-color: rgb(255, 112, 112);
+    border-bottom: 2px solid #FF0000;
+    margin: -10px;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    text-align: center;
+    display: flex;
+    justify-content:center;
+    align-content:center;
+    flex-direction:column;
+    animation: hideAfter forwards;
+    animation-delay: 5s;
+    animation-duration: 1s;
+}
+
+#successes {
+    height: 50px;
+    background-color: rgb(166, 255, 150);
+    border-bottom: 2px solid #2eff08;
+    margin: -10px;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    text-align: center;
+    display: flex;
+    justify-content:center;
+    align-content:center;
+    flex-direction:column;
+    animation: hideAfter forwards;
+    animation-delay: 5s;
+    animation-duration: 1s;
+}
+
+@keyframes hideAfter {
+    from {
+        opacity: 100%;
+    }
+    to {
+        opacity: 0;
+    }
+
+}
+
+#contenu {
+    width: 60%;
+    background-color: #fff;
+    border: 2px solid rgb(119,68,139);
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+}
+
+h3 {
+    text-align: center;
+    font-family: 'Amaranth', sans-serif;
+    font-size: 50px;
+    margin: 20px 20px;
+}
+
+h4 {
+    text-align: center;
+    font-family: 'Amaranth', sans-serif;
+    font-size: 30px;
+    margin: 20px 5px;
+}
+
+#login-form, #project_form, #photo_form, #form_register {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-align: left;
+    width: 50%;
+    min-width: 300px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#login-form input, #login-form label,
+#project_form input, #project_form label, #project_form textarea,
+#photo_form input, #photo_form label,
+#form_register input, #form_register label{
+    width: 100%;
+    margin: 5px auto;
+}
+
+#project_form textarea {
+    resize: vertical;
+}
+
+#login-form label, #project_form label, #photo_form label, #form_register label {
+    font-family: 'Didact Gothic', sans-serif;
+    font-size: 24px;
+}
+
+#projets {
+    width: 100%;
+    font-family: 'Didact Gothic', sans-serif;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    font-family: 'Didact Gothic', sans-serif;
+    font-size: 20px;
+}
+
+th, td {
+    padding: 3px;
+}
+
+#projets button {
+    width: 100%
+}
+
+#photo_preview {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.one_photo {
+    display: flex;
+    width: 200px;
+    min-width: 200px;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.one_photo > img, .one_photo button {
+    width: 100%;
+}
+
+.center_button {
+    display: block;
+    margin: 0 auto 20px;
+}
+
+
+@media screen and (min-width: 1080px) and (max-width: 1600px) {
+    #contenu {
+        width: 80%;
+    }
+}
+
+@media screen and (min-width: 640px) and (max-width: 1079px) {
+    #contenu {
+        width: 95%;
+    }
+
+    table, th, td {
+        font-size: 18px;
+    }
+
+    #projets button {
+        width: 90px;
+        font-size: 14px;
+        padding-left: 0;
+    }
+}
+
+
+@media screen and (max-width: 639px){
+
+    h2 {
+        font-size: 60px;
+    }
+
+    h3 {
+        font-size: 40px;
+    }
+
+    #contenu {
+        width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    table, th, td {
+        font-size: 15px;
+    }
+
+    #projets button {
+        width: 50px;
+        font-size: 10px;
+        padding: 0;
+        border: 1px solid black;
+    }
+}

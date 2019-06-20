@@ -1,0 +1,6 @@
+#index:
+#    path: /
+#    controller: App\Controller\PortfolioController::homepage
+
+logout:
+  path: /logout
