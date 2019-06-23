@@ -10,27 +10,41 @@
 
     <h3>Gérer les projets</h3>
 
-    <a href="{{ path('add_project') }}" style="text-decoration: none"><button class="center_button">Ajouter un projet</button></a>
+    <button onclick="location.href='{{ path('add_project') }}'" class="center-button btn btn-success">
+        Ajouter un projet
+    </button>
 
-    <table id="projets">
-        <tr>
-            <th>Titre</th>
-            <th>Période</th>
-            <th>Groupe</th>
-            <th>Résumé</th>
-            <th>Afficher</th>
-            <th>Suppr.</th>
-        </tr>
+    <table id="projets" class="table table-bordered table-striped table-hover text-center">
+        <thead>
+            <tr>
+                <th scope="col" width="20%">Titre</th>
+                <th scope="col" width="15%">Période</th>
+                <th scope="col" width="15%">Groupe</th>
+                <th scope="col" width="40%">Résumé</th>
+                <th scope="col" width="10%">Options</th>
+            </tr>
+        </thead>
+
+        <tbody>
         {% for projet in projets %}
             <tr>
                 <td>{{ projet.titre }}</td>
                 <td>{{ projet.periode }}</td>
                 <td>{{ projet.compoGroupe }}</td>
                 <td>{{ projet.catchPhrase }}</td>
-                <td><a href="{{ path('show_project', {'id': projet.id}) }}"><button>Afficher</button></a></td>
-                <td><a href="{{ path('delete_project', {'id': projet.id}) }}" onclick="return confirm('Voulez-vous vraiment supprimer le projet {{ projet.titre }} ?')"><button>Supprimer</button></a></td>
+                <td>
+                    <button onclick="location.href='{{ path('show_project', {'id': projet.id}) }}'" class="btn btn-primary btn-block">
+                        Afficher
+                    </button>
+                    <a href="{{ path('delete_project', {'id': projet.id}) }}"
+                       onclick="return confirm('Voulez-vous vraiment supprimer le projet {{ projet.titre }} ?')">
+                        <button class="btn btn-danger btn-block">Supprimer</button>
+                    </a>
+                </td>
             </tr>
+
         {% endfor %}
+        </tbody>
     </table>
 {% endblock %}
 

@@ -3,12 +3,16 @@
 {% block contenu %}
 
     <a class="small_link" href="{{ path('show_project', {'id': id}) }}">&lt;&lt; Retour</a>
+
     <h3>Ajouter une photo</h3>
-    <div id="photo_form">
-    {{ form_start(form) }}
+
+    {{ form_start(form, { 'attr' : { 'id' : "photo-form" }}) }}
         {{ form_row(form.photo) }}
-        <button class="center_button" type="submit">Envoyer</button>
+
+        <button class="center-button btn btn-primary" type="submit">
+            Envoyer
+        </button>
     {{ form_end(form) }}
-    </div>
+
 {% endblock %}
 
