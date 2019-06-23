@@ -30,7 +30,9 @@ class PortfolioController extends AbstractController
         $photos = [];
 
         foreach ($projets as $projet) {
-            $photos[$projet->getId()] = $rep->findBy(['id_projet' => $projet->getId()]);
+            $id = $projet->getId();
+            $photos[$id]['thumb'] = $rep->findOneBy(['idProjet' => $id, 'isThumbnail' => 1]);
+            $photos[$id]['photos'] = $rep->findBy(['idProjet' => $id, 'isThumbnail' => 0]);
         }
 
         return $this->render('index.html.twig', [

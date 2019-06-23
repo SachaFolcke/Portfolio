@@ -4,6 +4,7 @@ namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,6 +14,7 @@ class PhotoUploadType extends AbstractType
     {
         $builder
             ->add('photo', FileType::class, ['label' => 'Ajoutez la photo ici'])
+            ->add('isThumbnail', CheckboxType::class, ['label' => 'Miniature du projet ?', 'required' => false])
         ;
     }
 

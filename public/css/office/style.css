@@ -99,6 +99,13 @@ h4 {
     margin: 20px 5px;
 }
 
+h5 {
+    text-align: center;
+    font-family: 'Amaranth', sans-serif;
+    font-size: 22px;
+    margin: 20px 5px;
+}
+
 #login-form, #project-form, #photo-form, #form-register {
     display: flex;
     justify-content: center;
@@ -151,22 +158,27 @@ th, td {
     width: 100%
 }
 
-#photo_preview {
+#photo-preview {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
 
-.one_photo {
+.one-photo {
     display: flex;
     width: 200px;
     min-width: 200px;
     flex-direction: column;
-    margin-bottom: 20px;
 }
 
-.one_photo > img, .one_photo button {
+.one-photo > img, .one-photo button {
     width: 100%;
+    margin: 3px;
+}
+
+.one-photo > img {
+    border: 2px solid #fff;
+    outline: 2px solid rgb(119,68,139);
 }
 
 .center-button {

@@ -225,7 +225,6 @@ h1 {
     height: 300px;
     width: 300px;
     display: block;
-    margin: 0 10px 20px;
 }
 
 #projects h2 {
@@ -254,7 +253,7 @@ h1 {
     font-size: 20px;
     position: absolute;
     top: 50%;
-    left: 53%;
+    left: 50%;
     transform: translate(-50%, -50%);
     background-color : rgb(119,68,139);
     height: 300px;

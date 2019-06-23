@@ -15,9 +15,9 @@ class ProjectType extends AbstractType
     {
         $builder
             ->add('titre', TextType::class, array('label' => 'Titre', 'attr' => array('placeholder' => 'Titre principal du projet')))
-            ->add('catch_phrase', TextType::class, array('label' => 'Résumé', 'attr' => array('placeholder' => 'Petite phrase résumant le projet')))
+            ->add('catchPhrase', TextType::class, array('label' => 'Résumé', 'attr' => array('placeholder' => 'Petite phrase résumant le projet')))
             ->add('periode', TextType::class, array('label' => 'Période', 'attr' => array('placeholder' => 'Ex : Juin 2018, 18 décembre 2017...')))
-            ->add('compo_groupe', TextType::class, array('label' => 'Composition du groupe', 'attr' => array('placeholder' => 'Groupe de x, Binôme...')))
+            ->add('compoGroupe', TextType::class, array('label' => 'Composition du groupe', 'attr' => array('placeholder' => 'Groupe de x, Binôme...')))
             ->add('langages', TextType::class, array('label' => 'Langages utilisés', 'attr' => array('placeholder' => 'Énumération des langages utilisés')))
             ->add('description', TextareaType::class, array('label' => 'Description', 'attr' => array('placeholder' => 'Décrivez le projet le plus précisément possible')))
         ;

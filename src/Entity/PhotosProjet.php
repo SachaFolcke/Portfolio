@@ -17,14 +17,19 @@ class PhotosProjet
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(name="id_projet", type="integer")
      */
-    private $id_projet;
+    private $idProjet;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $path;
+
+    /**
+     * @ORM\Column(name="is_thumbnail", type="boolean")
+     */
+    private $isThumbnail;
 
     public function getId(): ?int
     {
@@ -33,12 +38,12 @@ class PhotosProjet
 
     public function getIdProjet(): ?int
     {
-        return $this->id_projet;
+        return $this->idProjet;
     }
 
-    public function setIdProjet(int $id_projet): self
+    public function setIdProjet(int $idProjet): self
     {
-        $this->id_projet = $id_projet;
+        $this->idProjet = $idProjet;
 
         return $this;
     }
@@ -51,6 +56,18 @@ class PhotosProjet
     public function setPath(string $path): self
     {
         $this->path = $path;
+
+        return $this;
+    }
+
+    public function getIsThumbnail(): ?bool
+    {
+        return $this->isThumbnail;
+    }
+
+    public function setIsThumbnail(bool $isThumbnail): self
+    {
+        $this->isThumbnail = $isThumbnail;
 
         return $this;
     }

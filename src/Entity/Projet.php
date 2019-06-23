@@ -27,9 +27,9 @@ class Projet
     private $periode;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(name="compo_groupe", type="string", length=50)
      */
-    private $compo_groupe;
+    private $compoGroupe;
 
     /**
      * @ORM\Column(type="string", length=200)
@@ -42,9 +42,9 @@ class Projet
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=200)
+     * @ORM\Column(name="catch_phrase", type="string", length=200)
      */
-    private $catch_phrase;
+    private $catchPhrase;
 
     public function getId(): ?int
     {
@@ -77,12 +77,12 @@ class Projet
 
     public function getCompoGroupe(): ?string
     {
-        return $this->compo_groupe;
+        return $this->compoGroupe;
     }
 
-    public function setCompoGroupe(string $compo_groupe): self
+    public function setCompoGroupe(string $compoGroupe): self
     {
-        $this->compo_groupe = $compo_groupe;
+        $this->compoGroupe = $compoGroupe;
 
         return $this;
     }
@@ -113,12 +113,12 @@ class Projet
 
     public function getCatchPhrase(): ?string
     {
-        return $this->catch_phrase;
+        return $this->catchPhrase;
     }
 
-    public function setCatchPhrase(string $catch_phrase): self
+    public function setCatchPhrase(string $catchPhrase): self
     {
-        $this->catch_phrase = $catch_phrase;
+        $this->catchPhrase = $catchPhrase;
 
         return $this;
     }

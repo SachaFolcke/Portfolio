@@ -41,16 +41,18 @@ class OfficeController extends AbstractController
         $rep = $em->getRepository(Projet::class);
         $projet = $rep->findOneBy(['id' => $id]);
 
-        $rep = $em->getRepository(PhotosProjet::class);
-        $photos = $rep->findBy(['id_projet' => $id]);
-
         if(!$projet) {
             throw new NotFoundHttpException("Ce projet n'existe pas !");
         }
 
+        $rep = $em->getRepository(PhotosProjet::class);
+        $photos = $rep->findBy(['idProjet' => $id, 'isThumbnail' => 0]);
+        $thumbnail = $rep->findBy(['idProjet' => $id, 'isThumbnail' => 1]);
+
         return $this->render('office/projects/show.html.twig', [
-            'projet' => $projet,
-            'photos' => $photos
+            'projet'    => $projet,
+            'photos'    => $photos,
+            'thumbnail' => $thumbnail
         ]);
     }
 
@@ -120,7 +122,7 @@ class OfficeController extends AbstractController
     public function supprimerProjet($id, EntityManagerInterface $em) {
 
         $projet = $em->getRepository(Projet::class)->findOneBy(['id' => $id]);
-        $photos = $em->getRepository(PhotosProjet::class)->findBy(['id_projet' => $id]);
+        $photos = $em->getRepository(PhotosProjet::class)->findBy(['idProjet' => $id]);
 
         if(!$projet) {
             throw new NotFoundHttpException();
@@ -129,6 +131,7 @@ class OfficeController extends AbstractController
         $filesystem = new Filesystem();
         foreach($photos as $photo) {
             $filesystem->remove($photo->getPath());
+            $em->remove($photo);
         }
 
         $em->remove($projet);
@@ -149,6 +152,8 @@ class OfficeController extends AbstractController
 
         $photo = new PhotosProjet();
         $form = $this->createForm(PhotoUploadType::class);
+        $hasThumbnail = (count($em->getRepository(PhotosProjet::class)
+            ->findBy(['idProjet' => $id, 'isThumbnail' => 1])) == 0 ? false : true);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
@@ -171,6 +176,8 @@ class OfficeController extends AbstractController
 
                 $photo->setIdProjet($id);
                 $photo->setPath('img/' . $filename);
+                $photo->setIsThumbnail($form->getData()['isThumbnail']);
+
                 $em->persist($photo);
                 $em->flush();
 
@@ -178,13 +185,15 @@ class OfficeController extends AbstractController
             } else {
                 $this->addFlash('error', 'L\'image fournie n\'a pas un type valide (jpg, png ou gif)');
             }
+
             return $this->redirectToRoute('show_project', ['id' => $id]);
 
         }
 
         return $this->render('office/projects/add_photo.html.twig', [
-            'form' => $form->createView(),
-            'id' => $id
+            'form'         => $form->createView(),
+            'id'           => $id,
+            'hasThumbnail' => $hasThumbnail,
         ]);
     }
 

@@ -1,0 +1,11 @@
+<div id="photo-preview">
+    {% for photo in photos %}
+        <div class="one-photo">
+            <img src="{{ asset(photo.path) }}">
+            <button onclick="location.href='{{ path('delete_photo', {'id_photo': photo.id, 'id': photo.idProjet}) }}'"
+                    class="btn btn-danger">
+                Supprimer
+            </button>
+        </div>
+    {% endfor %}
+</div>
