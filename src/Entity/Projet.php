@@ -46,6 +46,11 @@ class Projet
      */
     private $catchPhrase;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $online;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -119,6 +124,18 @@ class Projet
     public function setCatchPhrase(string $catchPhrase): self
     {
         $this->catchPhrase = $catchPhrase;
+
+        return $this;
+    }
+
+    public function getOnline(): ?bool
+    {
+        return $this->online;
+    }
+
+    public function setOnline(bool $online): self
+    {
+        $this->online = $online;
 
         return $this;
     }

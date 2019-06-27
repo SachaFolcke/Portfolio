@@ -106,7 +106,7 @@ class OfficeController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('success', 'Projet correctement modifié !');
-            return $this->redirectToRoute('office');
+            return $this->redirectToRoute('show_project', ['id' => $id]);
         }
 
         return $this->render(

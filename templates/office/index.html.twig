@@ -11,34 +11,44 @@
     <h3>Gérer les projets</h3>
 
     <button onclick="location.href='{{ path('add_project') }}'" class="center-button btn btn-success">
-        Ajouter un projet
+         <span class="oi oi-plus" title="plus" aria-hidden="true"></span> Ajouter un projet
     </button>
 
     <table id="projets" class="table table-bordered table-striped table-hover text-center">
         <thead>
             <tr>
+                <th scope="col" width="5%">
+                    <span class="oi oi-eye" title="eye" aria-hidden="true"></span>
+                </th>
                 <th scope="col" width="20%">Titre</th>
-                <th scope="col" width="15%">Période</th>
-                <th scope="col" width="15%">Groupe</th>
-                <th scope="col" width="40%">Résumé</th>
-                <th scope="col" width="10%">Options</th>
+                <th scope="col" width="12.5%">Période</th>
+                <th scope="col" width="12.5%">Groupe</th>
+                <th scope="col" width="35%">Résumé</th>
+                <th scope="col" width="15%">Options</th>
             </tr>
         </thead>
 
         <tbody>
         {% for projet in projets %}
             <tr>
+                <td>{% if projet.online %}
+                        <span class="oi oi-check" title="check" aria-hidden="true"></span>
+                    {% else %}
+                        <span class="oi oi-x" title="x" aria-hidden="true"></span>
+                    {% endif %}</td>
                 <td>{{ projet.titre }}</td>
                 <td>{{ projet.periode }}</td>
                 <td>{{ projet.compoGroupe }}</td>
                 <td>{{ projet.catchPhrase }}</td>
                 <td>
                     <button onclick="location.href='{{ path('show_project', {'id': projet.id}) }}'" class="btn btn-primary btn-block">
-                        Afficher
+                        <span class="oi oi-spreadsheet" title="spreadshit" aria-hidden="true"></span> Afficher
                     </button>
                     <a href="{{ path('delete_project', {'id': projet.id}) }}"
                        onclick="return confirm('Voulez-vous vraiment supprimer le projet {{ projet.titre }} ?')">
-                        <button class="btn btn-danger btn-block">Supprimer</button>
+                        <button class="btn btn-danger btn-block">
+                            <span class="oi oi-trash" title="trash" aria-hidden="true"></span> Supprimer
+                        </button>
                     </a>
                 </td>
             </tr>

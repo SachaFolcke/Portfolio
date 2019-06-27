@@ -122,7 +122,6 @@ h5 {
 }
 
 #login-form input, #login-form label,
-#project-form input, #project-form label, #project-form textarea,
 #photo-form input, #photo-form label,
 #form-register input, #form-register label{
     width: 100%;
@@ -156,6 +155,20 @@ th, td {
 
 #projets button {
     width: 100%
+}
+
+#projets td {
+    vertical-align: middle;
+}
+
+#projets td .oi {
+    color: rgb(119,68,139);
+    font-size: 30px;
+}
+
+button span {
+    color: #FFFFFF !important;
+    font-size: 15px !important;
 }
 
 #photo-preview {
