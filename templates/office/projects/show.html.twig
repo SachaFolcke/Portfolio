@@ -14,12 +14,6 @@
         </div>
     {% endfor %}
 
-    {% if projet is empty %}
-
-    <h3>Ce projet n'existe pas, désolé !</h3>
-    <a class="small_link" href="{{ path('office') }}">Retour à la gestion du portfolio</a>
-
-    {% else %}
     <a class="small_link" href="{{ path('office') }}">&lt;&lt; Retour</a>
     <h3>Gestion du projet "{{ projet.titre }}"</h3>
         <div style="display: flex; justify-content: center; margin-bottom: 20px;">
@@ -60,24 +54,34 @@
 
     <h4>Photos du projet</h4>
 
-        <button onclick="location.href='{{ path('add_photo', {'id': projet.id}) }}'" class="center-button btn btn-custom">
-            Ajouter une photo au projet
-        </button>
+    <button onclick="location.href='{{ path('add_photo', {'id': projet.id}) }}'" class="center-button btn btn-custom">
+        Ajouter une photo au projet
+    </button>
+
+    <h5>Miniature du projet</h5>
+
+    {% if thumbnail is empty %}
+        <p class="text-center">
+            Ce projet de possède pas de miniature
+        </p>
+    {% else %}
+        {% include 'office/projects/picture_preview.html.twig' with {
+            'photos' : thumbnail
+        } %}
+    {% endif %}
+
+    <h5>Images d'aperçu du projet</h5>
 
     {% if photos is empty %}
-        <p style="text-align: center">Aucune photo n'a été associée à ce projet, ajoutez-en !</p>
+        <p class="text-center">
+            Aucune photo n'a été associée à ce projet, ajoutez-en !</p>
     {% else %}
-    <div id="photo_preview">
-        {% for photo in photos %}
-            <div class="one_photo">
-                <img src="{{ asset(photo.path) }}">
-                <a href="{{ path('delete_photo', {'id_photo': photo.id, 'id': photo.idProjet}) }}"><button>Supprimer</button></a>
-            </div>
-        {% endfor %}
-    </div>
+        {% include 'office/projects/picture_preview.html.twig' with {
+            'photos' : photos
+        } %}
     {% endif %}
+
         <a class="small_link" href="{{ path('office') }}">&lt;&lt; Retour</a>
-    {% endif %}
 
 {% endblock %}
 
