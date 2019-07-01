@@ -4,7 +4,7 @@
             <img src="{{ asset(photo.path) }}">
             <button onclick="location.href='{{ path('delete_photo', {'id_photo': photo.id, 'id': photo.idProjet}) }}'"
                     class="btn btn-danger">
-                Supprimer
+                <span class="oi oi-trash" title="trash" aria-hidden="true"></span> Supprimer
             </button>
         </div>
     {% endfor %}

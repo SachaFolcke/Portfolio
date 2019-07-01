@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Projet;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -20,6 +21,7 @@ class ProjectType extends AbstractType
             ->add('compoGroupe', TextType::class, array('label' => 'Composition du groupe', 'attr' => array('placeholder' => 'Groupe de x, Binôme...')))
             ->add('langages', TextType::class, array('label' => 'Langages utilisés', 'attr' => array('placeholder' => 'Énumération des langages utilisés')))
             ->add('description', TextareaType::class, array('label' => 'Description', 'attr' => array('placeholder' => 'Décrivez le projet le plus précisément possible')))
+            ->add('online', CheckboxType::class, array('label' => 'Projet en ligne ?', 'attr' => array('class' => 'form-check-input ml-3 mt-3'), 'label_attr' => array('class' => 'form-check-label'), 'required' => false))
         ;
     }
 

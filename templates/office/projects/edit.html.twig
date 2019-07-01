@@ -11,8 +11,12 @@
     {{ form_row(form.compoGroupe, { 'attr' : { 'class' : 'form-control' } }) }}
     {{ form_row(form.langages, { 'attr' : { 'class' : 'form-control' } }) }}
     {{ form_row(form.description, { 'attr' : { 'class' : 'form-control' } }) }}
+    <div class="checkbox-inline">
+        {{ form_row(form.online) }}
+    </div>
+
     <button class="center-button btn btn-warning" type="submit">
-        Modifier le projet !
+        <span class="oi oi-pencil" title="pencil" aria-hidden="true"></span> Modifier le projet !
     </button>
     {{ form_end(form) }}
 

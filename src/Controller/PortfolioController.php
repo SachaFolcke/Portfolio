@@ -23,8 +23,8 @@ class PortfolioController extends AbstractController
      */
     public function homepage(EntityManagerInterface $em) {
 
-        $rep = $em->getRepository(Projet::class);
-        $projets = $rep->findAll();
+        $projets = $em->getRepository(Projet::class)
+                      ->findBy(['online' => 1]);
 
         $rep = $em->getRepository(PhotosProjet::class);
         $photos = [];
