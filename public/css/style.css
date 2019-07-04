@@ -148,6 +148,17 @@ h1 {
     margin: 0 50px 30px 50px;
 }
 
+.pres-text {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+hr {
+    width: 90%;
+    color: rgb(119,68,139);
+}
+
 #parcours {
     overflow: hidden;
     height: auto;
@@ -225,7 +236,6 @@ h1 {
     height: 300px;
     width: 300px;
     display: block;
-    margin: 0 10px 20px;
 }
 
 #projects h2 {
@@ -254,7 +264,7 @@ h1 {
     font-size: 20px;
     position: absolute;
     top: 50%;
-    left: 53%;
+    left: 50%;
     transform: translate(-50%, -50%);
     background-color : rgb(119,68,139);
     height: 300px;
@@ -428,7 +438,7 @@ h1 {
     #presentation p {
         margin: 0 20px 0 20px;
     }
-    
+
 }
 
 @media screen and (max-width: 639px){

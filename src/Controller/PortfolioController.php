@@ -23,14 +23,16 @@ class PortfolioController extends AbstractController
      */
     public function homepage(EntityManagerInterface $em) {
 
-        $rep = $em->getRepository(Projet::class);
-        $projets = $rep->findAll();
+        $projets = $em->getRepository(Projet::class)
+                      ->findBy(['online' => 1]);
 
         $rep = $em->getRepository(PhotosProjet::class);
         $photos = [];
 
         foreach ($projets as $projet) {
-            $photos[$projet->getId()] = $rep->findBy(['id_projet' => $projet->getId()]);
+            $id = $projet->getId();
+            $photos[$id]['thumb'] = $rep->findOneBy(['idProjet' => $id, 'isThumbnail' => 1]);
+            $photos[$id]['photos'] = $rep->findBy(['idProjet' => $id, 'isThumbnail' => 0]);
         }
 
         return $this->render('index.html.twig', [

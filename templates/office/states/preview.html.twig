@@ -1,0 +1,9 @@
+<div id="state-preview" {% if state.description %}title="{{ state.description }}"{% endif %}
+     style="color: {{ state.textHexColor }};
+            background-color: {{ state.backgroundHexColor }};">
+    {% if state.icon %}
+        <span class="oi oi-{{ state.icon }}" title="{{ state.icon }}" aria-hidden="true"></span>
+    {% endif %}
+
+    {{ state.title }}
+</div>

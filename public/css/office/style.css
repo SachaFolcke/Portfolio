@@ -15,9 +15,14 @@ h2 {
     padding-top: 5px;
 }
 
-h2 a {
+h2 a,
+h2 a:hover {
     text-decoration: none;
     color: #fff;
+}
+
+p {
+    font-family: 'Amaranth', sans-serif;
 }
 
 .small_link {
@@ -94,31 +99,40 @@ h4 {
     margin: 20px 5px;
 }
 
-#login-form, #project_form, #photo_form, #form_register {
+h5 {
+    text-align: center;
+    font-family: 'Amaranth', sans-serif;
+    font-size: 22px;
+    margin: 20px 5px;
+}
+
+#login-form, #project-form, #photo-form, #form-register {
     display: flex;
     justify-content: center;
+    flex-direction: column;
     flex-wrap: wrap;
     text-align: left;
-    width: 50%;
-    min-width: 300px;
-    max-width: 500px;
     margin-left: auto;
     margin-right: auto;
+    width: 90%;
+}
+
+#photo-form {
+    max-width: 400px;
 }
 
 #login-form input, #login-form label,
-#project_form input, #project_form label, #project_form textarea,
-#photo_form input, #photo_form label,
-#form_register input, #form_register label{
+#photo-form input, #photo-form label,
+#form-register input, #form-register label{
     width: 100%;
     margin: 5px auto;
 }
 
-#project_form textarea {
+#project-form textarea {
     resize: vertical;
 }
 
-#login-form label, #project_form label, #photo_form label, #form_register label {
+#login-form label, #project-form label, #photo-form label, #form-register label {
     font-family: 'Didact Gothic', sans-serif;
     font-size: 24px;
 }
@@ -143,29 +157,67 @@ th, td {
     width: 100%
 }
 
-#photo_preview {
+#projets td,
+#states-table td {
+    vertical-align: middle;
+}
+
+#projets td .oi {
+    color: rgb(119,68,139);
+    font-size: 30px;
+}
+
+button span {
+    color: #FFFFFF !important;
+    font-size: 15px !important;
+}
+
+#photo-preview {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
 
-.one_photo {
+.one-photo {
     display: flex;
     width: 200px;
     min-width: 200px;
     flex-direction: column;
-    margin-bottom: 20px;
 }
 
-.one_photo > img, .one_photo button {
+.one-photo > img, .one-photo button {
     width: 100%;
+    margin: 3px;
 }
 
-.center_button {
+.one-photo > img {
+    border: 2px solid #fff;
+    outline: 2px solid rgb(119,68,139);
+}
+
+.center-button {
     display: block;
     margin: 0 auto 20px;
 }
 
+button {
+    margin: 3px;
+}
+
+.btn-custom {
+    color: #fff;
+    background-color: rgb(119,68,139);
+    border: #000;
+}
+
+.btn-custom:hover {
+    color: #fff;
+    background-color: rgb(99,48,119);
+}
+
+#states {
+    width: 50%;
+}
 
 @media screen and (min-width: 1080px) and (max-width: 1600px) {
     #contenu {
@@ -185,7 +237,6 @@ th, td {
     #projets button {
         width: 90px;
         font-size: 14px;
-        padding-left: 0;
     }
 }
 
