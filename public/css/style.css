@@ -148,6 +148,17 @@ h1 {
     margin: 0 50px 30px 50px;
 }
 
+.pres-text {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+hr {
+    width: 90%;
+    color: rgb(119,68,139);
+}
+
 #parcours {
     overflow: hidden;
     height: auto;
