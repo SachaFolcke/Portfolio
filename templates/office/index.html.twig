@@ -1,5 +1,12 @@
 {% extends 'office/base.html.twig' %}
 
+{% block stylesheets %}
+
+    {{ parent() }}
+    <link href="{{ asset('css/states.css') }}" rel="stylesheet">
+
+{% endblock %}
+
 {% block contenu %}
 
     {% for message in app.flashes('success') %}
@@ -10,9 +17,11 @@
 
     <h3>Gérer les projets</h3>
 
-    <button onclick="location.href='{{ path('add_project') }}'" class="center-button btn btn-success">
-         <span class="oi oi-plus" title="plus" aria-hidden="true"></span> Ajouter un projet
-    </button>
+    <div class="text-right">
+        <button onclick="location.href='{{ path('add_project') }}'" class="btn btn-success">
+             <span class="oi oi-plus" title="plus" aria-hidden="true"></span> Ajouter un projet
+        </button>
+    </div>
 
     <table id="projets" class="table table-bordered table-striped table-hover text-center">
         <thead>
@@ -42,7 +51,7 @@
                 <td>{{ projet.catchPhrase }}</td>
                 <td>
                     <button onclick="location.href='{{ path('show_project', {'id': projet.id}) }}'" class="btn btn-primary btn-block">
-                        <span class="oi oi-spreadsheet" title="spreadshit" aria-hidden="true"></span> Afficher
+                        <span class="oi oi-spreadsheet" title="spreadsheet" aria-hidden="true"></span> Afficher
                     </button>
                     <a href="{{ path('delete_project', {'id': projet.id}) }}"
                        onclick="return confirm('Voulez-vous vraiment supprimer le projet {{ projet.titre }} ?')">
@@ -56,6 +65,9 @@
         {% endfor %}
         </tbody>
     </table>
+    <div id="states">
+        {% include 'office/states/index.html.twig' %}
+    </div>
 {% endblock %}
 
 

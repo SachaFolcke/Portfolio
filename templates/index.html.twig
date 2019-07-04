@@ -130,6 +130,13 @@
                     <div class="noIMG"></div>
                 {% endif %}
                 <div class="overlay"><p><b>{{ projet.titre }}</b><br />{{ projet.catchPhrase }}</p></div>
+                {% if projet.state %}
+                    <div class="offset-state">
+                        {% include 'office/states/preview.html.twig' with {
+                            'state' : projet.state
+                        } %}
+                    </div>
+                {% endif %}
             </div>
                 {% set cpt = cpt + 1 %}
 

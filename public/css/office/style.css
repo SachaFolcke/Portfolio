@@ -157,7 +157,8 @@ th, td {
     width: 100%
 }
 
-#projets td {
+#projets td,
+#states-table td {
     vertical-align: middle;
 }
 
@@ -214,6 +215,9 @@ button {
     background-color: rgb(99,48,119);
 }
 
+#states {
+    width: 50%;
+}
 
 @media screen and (min-width: 1080px) and (max-width: 1600px) {
     #contenu {
