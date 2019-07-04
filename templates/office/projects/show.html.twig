@@ -1,5 +1,12 @@
 {% extends 'office/base.html.twig' %}
 
+{% block stylesheets %}
+
+    {{ parent() }}
+    <link href="{{ asset('css/states.css') }}" rel="stylesheet">
+
+{% endblock %}
+
 {% block contenu %}
 
     {% for message in app.flashes('success') %}
@@ -51,6 +58,16 @@
         <tr>
             <th>Description</th>
             <td>{{ projet.description }}</td>
+        </tr>
+        <tr>
+            <th>État</th>
+            <td>
+                {% if projet.state %}
+                    {% include 'office/states/preview.html.twig' with {
+                        'state' : projet.state
+                    } %}
+                {% endif %}
+            </td>
         </tr>
         <tr>
             <th>Visible ?</th>

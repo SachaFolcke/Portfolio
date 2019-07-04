@@ -1,0 +1,38 @@
+<h4>Gérer les états possibles des projets</h4>
+
+<div class="text-right">
+    <button onclick="location.href='{{ path('add_state') }}'" class="btn btn-success text-right">
+        <span class="oi oi-plus" title="plus" aria-hidden="true"></span> Ajouter un état
+    </button>
+</div>
+
+<table id="states-table" class="table table-bordered table-striped table-hover text-center">
+    <thead>
+        <tr>
+            <th width="70%">Aperçu</th>
+            <th width="30%">Options</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for state in states %}
+        <tr>
+            <td>
+                {% include 'office/states/preview.html.twig' with {
+                    'state' : state
+                } %}
+            </td>
+            <td>
+                <button onclick="location.href='{{ path('show_state', {'id': state.id}) }}'" class="btn btn-primary btn-block">
+                    <span class="oi oi-spreadsheet" title="spreadsheet" aria-hidden="true"></span> Afficher
+                </button>
+                <a href="{{ path('delete_state', {'id': state.id}) }}" style="text-decoration: none"
+                   onclick="return confirm('Voulez-vous vraiment supprimer l\'état {{ state.title }} ?')">
+                    <button class="btn btn-danger btn-block">
+                        <span class="oi oi-trash" title="trash" aria-hidden="true"></span> Supprimer
+                    </button>
+                </a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

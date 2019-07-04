@@ -1,0 +1,21 @@
+{% extends'office/base.html.twig' %}
+
+{% block contenu %}
+    <a class="small_link" href="{{ path('office') }}">&lt;&lt; Retour</a>
+
+    <h3>Modifier un état de projet</h3>
+
+    {{ form_start(form, { 'attr' : { 'id' : 'project-form' }}) }}
+        {{ form_row(form.title, { 'attr' : { 'class' : 'form-control' } }) }}
+        {{ form_row(form.description, { 'attr' : { 'class' : 'form-control' } }) }}
+        {{ form_row(form.icon, { 'attr' : { 'class' : 'form-control' } }) }}
+        {{ form_row(form.text_hex_color, { 'attr' : { 'class' : 'form-control' } }) }}
+        {{ form_row(form.background_hex_color, { 'attr' : { 'class' : 'form-control' } }) }}
+
+        <button class="center-button btn btn-warning" type="submit">
+            <span class="oi oi-plus" title="plus" aria-hidden="true"></span> Modifier l'état !
+        </button>
+
+    {{ form_end(form) }}
+
+{% endblock %}

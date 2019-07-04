@@ -51,6 +51,12 @@ class Projet
      */
     private $online;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\ProjectState", inversedBy="projects")
+     * @ORM\JoinColumn(name="state_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $state;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -136,6 +142,18 @@ class Projet
     public function setOnline(bool $online): self
     {
         $this->online = $online;
+
+        return $this;
+    }
+
+    public function getState(): ?ProjectState
+    {
+        return $this->state;
+    }
+
+    public function setState(?ProjectState $state): self
+    {
+        $this->state = $state;
 
         return $this;
     }
