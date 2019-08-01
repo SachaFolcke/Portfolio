@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\General;
 use App\Entity\PhotosProjet;
 use App\Entity\ProjectState;
 use App\Entity\Projet;
+use App\Form\GeneralType;
 use App\Form\PhotoUploadType;
 use App\Form\ProjectStateType;
 use App\Form\ProjectType;
@@ -329,5 +331,45 @@ class OfficeController extends AbstractController
 
         $this->addFlash('success', "État correctement supprimé !");
         return $this->redirectToRoute('office');
+    }
+
+    /**
+     * @Route("/office/general", name="index_general")
+     * @Security("is_granted('ROLE_USER')")
+     */
+    public function indexGeneral(EntityManagerInterface $em) {
+
+        $info = $em->getRepository(General::class)
+                ->findAll()[0];
+
+        return $this->render('office/general/index.html.twig', [
+            'info' => $info
+        ]);
+    }
+
+    /**
+     * @Route("/office/general/edit", name="edit_general")
+     * @Security("is_granted('ROLE_ADMIN')")
+     */
+    public function editGeneral(Request $request, EntityManagerInterface $em) {
+
+        $info = $em->getRepository(General::class)
+            ->findAll()[0];
+
+        $form = $this->createForm(GeneralType::class, $info);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+
+            $em->persist($info);
+            $em->flush();
+
+            $this->addFlash('success', 'Informations correctement modifiées !');
+            return $this->redirectToRoute('index_general');
+        }
+
+        return $this->render('office/general/edit.html.twig', [
+            'form' => $form->createView()
+        ]);
     }
 }

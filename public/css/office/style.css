@@ -26,6 +26,7 @@ p {
 }
 
 .small_link {
+    position: absolute;
     color: rgb(119,68,139);
     text-decoration: none;
     font-family: 'Didact Gothic', sans-serif;

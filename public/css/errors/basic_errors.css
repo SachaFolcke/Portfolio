@@ -1,6 +1,7 @@
 body {
     background: url('../../img/background.jpg') no-repeat;
     background-size: cover;
+    height: 100vh;
 }
 
 #error_page {
@@ -26,4 +27,25 @@ body {
 
 #err_mess2 {
     font-size: 36px;
+}
+
+@media screen and (max-width: 639px) {
+
+    #error_page {
+        width: 85%;
+    }
+
+    #err_num {
+        font-size: 120px;
+        font-weight: bold;
+    }
+
+    #err_mess {
+        font-size: 40px;
+    }
+
+    #err_mess2 {
+        font-size: 26px;
+    }
+
 }
