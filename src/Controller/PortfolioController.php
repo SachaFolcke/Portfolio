@@ -9,12 +9,13 @@
 namespace App\Controller;
 
 
+use App\Entity\General;
 use App\Entity\PhotosProjet;
 use App\Entity\Projet;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpKernel\Exception\ServiceUnavailableHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
 
 class PortfolioController extends AbstractController
 {
@@ -22,6 +23,13 @@ class PortfolioController extends AbstractController
      * @Route("/", name="home")
      */
     public function homepage(EntityManagerInterface $em) {
+
+        $info = $em->getRepository(General::class)
+                ->findAll()[0];
+
+        if($info->getIsOnline() == 0) {
+            throw new ServiceUnavailableHttpException();
+        }
 
         $projets = $em->getRepository(Projet::class)
                       ->findBy(['online' => 1]);
@@ -37,7 +45,8 @@ class PortfolioController extends AbstractController
 
         return $this->render('index.html.twig', [
             'projets' => $projets,
-            'photos' => $photos
+            'photos' => $photos,
+            'info' => $info
         ]);
     }
 
