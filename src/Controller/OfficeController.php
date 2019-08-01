@@ -19,11 +19,21 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class OfficeController extends AbstractController
 {
+
     /**
      * @Route("/office", name="office")
      * @Security("is_granted('ROLE_USER')")
      */
-    public function index(EntityManagerInterface $em)
+    public function index()
+    {
+        return $this->render('office/index.html.twig');
+    }
+
+    /**
+     * @Route("/office/projects", name="index_project")
+     * @Security("is_granted('ROLE_USER')")
+     */
+    public function indexProject(EntityManagerInterface $em)
     {
         $projects = $em->getRepository(Projet::class)
                    ->findAll();
@@ -31,7 +41,7 @@ class OfficeController extends AbstractController
         $states = $em->getRepository(ProjectState::class)
                   ->findAll();
 
-        return $this->render('office/index.html.twig', [
+        return $this->render('office/projects/index.html.twig', [
             'projets' => $projects,
             'states'  => $states,
         ]);

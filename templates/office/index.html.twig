@@ -1,73 +1,18 @@
 {% extends 'office/base.html.twig' %}
 
-{% block stylesheets %}
-
-    {{ parent() }}
-    <link href="{{ asset('css/states.css') }}" rel="stylesheet">
-
-{% endblock %}
-
 {% block contenu %}
 
-    {% for message in app.flashes('success') %}
-        <div id="successes">
-            {{ message }}
-        </div>
-    {% endfor %}
+   <div id="office_categories">
+      <div class="row">
+         <div class="office_category col">
+            <h3>Général</h3>
+         </div>
 
-    <h3>Gérer les projets</h3>
+         <div class="office_category col" onclick="location.href='{{ path('index_project') }}'">
+            <h3>Les projets</h3>
+         </div>
+      </div>
 
-    <div class="text-right">
-        <button onclick="location.href='{{ path('add_project') }}'" class="btn btn-success">
-             <span class="oi oi-plus" title="plus" aria-hidden="true"></span> Ajouter un projet
-        </button>
-    </div>
+   </div>
 
-    <table id="projets" class="table table-bordered table-striped table-hover text-center">
-        <thead>
-            <tr>
-                <th scope="col" width="5%">
-                    <span class="oi oi-eye" title="eye" aria-hidden="true"></span>
-                </th>
-                <th scope="col" width="20%">Titre</th>
-                <th scope="col" width="12.5%">Période</th>
-                <th scope="col" width="12.5%">Groupe</th>
-                <th scope="col" width="35%">Résumé</th>
-                <th scope="col" width="15%">Options</th>
-            </tr>
-        </thead>
-
-        <tbody>
-        {% for projet in projets %}
-            <tr>
-                <td>{% if projet.online %}
-                        <span class="oi oi-check" title="check" aria-hidden="true"></span>
-                    {% else %}
-                        <span class="oi oi-x" title="x" aria-hidden="true"></span>
-                    {% endif %}</td>
-                <td>{{ projet.titre }}</td>
-                <td>{{ projet.periode }}</td>
-                <td>{{ projet.compoGroupe }}</td>
-                <td>{{ projet.catchPhrase }}</td>
-                <td>
-                    <button onclick="location.href='{{ path('show_project', {'id': projet.id}) }}'" class="btn btn-primary btn-block">
-                        <span class="oi oi-spreadsheet" title="spreadsheet" aria-hidden="true"></span> Afficher
-                    </button>
-                    <a href="{{ path('delete_project', {'id': projet.id}) }}"
-                       onclick="return confirm('Voulez-vous vraiment supprimer le projet {{ projet.titre }} ?')">
-                        <button class="btn btn-danger btn-block">
-                            <span class="oi oi-trash" title="trash" aria-hidden="true"></span> Supprimer
-                        </button>
-                    </a>
-                </td>
-            </tr>
-
-        {% endfor %}
-        </tbody>
-    </table>
-    <div id="states">
-        {% include 'office/states/index.html.twig' %}
-    </div>
 {% endblock %}
-
-

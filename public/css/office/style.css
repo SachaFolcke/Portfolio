@@ -219,6 +219,26 @@ button {
     width: 50%;
 }
 
+.row {
+   margin: 0;
+}
+
+.office_category {
+    margin: 5px;
+    border: 3px solid rgb(119,68,139);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.office_category h3 {
+    color: #000000;
+    text-decoration: none;
+}
+
+.office_category h3:hover {
+    color: rgb(119,68,139);
+}
+
 @media screen and (min-width: 1080px) and (max-width: 1600px) {
     #contenu {
         width: 80%;
