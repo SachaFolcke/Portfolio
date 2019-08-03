@@ -22,7 +22,7 @@ h2 a:hover {
 }
 
 p {
-    font-family: 'Amaranth', sans-serif;
+
 }
 
 .small_link {
@@ -238,6 +238,13 @@ button {
 
 .office_category h3:hover {
     color: rgb(119,68,139);
+}
+
+.intro_photo {
+    max-height: 250px;
+    max-width: 250px;
+    border: 2px solid #fff;
+    outline: 2px solid rgb(119,68,139);
 }
 
 @media screen and (min-width: 1080px) and (max-width: 1600px) {

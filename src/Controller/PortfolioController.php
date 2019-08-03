@@ -10,6 +10,7 @@ namespace App\Controller;
 
 
 use App\Entity\General;
+use App\Entity\Introduction;
 use App\Entity\PhotosProjet;
 use App\Entity\Projet;
 use Doctrine\ORM\EntityManagerInterface;
@@ -26,6 +27,9 @@ class PortfolioController extends AbstractController
 
         $info = $em->getRepository(General::class)
                 ->findAll()[0];
+
+        $intro = $em->getRepository(Introduction::class)
+                 ->findAll()[0];
 
         if($info->getIsOnline() == 0) {
             throw new ServiceUnavailableHttpException();
@@ -45,8 +49,9 @@ class PortfolioController extends AbstractController
 
         return $this->render('index.html.twig', [
             'projets' => $projets,
-            'photos' => $photos,
-            'info' => $info
+            'photos'  => $photos,
+            'info'    => $info,
+            'intro'   => $intro
         ]);
     }
 
