@@ -3,10 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\General;
+use App\Entity\Introduction;
 use App\Entity\PhotosProjet;
 use App\Entity\ProjectState;
 use App\Entity\Projet;
 use App\Form\GeneralType;
+use App\Form\IntroductionType;
 use App\Form\PhotoUploadType;
 use App\Form\ProjectStateType;
 use App\Form\ProjectType;
@@ -38,10 +40,10 @@ class OfficeController extends AbstractController
     public function indexProject(EntityManagerInterface $em)
     {
         $projects = $em->getRepository(Projet::class)
-                   ->findAll();
+            ->findAll();
 
         $states = $em->getRepository(ProjectState::class)
-                  ->findAll();
+            ->findAll();
 
         return $this->render('office/projects/index.html.twig', [
             'projets' => $projects,
@@ -96,15 +98,15 @@ class OfficeController extends AbstractController
 
         return $this->render(
             'office/projects/add.html.twig', [
-                'form' => $form->createView()
-            ]);
+            'form' => $form->createView()
+        ]);
 
     }
 
     /**
      * @Route("/office/projects/edit/{id}", name="edit_project")
      * @Security("is_granted('ROLE_ADMIN')")
-    */
+     */
     public function modifierProjet(Request $request, $id, EntityManagerInterface $em) {
 
         $projet = $em->getRepository(Projet::class)->findOneBy(['id' => $id]);
@@ -135,7 +137,7 @@ class OfficeController extends AbstractController
     /**
      * @Route("/office/projects/delete/{id}", name="delete_project")
      * @Security("is_granted('ROLE_ADMIN')")
-    */
+     */
     public function supprimerProjet($id, EntityManagerInterface $em) {
 
         $projet = $em->getRepository(Projet::class)->findOneBy(['id' => $id]);
@@ -164,7 +166,7 @@ class OfficeController extends AbstractController
     /**
      * @Route("/office/projects/edit/{id}/add_photo", name="add_photo")
      * @Security("has_role('ROLE_ADMIN')")
-    */
+     */
     public function ajouterPhoto(Request $request, $id, EntityManagerInterface $em) {
 
         $photo = new PhotosProjet();
@@ -263,8 +265,8 @@ class OfficeController extends AbstractController
 
         return $this->render(
             'office/states/add.html.twig', [
-                'form' => $form->createView()
-            ]);
+            'form' => $form->createView()
+        ]);
 
     }
 
@@ -275,7 +277,7 @@ class OfficeController extends AbstractController
     public function showState($id, EntityManagerInterface $em) {
 
         $state = $em->getRepository(ProjectState::class)
-                 ->findOneBy(['id' => $id]);
+            ->findOneBy(['id' => $id]);
 
         if(!$state) {
             throw new NotFoundHttpException("Cet état n'existe pas !");
@@ -293,7 +295,7 @@ class OfficeController extends AbstractController
     public function editState(Request $request, $id, EntityManagerInterface $em) {
 
         $state = $em->getRepository(ProjectState::class)
-                 ->find(['id' => $id]);
+            ->find(['id' => $id]);
 
         if(!$state) {
             throw new NotFoundHttpException();
@@ -340,7 +342,7 @@ class OfficeController extends AbstractController
     public function indexGeneral(EntityManagerInterface $em) {
 
         $info = $em->getRepository(General::class)
-                ->findAll()[0];
+            ->findAll()[0];
 
         return $this->render('office/general/index.html.twig', [
             'info' => $info
@@ -369,6 +371,75 @@ class OfficeController extends AbstractController
         }
 
         return $this->render('office/general/edit.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/office/introduction", name="index_introduction")
+     * @Security("is_granted('ROLE_USER')")
+     */
+    public function indexIntrocution(EntityManagerInterface $em) {
+
+        $intro = $em->getRepository(Introduction::class)
+            ->findAll()[0];
+
+        return $this->render('office/introduction/index.html.twig', [
+            'intro' => $intro
+        ]);
+    }
+
+    /**
+     * @Route("/office/introduction/edit", name="edit_introduction")
+     * @Security("is_granted('ROLE_ADMIN')")
+     */
+    public function editIntroduction(Request $request, EntityManagerInterface $em) {
+
+        $intro = $em->getRepository(Introduction::class)
+            ->findAll()[0];
+
+        $form = $this->createForm(IntroductionType::class, $intro);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+
+            $file = $request->files->get('introduction');
+
+            if($file['photo'] != null) {
+                $ext = $file['photo']->guessExtension();
+                dump($ext);
+
+                if($ext == "png" || $ext == "jpeg" || $ext == "jpg" || $ext == "gif") {
+                    $filename = $this->generateUniqueFileName() . '.' . $ext;
+
+                    try {
+                        $file['photo']->move(
+                            $this->getParameter('img_directory'),
+                            $filename
+                        );
+
+                    } catch (FileException $e) {
+
+                    }
+
+                    $filesystem = new Filesystem();
+                    $filesystem->remove($intro->getPhotoPath());
+                    $intro->setPhotoPath('img/' . $filename);
+                    $this->addFlash('success', 'Informations correctement modifiées !');
+
+                } else {
+                    $this->addFlash('error', 'L\'image fournie n\'a pas un type valide (jpg, png ou gif). 
+                    Les informations ont été modifiées mais pas la photo.');
+                }
+            }
+
+            $em->persist($intro);
+            $em->flush();
+
+            return $this->redirectToRoute('index_introduction');
+        }
+
+        return $this->render('office/introduction/edit.html.twig', [
             'form' => $form->createView()
         ]);
     }

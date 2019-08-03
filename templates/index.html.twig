@@ -28,19 +28,13 @@
     <h2 id="etu">{{ info.subtitle }}</h2>
 </div>
 <div id="corps" class="justRight">
-    <h2 data-aos="fade-zoom-in" data-aos-duration="400">Bienvenue sur mon portfolio</h2>
+    <h2 data-aos="fade-zoom-in" data-aos-duration="400">
+        {{ intro.title }}
+    </h2>
     <div id="presentation" data-aos="fade-right">
-        <img src="{{ asset('img/portrait_sqr.jpg') }}" />
+        <img src="{{ intro.photoPath }}" />
         <div class="pres-text">
-            <p><i>Bonjour !</i><br />
-                Je suis Sacha Folcke, j'ai 20 ans et je suis actuellement en 2ème année de DUT Informatique
-                à l'IUT de Lens. Je suis depuis longtemps passionné d'Informatique et je souhaite en faire mon métier.
-                Je vous présente mon portfolio montrant plus précisément mon expérience et mes compétences.</p>
-            <hr>
-            <p> En septembre, j'intégrerai l'<a href="https://www.isen-lille.fr/">ISEN Lille</a> en alternance.
-                Je cherche encore une entreprise afin de concrétiser mon projet professionnel qui est de me spécialiser
-                dans la cybersécurité. Ce domaine m'intéresse beaucoup malgré mon manque d'expérience mais je serais
-                ravi d'apprendre avec vous ! Contactez-moi et nous pourrions en discuter.</p>
+            {{ intro.text|raw }}
         </div>
     </div>
 
@@ -165,7 +159,7 @@
             {% endif %}
             <p><i>{{ projet.periode }} - ({{ projet.compoGroupe }})</i></p>
             <p><b>Langage(s) utilisé(s) :</b> {{ projet.langages }}</p>
-            <p><b>Description : </b>{{ projet.description }}</p>
+            <p><b>Description : </b>{{ projet.description|raw }}</p>
         </div>
 
         {% endfor %}
