@@ -1,0 +1,18 @@
+{% extends 'office/base.html.twig' %}
+
+{% block contenu %}
+
+    <a class="small_link" href="{{ path('index_skills') }}">&lt;&lt; Retour</a>
+
+    <h3>Modifier une ligne</h3>
+
+    {{ form_start(form, { 'attr' : { 'id' : 'project-form' }}) }}
+    {{ form_row(form.text, { 'attr' : { 'class' : 'form-control' } }) }}
+    {{ form_row(form.category, { 'attr' : { 'class' : 'form-control' } }) }}
+
+    <button class="center-button btn btn-warning mt-2" type="submit">
+        <span class="oi oi-plus" title="plus" aria-hidden="true"></span> Modifier la ligne
+    </button>
+    {{ form_end(form) }}
+
+{% endblock %}

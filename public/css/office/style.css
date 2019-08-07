@@ -247,6 +247,30 @@ button {
     outline: 2px solid rgb(119,68,139);
 }
 
+.skill_icon {
+    max-height: 200px;
+    max-width: 150px;
+}
+
+.edit_button {
+    color: #d6c410;
+    cursor: pointer;
+}
+
+.delete_button {
+    color: #d61001;
+    cursor: pointer;
+}
+
+.skill-table {
+    text-align: center;
+    margin: 5px;
+}
+
+.skill-table th {
+    font-size: 26px;
+}
+
 @media screen and (min-width: 1080px) and (max-width: 1600px) {
     #contenu {
         width: 80%;
