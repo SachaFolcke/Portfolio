@@ -13,6 +13,7 @@ use App\Entity\General;
 use App\Entity\Introduction;
 use App\Entity\PhotosProjet;
 use App\Entity\Projet;
+use App\Entity\SkillCategory;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpKernel\Exception\ServiceUnavailableHttpException;
 use Symfony\Component\Routing\Annotation\Route;
@@ -31,9 +32,12 @@ class PortfolioController extends AbstractController
         $intro = $em->getRepository(Introduction::class)
                  ->findAll()[0];
 
-        if($info->getIsOnline() == 0) {
+        if(!$info->getIsOnline()) {
             throw new ServiceUnavailableHttpException();
         }
+
+        $skills = $em->getRepository(SkillCategory::class)
+                  ->findAll();
 
         $projets = $em->getRepository(Projet::class)
                       ->findBy(['online' => 1]);
@@ -51,7 +55,8 @@ class PortfolioController extends AbstractController
             'projets' => $projets,
             'photos'  => $photos,
             'info'    => $info,
-            'intro'   => $intro
+            'intro'   => $intro,
+            'skills'  => $skills
         ]);
     }
 

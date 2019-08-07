@@ -7,11 +7,15 @@ use App\Entity\Introduction;
 use App\Entity\PhotosProjet;
 use App\Entity\ProjectState;
 use App\Entity\Projet;
+use App\Entity\SkillCategory;
+use App\Entity\SkillRow;
 use App\Form\GeneralType;
 use App\Form\IntroductionType;
 use App\Form\PhotoUploadType;
 use App\Form\ProjectStateType;
 use App\Form\ProjectType;
+use App\Form\SkillCategoryType;
+use App\Form\SkillRowType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -407,7 +411,6 @@ class OfficeController extends AbstractController
 
             if($file['photo'] != null) {
                 $ext = $file['photo']->guessExtension();
-                dump($ext);
 
                 if($ext == "png" || $ext == "jpeg" || $ext == "jpg" || $ext == "gif") {
                     $filename = $this->generateUniqueFileName() . '.' . $ext;
@@ -442,5 +445,210 @@ class OfficeController extends AbstractController
         return $this->render('office/introduction/edit.html.twig', [
             'form' => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/office/skills", name="index_skills")
+     * @Security("is_granted('ROLE_USER')")
+     */
+    public function indexSkills(EntityManagerInterface $em) {
+
+        $categories = $em->getRepository(SkillCategory::class)
+                      ->findAll();
+
+        return $this->render('office/skills/index.html.twig', [
+            'categories' => $categories
+        ]);
+    }
+
+    /**
+     * @Route("/office/skills/add_category", name="add_skill_category")
+     * @Security("is_granted('ROLE_ADMIN')")
+     */
+    public function addSkillCategory(Request $request, EntityManagerInterface $em) {
+
+        $category = new SkillCategory();
+
+        $form = $this->createForm(SkillCategoryType::class, $category);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+
+
+            $file = $request->files->get('skill_category');
+
+            if($file['icon'] != null) {
+                $ext = $file['icon']->guessExtension();
+
+                if($ext == "png" || $ext == "jpeg" || $ext == "jpg" || $ext == "gif" || $ext == "svg") {
+                    $filename = $this->generateUniqueFileName() . '.' . $ext;
+
+                    try {
+                        $file['icon']->move(
+                            $this->getParameter('img_directory'),
+                            $filename
+                        );
+
+                    } catch (FileException $e) {
+
+                    }
+
+                    $category->setIconPath('img/' . $filename);
+                    $this->addFlash('success', 'Catégorie correctement ajoutée !');
+
+                } else {
+                    $this->addFlash('error', 'L\'image fournie n\'a pas un type valide (jpg, png, gif ou svg). ');
+                }
+            }
+
+            $em->persist($category);
+            $em->flush();
+
+            return $this->redirectToRoute('index_skills');
+        }
+
+        return $this->render('office/skills/add_category.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/office/skills/edit_category/{id}", name="edit_skill_category")
+     * @Security("is_granted('ROLE_ADMIN')")
+     */
+    public function editSkillCategory($id, Request $request, EntityManagerInterface $em) {
+
+        $category = $em->getRepository(SkillCategory::class)
+                    ->find($id);
+
+        $form = $this->createForm(SkillCategoryType::class, $category);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+
+            $file = $request->files->get('skill_category');
+
+            if($file['icon'] != null) {
+                $ext = $file['icon']->guessExtension();
+
+                if($ext == "png" || $ext == "jpeg" || $ext == "jpg" || $ext == "gif" || $ext == "svg") {
+                    $filename = $this->generateUniqueFileName() . '.' . $ext;
+
+                    try {
+                        $file['icon']->move(
+                            $this->getParameter('img_directory'),
+                            $filename
+                        );
+
+                    } catch (FileException $e) {
+
+                    }
+
+                    $filesystem = new Filesystem();
+                    $filesystem->remove($category->getIconPath());
+                    $category->setIconPath('img/' . $filename);
+                    $this->addFlash('success', 'Informations correctement modifiées !');
+
+                } else {
+                    $this->addFlash('error', 'L\'image fournie n\'a pas un type valide (jpg, png, gif ou svg). 
+                    Les informations ont été modifiées mais pas la photo.');
+                }
+            }
+
+            $em->persist($category);
+            $em->flush();
+
+            return $this->redirectToRoute('index_skills');
+        }
+
+        return $this->render('office/skills/edit_category.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/office/skills/delete_catagory/{id}", name="delete_skill_category")
+     * @Security("is_granted('ROLE_ADMIN')")
+     */
+    public function deleteSkillCategory($id, EntityManagerInterface $em) {
+
+        $category = $em->getRepository(SkillCategory::class)
+            ->find($id);
+
+        if($category->getIconPath() != null) {
+            $fs = new Filesystem();
+            $fs->remove($category->getIconPath());
+        }
+
+        $em->remove($category);
+        $em->flush();
+
+        $this->addFlash('success', 'Catégorie correctement supprimée !');
+
+        return $this->redirectToRoute('index_skills');
+    }
+
+    /**
+     * @Route("/office/skills/add_row", name="add_skill_row")
+     * @Security("is_granted('ROLE_ADMIN')")
+     */
+    public function addSkillRow(Request $request, EntityManagerInterface $em) {
+
+        $row = new SkillRow();
+
+        $form = $this->createForm(SkillRowType::class, $row);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+
+            $em->persist($row);
+            $em->flush();
+
+            return $this->redirectToRoute('index_skills');
+        }
+
+        return $this->render('office/skills/add_row.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/office/skills/edit_row/{id}", name="edit_skill_row")
+     * @Security("is_granted('ROLE_ADMIN')")
+     */
+    public function editSkillRow(Request $request, $id, EntityManagerInterface $em) {
+
+        $row = $em->getRepository(SkillRow::class)
+               ->find($id);
+
+        $form = $this->createForm(SkillRowType::class, $row);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+
+            $em->persist($row);
+            $em->flush();
+
+            return $this->redirectToRoute('index_skills');
+        }
+
+        return $this->render('office/skills/add_row.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/office/skills/delete_row/{id}", name="delete_skill_row")
+     * @Security("is_granted('ROLE_ADMIN')")
+     */
+    public function deleteSkillRow($id, EntityManagerInterface $em) {
+
+        $row = $em->getRepository(SkillRow::class)
+               ->find($id);
+
+        $em->remove($row);
+        $em->flush();
+
+        return $this->redirectToRoute('index_skills');
     }
 }
