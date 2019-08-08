@@ -57,6 +57,11 @@ class Projet
      */
     private $state;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $order_index;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -154,6 +159,32 @@ class Projet
     public function setState(?ProjectState $state): self
     {
         $this->state = $state;
+
+        return $this;
+    }
+
+    public function getOrderIndex(): ?int
+    {
+        return $this->order_index;
+    }
+
+    public function setOrderIndex(int $order_index): self
+    {
+        $this->order_index = $order_index;
+
+        return $this;
+    }
+
+    public function orderUp(): self
+    {
+        $this->order_index--;
+
+        return $this;
+    }
+
+    public function orderDown(): self
+    {
+        $this->order_index++;
 
         return $this;
     }

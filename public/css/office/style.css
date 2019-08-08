@@ -216,49 +216,56 @@ button {
     background-color: rgb(99,48,119);
 }
 
-#states {
-    width: 50%;
+.icon-button {
+    width: 40px;
+    height: 40px;
+    text-align: center;
 }
 
 .row {
    margin: 0;
 }
 
-.office_category {
+.office-category {
     margin: 5px;
     border: 3px solid rgb(119,68,139);
     border-radius: 10px;
     cursor: pointer;
 }
 
-.office_category h3 {
+.office-category h3 {
     color: #000000;
     text-decoration: none;
 }
 
-.office_category h3:hover {
+.office-category h3:hover {
     color: rgb(119,68,139);
 }
 
-.intro_photo {
+.intro-photo {
     max-height: 250px;
     max-width: 250px;
     border: 2px solid #fff;
     outline: 2px solid rgb(119,68,139);
 }
 
-.skill_icon {
+.skill-icon {
     max-height: 200px;
     max-width: 150px;
 }
 
-.edit_button {
+.edit-button {
     color: #d6c410;
     cursor: pointer;
 }
 
-.delete_button {
+.delete-button {
     color: #d61001;
+    cursor: pointer;
+}
+
+.order-up-button {
+    color: #77448B;
     cursor: pointer;
 }
 

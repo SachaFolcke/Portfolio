@@ -33,6 +33,11 @@ class SkillCategory
      */
     private $icon_path;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $order_index;
+
     public function __construct()
     {
         $this->skillRows = new ArrayCollection();
@@ -44,11 +49,15 @@ class SkillCategory
     }
 
     /**
-     * @return Collection|SkillRow[]
+     * @return array
      */
-    public function getSkillRows(): Collection
+    public function getSkillRows(): array
     {
-        return $this->skillRows;
+        $rows = $this->skillRows->toArray();
+        usort($rows, function ($a, $b) {
+           return $a->getOrderIndex() < $b->getOrderIndex() ? -1 : 1;
+        });
+        return $rows;
     }
 
     public function addSkillRow(SkillRow $skillRow): self
@@ -94,6 +103,32 @@ class SkillCategory
     public function setIconPath(?string $icon_path): self
     {
         $this->icon_path = $icon_path;
+
+        return $this;
+    }
+
+    public function getOrderIndex(): ?int
+    {
+        return $this->order_index;
+    }
+
+    public function setOrderIndex(int $order_index): self
+    {
+        $this->order_index = $order_index;
+
+        return $this;
+    }
+
+    public function orderUp(): self
+    {
+        $this->order_index--;
+
+        return $this;
+    }
+
+    public function orderDown(): self
+    {
+        $this->order_index++;
 
         return $this;
     }
