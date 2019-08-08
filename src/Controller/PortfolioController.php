@@ -40,7 +40,8 @@ class PortfolioController extends AbstractController
                   ->findAll();
 
         $projets = $em->getRepository(Projet::class)
-                      ->findBy(['online' => 1]);
+                      ->findBy(['online' => 1],
+                               ['order_index' => 'ASC']);
 
         $rep = $em->getRepository(PhotosProjet::class);
         $photos = [];

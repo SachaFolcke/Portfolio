@@ -46,28 +46,36 @@
                     {% else %}
                         <span class="oi oi-x" title="x" aria-hidden="true"></span>
                     {% endif %}</td>
-                <td>{{ projet.titre }}</td>
+                <td>{{ projet.titre }} <br />
+                    <b>(#{{ projet.orderIndex }})</b>
+                </td>
                 <td>{{ projet.periode }}</td>
                 <td>{{ projet.compoGroupe }}</td>
                 <td>{{ projet.catchPhrase }}</td>
                 <td>
                     <button onclick="location.href='{{ path('show_project', {'id': projet.id}) }}'" class="btn btn-primary btn-block">
-                        <span class="oi oi-spreadsheet" title="spreadsheet" aria-hidden="true"></span> Afficher
+                        <span class="oi oi-spreadsheet" aria-hidden="true"></span> Afficher
                     </button>
                     <a href="{{ path('delete_project', {'id': projet.id}) }}"
                        onclick="return confirm('Voulez-vous vraiment supprimer le projet {{ projet.titre }} ?')">
                         <button class="btn btn-danger btn-block">
-                            <span class="oi oi-trash" title="trash" aria-hidden="true"></span> Supprimer
+                            <span class="oi oi-trash" aria-hidden="true"></span> Supprimer
                         </button>
                     </a>
+                    <button onclick="location.href='{{ path('order_project_up', {'id': projet.id}) }}'" class="btn btn-custom btn-block">
+                        <span class="oi oi-arrow-thick-top" title="Remonter" aria-hidden="true"></span> Remonter
+                    </button>
                 </td>
             </tr>
 
         {% endfor %}
         </tbody>
     </table>
-    <div id="states">
-        {% include 'office/states/index.html.twig' %}
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+            {% include 'office/states/index.html.twig' %}
+        </div>
     </div>
 {% endblock %}
 

@@ -93,11 +93,14 @@ class OfficeController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid()) {
 
+            $projet->setOrderIndex(
+                $em->getRepository(Projet::class)->getMaxOrder() + 1
+            );
             $em->persist($projet);
             $em->flush();
 
             $this->addFlash('success', 'Projet correctement créé !');
-            return $this->redirectToRoute('office');
+            return $this->redirectToRoute('index_project');
         }
 
         return $this->render(
@@ -157,13 +160,20 @@ class OfficeController extends AbstractController
             $em->remove($photo);
         }
 
+        foreach(($em->getRepository(Projet::class)
+               ->findAllByOrderGreaterThan($projet->getOrderIndex())) as $pro) {
+
+            $pro->orderUp();
+            $em->persist($pro);
+        }
+
         $em->remove($projet);
         $em->flush();
 
 
         $this->addFlash('success', 'Projet correctement supprimé !');
 
-        return $this->redirectToRoute('office');
+        return $this->redirectToRoute('index_project');
 
     }
 
@@ -501,6 +511,9 @@ class OfficeController extends AbstractController
                 }
             }
 
+            $category->setOrderIndex(
+                $em->getRepository(SkillCategory::class)->getMaxOrder() + 1
+            );
             $em->persist($category);
             $em->flush();
 
@@ -580,6 +593,13 @@ class OfficeController extends AbstractController
             $fs->remove($category->getIconPath());
         }
 
+        foreach(($em->getRepository(SkillCategory::class)
+            ->findAllByOrderGreaterThan($category->getOrderIndex())) as $cat) {
+
+            $cat->orderUp();
+            $em->persist($cat);
+        }
+
         $em->remove($category);
         $em->flush();
 
@@ -601,6 +621,9 @@ class OfficeController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid()) {
 
+            $row->setOrderIndex(
+                $em->getRepository(SkillRow::class)->getMaxOrder($row->getCategory()) + 1
+            );
             $em->persist($row);
             $em->flush();
 
@@ -646,9 +669,102 @@ class OfficeController extends AbstractController
         $row = $em->getRepository(SkillRow::class)
                ->find($id);
 
+        foreach(($em->getRepository(SkillRow::class)
+            ->findAllByOrderGreaterThan($row->getOrderIndex(), $row->getCategory())) as $r) {
+
+            $r->orderUp();
+            $em->persist($r);
+        }
+
         $em->remove($row);
         $em->flush();
 
         return $this->redirectToRoute('index_skills');
     }
+
+    /**
+     * @Route("/office/projects/order_up/{id}", name="order_project_up")
+     * @Security("is_granted('ROLE_ADMIN')")
+     */
+    public function OrderUpProject($id, EntityManagerInterface $em) {
+
+        $project = $em->getRepository(Projet::class)
+                   ->find($id);
+
+        if($project->getOrderIndex() > 1) {
+
+            $pro = $em->getRepository(Projet::class)
+                   ->findBy(['order_index' => $project->getOrderIndex() - 1])[0];
+
+            if($pro) {
+
+                $pro->orderDown();
+                $em->persist($pro);
+            }
+
+            $project->orderUp();
+            $em->persist($project);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('index_project');
+    }
+
+    /**
+     * @Route("/office/skills/order_category_up/{id}", name="order_skill_cat_up")
+     * @Security("is_granted('ROLE_ADMIN')")
+     */
+    public function OrderUpSkillCategory($id, EntityManagerInterface $em) {
+
+        $category = $em->getRepository(SkillCategory::class)
+            ->find($id);
+
+        if($category->getOrderIndex() > 1) {
+
+            $cat = $em->getRepository(SkillCategory::class)
+                ->findBy(['order_index' => $category->getOrderIndex() - 1])[0];
+
+            if($cat) {
+
+                $cat->orderDown();
+                $em->persist($cat);
+            }
+
+            $category->orderUp();
+            $em->persist($category);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('index_skills');
+    }
+
+    /**
+     * @Route("/office/skills/order_row_up/{id}", name="order_skill_row_up")
+     * @Security("is_granted('ROLE_ADMIN')")
+     */
+    public function OrderUpRowCategory($id, EntityManagerInterface $em) {
+
+        $row = $em->getRepository(SkillRow::class)
+            ->find($id);
+
+        if($row->getOrderIndex() > 1) {
+
+            $r = $em->getRepository(SkillRow::class)
+                ->findBy(['order_index' => $row->getOrderIndex() - 1,
+                          'category' => $row->getCategory()])[0];
+
+            if($r) {
+
+                $r->orderDown();
+                $em->persist($r);
+            }
+
+            $row->orderUp();
+            $em->persist($row);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('index_skills');
+    }
+
 }
