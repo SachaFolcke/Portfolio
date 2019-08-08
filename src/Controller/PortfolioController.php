@@ -14,6 +14,7 @@ use App\Entity\Introduction;
 use App\Entity\PhotosProjet;
 use App\Entity\Projet;
 use App\Entity\SkillCategory;
+use App\Entity\TimelineElement;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpKernel\Exception\ServiceUnavailableHttpException;
 use Symfony\Component\Routing\Annotation\Route;
@@ -42,6 +43,8 @@ class PortfolioController extends AbstractController
         $projets = $em->getRepository(Projet::class)
                       ->findBy(['online' => 1],
                                ['order_index' => 'ASC']);
+        $timeline = $em->getRepository(TimelineElement::class)
+                       ->findAll();
 
         $rep = $em->getRepository(PhotosProjet::class);
         $photos = [];
@@ -53,11 +56,12 @@ class PortfolioController extends AbstractController
         }
 
         return $this->render('index.html.twig', [
-            'projets' => $projets,
-            'photos'  => $photos,
-            'info'    => $info,
-            'intro'   => $intro,
-            'skills'  => $skills
+            'projets'  => $projets,
+            'photos'   => $photos,
+            'info'     => $info,
+            'intro'    => $intro,
+            'skills'   => $skills,
+            'timeline' => $timeline
         ]);
     }
 

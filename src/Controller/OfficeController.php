@@ -9,6 +9,7 @@ use App\Entity\ProjectState;
 use App\Entity\Projet;
 use App\Entity\SkillCategory;
 use App\Entity\SkillRow;
+use App\Entity\TimelineElement;
 use App\Form\GeneralType;
 use App\Form\IntroductionType;
 use App\Form\PhotoUploadType;
@@ -16,6 +17,7 @@ use App\Form\ProjectStateType;
 use App\Form\ProjectType;
 use App\Form\SkillCategoryType;
 use App\Form\SkillRowType;
+use App\Form\TimelineElementType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -683,6 +685,126 @@ class OfficeController extends AbstractController
     }
 
     /**
+     * @Route("/office/timeline", name="index_timeline")
+     * @Security("is_granted('ROLE_USER')")
+     */
+    public function indexTimeline(EntityManagerInterface $em) {
+
+        $elements = $em->getRepository(TimelineElement::class)
+                  ->findAll();
+
+        return $this->render('office/timeline/index.html.twig', [
+            'elements' => $elements
+        ]);
+    }
+
+    /**
+     * @Route("/office/timeline/add", name="add_timeline")
+     * @Security("is_granted('ROLE_ADMIN')")
+     */
+    public function addTimeline(Request $request, EntityManagerInterface $em) {
+
+        $element = new TimelineElement();
+
+        $form = $this->createForm(TimelineElementType::class, $element);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+
+            $element->setOrderIndex(
+                $em->getRepository(TimelineElement::class)->getMaxOrder());
+            $element->setCurrent(false);
+
+            $em->persist($element);
+            $em->flush();
+
+            $this->addFlash('success', 'Élément correctement ajouté !');
+
+            return $this->redirectToRoute('index_timeline');
+        }
+
+        return $this->render('office/timeline/add.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/office/timeline/edit/{id}", name="edit_timeline")
+     * @Security("is_granted('ROLE_ADMIN')")
+     */
+    public function editTimeline($id, Request $request, EntityManagerInterface $em) {
+
+        $element = $em->getRepository(TimelineElement::class)
+                   ->find($id);
+
+        $form = $this->createForm(TimelineElementType::class, $element);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+
+            $element->setOrderIndex(
+                $em->getRepository(TimelineElement::class)->getMaxOrder());
+            $element->setCurrent(false);
+
+            $em->persist($element);
+            $em->flush();
+
+            $this->addFlash('success', 'Élément correctement modifié !');
+
+            return $this->redirectToRoute('index_timeline');
+        }
+
+        return $this->render('office/timeline/edit.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/office/timeline/delete/{id}", name="delete_timeline")
+     * @Security("is_granted('ROLE_ADMIN')")
+     */
+    public function deleteTimeline($id, EntityManagerInterface $em) {
+
+        $element = $em->getRepository(TimelineElement::class)
+                   ->find($id);
+
+        foreach(($em->getRepository(TimelineElement::class)
+                    ->findAllByOrderGreaterThan($element->getOrderIndex())) as $e) {
+
+            $e->orderUp();
+            $em->persist($e);
+        }
+
+        $em->remove($element);
+        $em->flush();
+    }
+
+    /**
+     * @Route("/office/timeline/make_current/{id}", name="make_current")
+     * @Security("is_granted('ROLE_ADMIN')")
+     */
+    public function makeCurrent($id, EntityManagerInterface $em) {
+
+        $e = $em->getRepository(TimelineElement::class)
+                ->findOneBy(['current' => true]);
+
+        if($e) {
+            $e->setCurrent(false);
+            $em->persist($e);
+        }
+
+        $element = $em->getRepository(TimelineElement::class)
+                      ->find($id);
+
+        $element->setCurrent(true);
+        $em->persist($element);
+        $em->flush();
+
+        return $this->redirectToRoute('index_timeline');
+
+    }
+
+    /**
      * @Route("/office/projects/order_up/{id}", name="order_project_up")
      * @Security("is_granted('ROLE_ADMIN')")
      */
@@ -765,6 +887,34 @@ class OfficeController extends AbstractController
         }
 
         return $this->redirectToRoute('index_skills');
+    }
+
+    /**
+     * @Route("/office/timeline/order_up/{id}", name="order_timeline_up")
+     * @Security("is_granted('ROLE_ADMIN')")
+     */
+    public function OrderUpTimeline($id, EntityManagerInterface $em) {
+
+        $element = $em->getRepository(TimelineElement::class)
+                       ->find($id);
+
+        if($element->getOrderIndex() > 1) {
+
+            $e = $em->getRepository(TimelineElement::class)
+                    ->findBy(['order_index' => $element->getOrderIndex() - 1])[0];
+
+            if($e) {
+
+                $e->orderDown();
+                $em->persist($e);
+            }
+
+            $element->orderUp();
+            $em->persist($element);
+            $em->flush();
+        }
+
+        return $this->redirectToRoute('index_timeline');
     }
 
 }
