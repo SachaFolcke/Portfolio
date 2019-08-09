@@ -40,48 +40,38 @@
 
     <div id="parcours" class="justRight" >
         <h2 data-aos="fade-zoom-in" data-aos-duration="400">Mon parcours et diplômes</h2>
-        <div class="flex-parent">
-            <div class="input-flex-container" data-aos="zoom-in">
-                <input type="radio" name="timeline-dot" data-description="2015-2017">
-                <div class="dot-info" data-description="2015-2017">
-                    <span class="year">2015-2017</span>
-                    <span class="label">Baccalauréat S Obtenu</span>
-                </div>
-                <input type="radio" name="timeline-dot" data-description="sept2017">
-                <div class="dot-info" data-description="sept2017">
-                    <span class="year">Sept. 2017</span>
-                    <span class="label">Entrée en DUT Informatique</span>
-                </div>
-                <input type="radio" name="timeline-dot" data-description="juil2018">
-                <div class="dot-info" data-description="juil2018">
-                    <span class="year">Juil. 2018</span>
-                    <span class="label">Fin 1ère année</span>
-                </div>
-                <input type="radio" name="timeline-dot" data-description="avr2019">
-                <div class="dot-info" data-description="avr2019">
-                    <span class="year">Avr. 2019</span>
-                    <span class="label">Début Stage</span>
-                </div>
-                <input type="radio" name="timeline-dot" data-description="juil2019" checked>
-                <div class="dot-info" data-description="juil2019">
-                    <span class="year">Juil. 2019</span>
-                    <span class="label">Fin 2ème année</span>
-                </div>
-                <input type="radio" name="timeline-dot" data-description="sept2019">
-                <div class="dot-info" data-description="sept2019">
-                    <span class="year">Sept. 2019</span>
-                    <span class="label">Entrée école Ingénieur</span>
-                </div>
+        <div class="timeline" data-aos="fade-right" data-aos-duration="400">
+            {% set i = 0 %}
+            {% set last = timeline|length %}
+            {% set current = false %}
+            {% set post_current = false %}
 
-                <div id="timeline-descriptions-wrapper">
-                    <p data-description="2015-2017">Baccalauréat Scientifique mention <i>Assez Bien Euro Anglais</i> au Lycée Guy Mollet d'Arras.</p>
-                    <p data-description="sept2017">Entrée en 1ère année de DUT Informatique à l'IUT de Lens.</p>
-                    <p data-description="juil2018">Obtention avec brio de la 1ère année de DUT Informatique.</p>
-                    <p data-description="avr2019">Mon stage se déroule au sein de l'entreprise Wid'Op, petite start-up de conception de sites et d'applications web, majoritairement avec Symfony.</p>
-                    <p data-description="juil2019">Obtention de ma 2ème année de DUT Informatique.</p>
-                    <p data-description="sept2019">J'intégrerai l'ISEN Lille en 3ème année en cycle Ingénieur par alternance.</p>
+            {% for time in timeline %}
+                {% set i = i + 1 %}
+                {% if time.current == 1 %}
+                    {% set current = true %}
+                {% endif %}
+                <div class="time-cube{% if i == 1 %} first{% endif %}
+                                     {% if i == last %} last{% endif %}
+                                     {% if post_current == true %} future{% endif %}
+                                     {% if current == true %} current{% endif %}">
+                    {% if i < last %}
+                        <img class="arrow" {% if current == false and post_current == false %}src="{{ asset('img/right-arrow-color.svg') }}"
+                                {% else %}src="{{ asset('img/right-arrow-grey.svg') }}"{% endif %}>
+                    {% endif %}
+                    <div class="time-cube-content">
+                        <div class="time-cube-title">{{ time.title }}</div>
+                        <div class="time-cube-period">{{ time.period }}</div>
+                        <div class="time-cube-description">{{ time.description }}</div>
+                    </div>
+                    {% if time.current == 1 %}
+                        {% set post_current = true %}
+                    {% endif %}
+                    {% if current == true %}
+                        {% set current = false %}
+                    {% endif %}
                 </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
     <div id="skills" class="justRight">
@@ -112,7 +102,7 @@
             {% set cpt = 0 %}
             {% for projet in projets %}
 
-            <div onclick="showProject('#projet{{ projet.id }}')" data-aos="flip-down" data-aos-duration="250" data-aos-delay="{{ 250 * (cpt) }}"
+            <div onclick="showProject('#projet{{ projet.id }}')" data-aos="flip-down" data-aos-duration="125" data-aos-delay="{{ 100 * (cpt) }}"
                     {% if photos[projet.id]['thumb'] is not null %}
                         style="background: url('{{ asset(photos[projet.id]['thumb'].path) }}');
                                background-position: center; background-size: cover"

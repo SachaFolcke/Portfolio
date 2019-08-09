@@ -1,0 +1,17 @@
+{% extends 'office/base.html.twig' %}
+
+{% block contenu %}
+
+    <h3>Edition d'un élément</h3>
+
+    {{ form_start(form, { 'attr' : { 'id' : 'project-form' }}) }}
+    {{ form_row(form.title, { 'attr' : { 'class' : 'form-control' } }) }}
+    {{ form_row(form.period, { 'attr' : { 'class' : 'form-control' } }) }}
+    {{ form_row(form.description, { 'attr' : { 'class' : 'form-control' } }) }}
+
+    <button class="btn btn-warning center-button mt-2" type="submit">
+        <span class="oi oi-pencil" aria-hidden="true"></span> Modifier
+    </button>
+    {{ form_end(form) }}
+
+{% endblock %}
