@@ -1,0 +1,23 @@
+{% extends 'office/base.html.twig' %}
+
+{% block contenu %}
+
+    <a class="small_link" href="{{ path('index_general') }}">&lt;&lt; Retour</a>
+
+    <h3>Modifier le portfolio</h3>
+
+    {{ form_start(form, { 'attr' : { 'id' : 'project-form' }}) }}
+    {{ form_row(form.website_title, { 'attr' : { 'class' : 'form-control' } }) }}
+    {{ form_row(form.title, { 'attr' : { 'class' : 'form-control' } }) }}
+    {{ form_row(form.subtitle, { 'attr' : { 'class' : 'form-control' } }) }}
+    {{ form_row(form.description, { 'attr' : { 'class' : 'form-control' } }) }}
+    <div class="checkbox-inline">
+        {{ form_row(form.is_online) }}
+    </div>
+
+    <button class="center-button btn btn-warning" type="submit">
+        <span class="oi oi-pencil" title="pencil" aria-hidden="true"></span> Modifier les infos !
+    </button>
+    {{ form_end(form) }}
+
+{% endblock %}

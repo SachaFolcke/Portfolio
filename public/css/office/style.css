@@ -22,10 +22,11 @@ h2 a:hover {
 }
 
 p {
-    font-family: 'Amaranth', sans-serif;
+
 }
 
 .small_link {
+    position: absolute;
     color: rgb(119,68,139);
     text-decoration: none;
     font-family: 'Didact Gothic', sans-serif;
@@ -215,8 +216,67 @@ button {
     background-color: rgb(99,48,119);
 }
 
-#states {
-    width: 50%;
+.icon-button {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+}
+
+.row {
+   margin: 0;
+}
+
+.office-category {
+    margin: 5px;
+    border: 3px solid rgb(119,68,139);
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: #e9e9e9;
+}
+
+.office-category h3 {
+    color: #000000;
+    text-decoration: none;
+}
+
+.office-category h3:hover {
+    color: rgb(119,68,139);
+}
+
+.intro-photo {
+    max-height: 250px;
+    max-width: 250px;
+    border: 2px solid #fff;
+    outline: 2px solid rgb(119,68,139);
+}
+
+.skill-icon {
+    max-height: 200px;
+    max-width: 150px;
+}
+
+.edit-button {
+    color: #d6c410;
+    cursor: pointer;
+}
+
+.delete-button {
+    color: #d61001;
+    cursor: pointer;
+}
+
+.order-up-button {
+    color: #77448B;
+    cursor: pointer;
+}
+
+.skill-table {
+    text-align: center;
+    margin: 5px;
+}
+
+.skill-table th {
+    font-size: 26px;
 }
 
 @media screen and (min-width: 1080px) and (max-width: 1600px) {
@@ -252,7 +312,8 @@ button {
     }
 
     #contenu {
-        width: 100%;
+        min-width: 100vw;
+        width: fit-content;
         padding-left: 0;
         padding-right: 0;
     }
@@ -266,5 +327,9 @@ button {
         font-size: 10px;
         padding: 0;
         border: 1px solid black;
+    }
+
+    .skill-table {
+        margin: 0 0 10px;
     }
 }

@@ -1,297 +1,103 @@
-html, body {
-    height: 100%;
-}
-
-#parcours {
-    font-family: 'Quicksand', sans-serif;
-    font-weight: 500;
-    color: #424949;
-    background-color: #ECF0F1;
-    padding: 0 25px;
+.timeline {
     display: flex;
-    flex-direction: column;
-    position: relative;
-}
-
-#parcours h2 {
-    font-size: 36px;
-    text-align: center;
-    height: 38px;
-    margin: 20px 0 60px 0;
-}
-
-#parcours h2 span {
-    white-space: nowrap;
-}
-
-.flex-parent {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 300px;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    overflow: auto;
+    padding-bottom: 50px;
 }
 
-.input-flex-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    width: 80vw;
-    max-width: 1000px;
-    position: relative;
-    z-index: 0;
-    margin-left: calc((80vw - 25px) / 20);
-}
-
-input {
-    width: 25px;
-    height: 25px;
-    background-color: rgb(119,68,139);
-    position: relative;
-    border-radius: 50%;
-    display: block;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    appearance: none;
-    cursor: pointer;
-}
-
-input:focus {
-    outline: none;
-}
-
-input::before, input::after {
+.timeline:before, .timeline:after {
     content: '';
-    display: block;
-    position: absolute;
-    z-index: -1;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgb(119,68,139);
-    width: 80px;
-    height: 5px;
+    margin: auto;
 }
 
-input::before {
-    left: calc(-4vw + 12.5px);
-}
-
-input::after {
-    right: calc(-4vw + 12.5px);
-}
-
-input:checked {
-    background-color: rgb(119,68,139);
-}
-
-input:checked::before {
-    background-color: rgb(119,68,139);
-}
-
-input:checked::after {
-    background-color: #AEB6BF;
-}
-
-input:checked ~ input, input:checked ~ input::before, input:checked ~ input::after {
-    background-color: #AEB6BF;
-}
-
-input:checked + .dot-info span {
-    font-size: 16px;
-    font-weight: bold;
-}
-
-.dot-info {
-    width: 35px;
-    height: 25px;
-    padding-right: 40px;
-    display: block;
-    visibility: hidden;
+.time-cube {
     position: relative;
-    z-index: -1;
-    left: -75px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    height: 200px;
+    flex-basis: 300px;
+    border: 4px solid #77448B;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px #AAAAAA;
+    background-color: #FFFFFF;
+    margin: 10px;
+    padding: 5px;
 }
 
-.dot-info span {
-    visibility: visible;
+.first {
+    margin-left: auto;
+}
+
+.last {
+    margin-right: auto;
+}
+
+.current {
+    height: 230px;
+    flex-basis: 340px;
+    border: 6px solid #77448B;
+}
+
+.time-cube-content {
+    height: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.time-cube-title {
+    font-family: 'Amaranth', sans-serif;
+    font-size: 26px;
+}
+
+.time-cube-period {
+    font-family: 'Didact Gothic', sans-serif;
+    font-size: 18px;
+    font-style: italic;
+    color: #727272;
+}
+
+.time-cube-description {
+    font-family: 'Didact Gothic', sans-serif;
+    font-size: 18px;
+}
+
+.time-cube .arrow {
     position: absolute;
-    font-size: 14px;
+    bottom: 30%;
+    left: 92%;
+    height: 75px;
+    z-index: 70;
 }
 
-.dot-info span.year {
-    bottom: -30px;
-    left: 50%;
-    transform: translateX(-25%);
-    width: 100px;
+.time-cube.future {
+    border: 4px solid #656565;
 }
 
-.dot-info span.label {
-    top: -65px;
-    left: 0;
-    transform: translateX(30%) translateY(-10%) rotateZ(-25deg) ;
-    text-indent: -10px;
-}
+@media screen and (max-width: 639px) {
 
-#timeline-descriptions-wrapper {
-    width: 100%;
-    margin-top: 70px;
-    font-size: 22px;
-    font-weight: 400;
-    margin-left: calc((-80vw - 25px) / 20);
-}
-
-#timeline-descriptions-wrapper p {
-    margin-top: 0;
-    display: none;
-}
-
-input[data-description="2015-2017"]:checked ~ #timeline-descriptions-wrapper p[data-description="2015-2017"] {
-    display: block;
-}
-
-input[data-description="sept2017"]:checked ~ #timeline-descriptions-wrapper p[data-description="sept2017"] {
-    display: block;
-}
-
-input[data-description="juil2018"]:checked ~ #timeline-descriptions-wrapper p[data-description="juil2018"] {
-    display: block;
-}
-
-input[data-description="avr2019"]:checked ~ #timeline-descriptions-wrapper p[data-description="avr2019"] {
-    display: block;
-}
-
-input[data-description="juil2019"]:checked ~ #timeline-descriptions-wrapper p[data-description="juil2019"] {
-    display: block;
-}
-
-input[data-description="sept2019"]:checked ~ #timeline-descriptions-wrapper p[data-description="sept2019"] {
-    display: block;
-}
-/*
-input[data-description="1970"]:checked ~ #timeline-descriptions-wrapper p[data-description="1970"] {
-    display: block;
-}
-
-input[data-description="1980"]:checked ~ #timeline-descriptions-wrapper p[data-description="1980"] {
-    display: block;
-}
-
-input[data-description="1990"]:checked ~ #timeline-descriptions-wrapper p[data-description="1990"] {
-    display: block;
-}
-
-input[data-description="2000"]:checked ~ #timeline-descriptions-wrapper p[data-description="2000"] {
-    display: block;
-}
-*/
-@media (max-width: 1250px) and (min-width: 640px){
-    #parcours h2 {
-        margin-top: 20px;
+    .time-cube {
+        height: 175px;
+        flex-basis: 200px;
     }
 
-    .flex-parent {
-        overflow: visible;
+    .current {
+        height: 200px;
+        flex-basis: 225px;
     }
-    .input-flex-container {
-        margin-left: 62.5px;
-    }
-    input::before {
-        left: -70px;
-    }
-    input::after {
-        right: -70px;
-    }
-    .dot-info {
-        padding-right: 20px;
-    }
-    .dot-info span.label {
-        transform: translateX(-20%) translateY(-10%) rotateZ(-25deg);
-    }
-    #timeline-descriptions-wrapper {
-        margin-left: -37.5px;
-    }
-}
 
-@media (max-width: 639px) {
-    .flex-parent {
-        justify-content: initial;
+    .time-cube-title {
+        font-size: 24px;
     }
-    .input-flex-container {
-        flex-wrap: wrap;
-        justify-content: center;
-        width: 400px;
-        height: auto;
-        margin-left: 0;
-    }
-    input, .dot-info {
-        width: 75px;
-        height: 60px;
-        margin: 0 10px 60px;
-    }
-    input {
-        background-color: transparent !important;
-        z-index: 1;
-        transform: translateX(20%);
-    }
-    input::before, input::after {
-        content: none;
-    }
-    input:checked + .dot-info {
-        background-color: rgb(119,68,139);
-    }
-    input:checked + .dot-info span.year {
+
+    .time-cube-period {
         font-size: 16px;
     }
-    input:checked + .dot-info span.label {
-        font-size: 14px;
-    }
-    .dot-info {
-        visibility: visible;
-        border-radius: 50%;
-        z-index: 0;
-        left: 0;
-        padding-right: 0;
-        margin-left: -70px;
-        background-color: #AEB6BF;
-    }
-    .dot-info span.year {
-        top: 0;
-        left: 0;
-        transform: none;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: #ECF0F1;
-    }
-    .dot-info span.label {
-        top: calc(100% + 5px);
-        left: 50%;
-        transform: translateX(-50%);
-        text-indent: 0;
-        text-align: center;
-    }
-    #timeline-descriptions-wrapper{
-        margin-top: 30px;
-        margin-left: 0;
-        text-align: center;
-        width: 90vw;
-    }
-}
-/*
-@media (max-width: 480px) {
-    .input-flex-container {
-        width: 340px;
-    }
-}
 
-@media (max-width: 400px) {
-    .input-flex-container {
-        width: 300px;
+    .time-cube-description {
+        font-size: 16px;
     }
 }
-*/

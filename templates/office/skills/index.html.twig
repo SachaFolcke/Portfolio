@@ -1,0 +1,90 @@
+{% extends 'office/base.html.twig' %}
+
+{% block contenu %}
+
+    {% for message in app.flashes('success') %}
+        <div id="successes">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    {% for message in app.flashes('error') %}
+        <div id="errors">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <a class="small_link" href="{{ path('office') }}">&lt;&lt; Retour</a>
+
+    <h3>Mes compétences</h3>
+
+    <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+        <button class="btn btn-success" onclick="location.href='{{ path('add_skill_category')}}'" >
+            Ajouter une catégorie
+        </button>
+    </div>
+    {% set i = 0 %}
+        {% for category in categories %}
+            {% if i == 2 %}
+                {% set i = 0 %}
+            {% endif %}
+
+            {% if i == 0 %}
+                <div class="row">
+            {% endif %}
+            {% set rows = category.skillRows %}
+            <table class="table table-striped table-bordered skill-table col-12 col-sm table-hover">
+                <tr>
+                    <th>(#{{ category.orderIndex }}) {{ category.title }}</th>
+                <tr>
+
+                <td>
+                    {% if category.iconPath %}
+                        <img class="skill-icon" src="{{ asset(category.iconPath) }}">
+                    {% else %}
+                        <span class="oi oi-x" aria-hidden="true"></span>
+                        <i>Pas d'icône</i>
+                    {% endif %}
+                </td>
+
+                {% for row in rows %}
+                    <tr>
+                        <td>
+                            {{ row.text|raw }}
+                            <div style="display: inline-block">
+                                <span onclick="location.href='{{ path('edit_skill_row', {'id' : row.id}) }}'"
+                                      class="oi oi-pencil edit-button ml-2" title="Modifier" aria-hidden="true"></span>
+                                <span onclick="location.href='{{ path('delete_skill_row', {'id' : row.id}) }}'"
+                                      class="oi oi-x delete-button ml-1" title="Supprimer" aria-hidden="true"></span>
+                                <span onclick="location.href='{{ path('order_skill_row_up', {'id' : row.id}) }}'"
+                                      class="oi oi-arrow-thick-top order-up-button ml-1" title="Remonter" aria-hidden="true"></span>
+                            </div>
+                            <br />
+                        </td>
+                    </tr>
+                {% endfor %}
+
+                <tr>
+                    <td>
+                        <button class="btn btn-success icon-button" onclick="location.href='{{ path('add_skill_row')}}'" >
+                            <span class="oi oi-plus" title="Ajouter une ligne" aria-hidden="true"></span>
+                        </button>
+                        <button class="btn btn-warning icon-button" onclick="location.href='{{ path('edit_skill_category', {'id' : category.id}) }}'">
+                            <span class="oi oi-pencil" title="Modifier catégorie" aria-hidden="true"></span>
+                        </button>
+                        <button class="btn btn-danger icon-button" onclick="location.href='{{ path('delete_skill_category', {'id' : category.id}) }}'">
+                            <span class="oi oi-trash" title="Supprimer catégorie" aria-hidden="true"></span>
+                        </button>
+                        <button class="btn btn-custom icon-button" onclick="location.href='{{ path('order_skill_cat_up', {'id': category.id}) }}'">
+                            <span class="oi oi-arrow-thick-top" title="Remonter" aria-hidden="true"></span>
+                        </button>
+                    </td>
+                </tr>
+            </table>
+            {% set i = i + 1 %}
+            {% if i == 2 %}
+                </div>
+            {% endif %}
+        {% endfor %}
+
+{% endblock %}

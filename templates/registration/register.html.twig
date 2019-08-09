@@ -9,11 +9,11 @@
     <h3>S'inscrire</h3>
     <div id="form_register">
         {{ form_start(form) }}
-            {{ form_row(form.username) }}
-            {{ form_row(form.plainpassword.first) }}
-            {{ form_row(form.plainpassword.second) }}
+            {{ form_row(form.username, { 'attr' : { 'class' : 'form-control' } }) }}
+            {{ form_row(form.plainpassword.first, { 'attr' : { 'class' : 'form-control' } }) }}
+            {{ form_row(form.plainpassword.second, { 'attr' : { 'class' : 'form-control' } }) }}
 
-            <button type="submit">S'incrire</button>
+            <button class="btn btn-custom center-button mt-2" type="submit">Valider</button>
         {{ form_end(form) }}
     </div>
 {% endblock %}

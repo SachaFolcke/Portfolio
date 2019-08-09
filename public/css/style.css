@@ -26,7 +26,7 @@ p {
     height: 50px;
     background-color:rgb(119,68,139);
     border-bottom: 2px solid rgb(55, 30, 70);
-    z-index: 50;
+    z-index: 80;
 }
 
 #desktop-nav, #mobile-nav {
@@ -123,12 +123,6 @@ h1 {
     justify-content: center;
     align-items: center;
     margin-bottom: 75px;
-
-    /*
-    animation-name: goIntoView;
-    animation-duration: 2s;
-    animation-fill-mode: forwards;
-*/
 }
 
 
@@ -386,7 +380,7 @@ hr {
     text-align: center;
 }
 
-#office_access {
+#office-access {
     width: 100%;
     height: auto;
     text-align: center;
@@ -396,12 +390,21 @@ hr {
     padding-bottom: 10px;
 }
 
-#office_access a {
+#office-access a {
     font-family: 'Amaranth', sans-serif;
     font-size: 28px;
     color: #fff;
     text-decoration: none;
     margin: 0;
+}
+
+.skill-icon {
+    max-width: 125px;
+    max-height: 125px;
+}
+
+.skills-hr {
+    display: none;
 }
 
 
@@ -466,10 +469,6 @@ hr {
         justify-content: space-evenly;
     }
 
-    #parcours {
-        height: 550px;
-    }
-
     #skills .element {
         max-width: 80vw;
         min-width: 70vw;
@@ -491,7 +490,52 @@ hr {
 
     #presentation p {
         min-width: 90vw;
-        text-align: center;
+        text-align: justify;
         margin: 0 20px 0 20px;
+    }
+
+    #flexcontain > div {
+        height: 150px;
+        width: 150px;
+    }
+
+    #flexcontain img, .noIMG {
+        height: 150px;
+        width: 150px;
+        display: block;
+    }
+
+    .overlay {
+        height: 150px;
+        width: 150px;
+        font-size: 16px;
+    }
+
+    .overlay p {
+        padding: 2px;
+        top: 65%;
+    }
+
+    .noIMG {
+        height: 144px;
+        width: 144px;
+    }
+
+    .skills-hr {
+        display: block;
+        margin: 30px auto;
+    }
+
+    #office-access a {
+        font-size: 20px;
+    }
+
+    #all-projects {
+        width: calc(100vw - 40px);
+        padding: 10px;
+    }
+
+    #all-projects > div > img {
+        height: 50vh;
     }
 }

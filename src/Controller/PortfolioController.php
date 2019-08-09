@@ -9,12 +9,16 @@
 namespace App\Controller;
 
 
+use App\Entity\General;
+use App\Entity\Introduction;
 use App\Entity\PhotosProjet;
 use App\Entity\Projet;
+use App\Entity\SkillCategory;
+use App\Entity\TimelineElement;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpKernel\Exception\ServiceUnavailableHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
 
 class PortfolioController extends AbstractController
 {
@@ -23,8 +27,24 @@ class PortfolioController extends AbstractController
      */
     public function homepage(EntityManagerInterface $em) {
 
+        $info = $em->getRepository(General::class)
+                ->findAll()[0];
+
+        $intro = $em->getRepository(Introduction::class)
+                 ->findAll()[0];
+
+        if(!$info->getIsOnline()) {
+            throw new ServiceUnavailableHttpException();
+        }
+
+        $skills = $em->getRepository(SkillCategory::class)
+                  ->findAll();
+
         $projets = $em->getRepository(Projet::class)
-                      ->findBy(['online' => 1]);
+                      ->findBy(['online' => 1],
+                               ['order_index' => 'ASC']);
+        $timeline = $em->getRepository(TimelineElement::class)
+                       ->findAll();
 
         $rep = $em->getRepository(PhotosProjet::class);
         $photos = [];
@@ -36,8 +56,12 @@ class PortfolioController extends AbstractController
         }
 
         return $this->render('index.html.twig', [
-            'projets' => $projets,
-            'photos' => $photos
+            'projets'  => $projets,
+            'photos'   => $photos,
+            'info'     => $info,
+            'intro'    => $intro,
+            'skills'   => $skills,
+            'timeline' => $timeline
         ]);
     }
 

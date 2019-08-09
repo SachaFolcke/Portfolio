@@ -1,0 +1,14 @@
+{% extends 'office/base.html.twig' %}
+
+{% block contenu %}
+
+    {{ form_start(form, { 'attr' : { 'id' : 'project-form' }}) }}
+        {{ form_row(form.title, { 'attr' : { 'class' : 'form-control' } }) }}
+        {{ form_row(form.text, { 'attr' : { 'class' : 'form-control' } }) }}
+        {{ form_row(form.photo, { 'attr' : { 'class' : 'form-control' } }) }}
+
+    <button class="center-button btn btn-warning" type="submit">
+    <span class="oi oi-pencil" title="pencil" aria-hidden="true"></span> Modifier les infos !
+    </button>
+    {{ form_end(form) }}
+{% endblock %}

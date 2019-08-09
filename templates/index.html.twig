@@ -24,99 +24,79 @@
 </div>
 <div id="fond"></div>
 <div id="basic" data-aos="zoom-out" data-aos-duration="3000">
-    <h1>Sacha Folcke</h1>
-    <h2 id="etu">Étudiant</h2>
+    <h1>{{ info.title }}</h1>
+    <h2 id="etu">{{ info.subtitle }}</h2>
 </div>
 <div id="corps" class="justRight">
-    <h2 data-aos="fade-zoom-in" data-aos-duration="400">Bienvenue sur mon portfolio</h2>
+    <h2 data-aos="fade-zoom-in" data-aos-duration="400">
+        {{ intro.title }}
+    </h2>
     <div id="presentation" data-aos="fade-right">
-        <img src="{{ asset('img/portrait_sqr.jpg') }}" />
+        <img src="{{ intro.photoPath }}" />
         <div class="pres-text">
-            <p><i>Bonjour !</i><br />
-                Je suis Sacha Folcke, j'ai 20 ans et je suis actuellement en 2ème année de DUT Informatique
-                à l'IUT de Lens. Je suis depuis longtemps passionné d'Informatique et je souhaite en faire mon métier.
-                Je vous présente mon portfolio montrant plus précisément mon expérience et mes compétences.</p>
-            <hr>
-            <p> En septembre, j'intégrerai l'<a href="https://www.isen-lille.fr/">ISEN Lille</a> en alternance.
-                Je cherche encore une entreprise afin de concrétiser mon projet professionnel qui est de me spécialiser
-                dans la cybersécurité. Ce domaine m'intéresse beaucoup malgré mon manque d'expérience mais je serais
-                ravi d'apprendre avec vous ! Contactez-moi et nous pourrions en discuter.</p>
+            {{ intro.text|raw }}
         </div>
     </div>
 
     <div id="parcours" class="justRight" >
         <h2 data-aos="fade-zoom-in" data-aos-duration="400">Mon parcours et diplômes</h2>
-        <div class="flex-parent">
-            <div class="input-flex-container" data-aos="zoom-in">
-                <input type="radio" name="timeline-dot" data-description="2015-2017">
-                <div class="dot-info" data-description="2015-2017">
-                    <span class="year">2015-2017</span>
-                    <span class="label">Baccalauréat S Obtenu</span>
-                </div>
-                <input type="radio" name="timeline-dot" data-description="sept2017">
-                <div class="dot-info" data-description="sept2017">
-                    <span class="year">Sept. 2017</span>
-                    <span class="label">Entrée en DUT Informatique</span>
-                </div>
-                <input type="radio" name="timeline-dot" data-description="juil2018">
-                <div class="dot-info" data-description="juil2018">
-                    <span class="year">Juil. 2018</span>
-                    <span class="label">Fin 1ère année</span>
-                </div>
-                <input type="radio" name="timeline-dot" data-description="avr2019">
-                <div class="dot-info" data-description="avr2019">
-                    <span class="year">Avr. 2019</span>
-                    <span class="label">Début Stage</span>
-                </div>
-                <input type="radio" name="timeline-dot" data-description="juil2019" checked>
-                <div class="dot-info" data-description="juil2019">
-                    <span class="year">Juil. 2019</span>
-                    <span class="label">Fin 2ème année</span>
-                </div>
-                <input type="radio" name="timeline-dot" data-description="sept2019">
-                <div class="dot-info" data-description="sept2019">
-                    <span class="year">Sept. 2019</span>
-                    <span class="label">Entrée école Ingénieur</span>
-                </div>
+        <div class="timeline" data-aos="fade-right" data-aos-duration="400">
+            {% set i = 0 %}
+            {% set last = timeline|length %}
+            {% set current = false %}
+            {% set post_current = false %}
 
-                <div id="timeline-descriptions-wrapper">
-                    <p data-description="2015-2017">Baccalauréat Scientifique mention <i>Assez Bien Euro Anglais</i> au Lycée Guy Mollet d'Arras.</p>
-                    <p data-description="sept2017">Entrée en 1ère année de DUT Informatique à l'IUT de Lens.</p>
-                    <p data-description="juil2018">Obtention avec brio de la 1ère année de DUT Informatique.</p>
-                    <p data-description="avr2019">Mon stage se déroule au sein de l'entreprise Wid'Op, petite start-up de conception de sites et d'applications web, majoritairement avec Symfony.</p>
-                    <p data-description="juil2019">Obtention de ma 2ème année de DUT Informatique.</p>
-                    <p data-description="sept2019">J'intégrerai l'ISEN Lille en 3ème année en cycle Ingénieur par alternance.</p>
+            {% for time in timeline %}
+                {% set i = i + 1 %}
+                {% if time.current == 1 %}
+                    {% set current = true %}
+                {% endif %}
+                <div class="time-cube{% if i == 1 %} first{% endif %}
+                                     {% if i == last %} last{% endif %}
+                                     {% if post_current == true %} future{% endif %}
+                                     {% if current == true %} current{% endif %}">
+                    {% if i < last %}
+                        <img class="arrow" {% if current == false and post_current == false %}src="{{ asset('img/right-arrow-color.svg') }}"
+                                {% else %}src="{{ asset('img/right-arrow-grey.svg') }}"{% endif %}>
+                    {% endif %}
+                    <div class="time-cube-content">
+                        <div class="time-cube-title">{{ time.title }}</div>
+                        <div class="time-cube-period">{{ time.period }}</div>
+                        <div class="time-cube-description">{{ time.description }}</div>
+                    </div>
+                    {% if time.current == 1 %}
+                        {% set post_current = true %}
+                    {% endif %}
+                    {% if current == true %}
+                        {% set current = false %}
+                    {% endif %}
                 </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
     <div id="skills" class="justRight">
         <h2 data-aos="fade-zoom-in" data-aos-duration="400">Compétences et personnalité</h2>
         <div id="contain">
-            <div class="element" data-aos="fade-zoom-in" data-aos-duration="400">
-                <div class="flaticon-coding"></div>
-                <h3>Informatique</h3>
-                <h4>Familier avec ces langages</h4>
-                <p>C++, Python, Java</p>
-                <p>HTML/CSS/Javascript, jQuery, TypeScript, notions d'Ajax</p>
-                <p>SQL, PHP, Framework Laravel et Symfony</p>
-                <p><a href="https://github.com/SachaFolcke" target="_blank">GitHub</a>, notions d'UML et Design Paterns</p>
-                <p>Utilisation courante des systèmes Unix et Windows</p>
-            </div>
-            <div class="element" data-aos="fade-zoom-in" data-aos-duration="400" data-aos-delay="400">
-                <div class="flaticon-conversation"></div>
-                <h3>Communication</h3>
-                <p>Compréhension et expression avancée de l'anglais (955 points au TOEIC)</p>
-                <p>Maîtrise orale et écrite du français (<a href="https://www.certificat-voltaire.fr/orthographe-recruteur?code=M3CF6W" target="_blank">Certification Voltaire</a>)</p>
-            </div>
-            <div class="element" data-aos="fade-zoom-in" data-aos-duration="400" data-aos-delay="800">
-                <div class="flaticon-thought"></div>
-                <h3>Personnalité</h3>
-                <p>Dynamique et motivé</p>
-                <p>Extraverti, préfère le travail en équipe</p>
-                <p>Envie d'apprendre (projets personnels)</p>
-                <p>Sens de logique</p>
-            </div>
+            {% set i = 0 %}
+            {% set last = skills|length %}
+            {% for skill in skills %}
+                {% set rows = skill.skillRows %}
+                <div class="element" data-aos="fade-zoom-in" data-aos-duration="400" data-aos-delay="{{ i * 400 }}">
+                    {% if skill.iconPath %}
+                        <img class="skill-icon svg" src="{{ asset(skill.iconPath) }}">
+                    {% endif %}
+
+                    <h3>{{ skill.title }}</h3>
+
+                    {% for row in rows %}
+                        <p>{{ row.text|raw }}</p>
+                    {% endfor %}
+                </div>
+            {% set i = i + 1 %}
+                {% if i < last %}
+                    <hr class="skills-hr">
+                {% endif %}
+            {% endfor %}
         </div>
     </div>
     <div id="projects" class="justRight">
@@ -126,7 +106,7 @@
             {% set cpt = 0 %}
             {% for projet in projets %}
 
-            <div onclick="showProject('#projet{{ projet.id }}')" data-aos="flip-down" data-aos-duration="250" data-aos-delay="{{ 250 * (cpt) }}"
+            <div onclick="showProject('#projet{{ projet.id }}')" data-aos="flip-down" data-aos-duration="125" data-aos-delay="{{ 100 * (cpt) }}"
                     {% if photos[projet.id]['thumb'] is not null %}
                         style="background: url('{{ asset(photos[projet.id]['thumb'].path) }}');
                                background-position: center; background-size: cover"
@@ -165,7 +145,7 @@
             {% endif %}
             <p><i>{{ projet.periode }} - ({{ projet.compoGroupe }})</i></p>
             <p><b>Langage(s) utilisé(s) :</b> {{ projet.langages }}</p>
-            <p><b>Description : </b>{{ projet.description }}</p>
+            <p><b>Description : </b>{{ projet.description|raw }}</p>
         </div>
 
         {% endfor %}
@@ -189,7 +169,7 @@
         </div>
     </div>
 </div>
-    <div id="office_access"><a href="{{ path('office') }}">Accès à la gestion du portfolio</a></div>
+    <div id="office-access"><a href="{{ path('office') }}">Accès à la gestion du portfolio</a></div>
 
 
 {% endblock %}

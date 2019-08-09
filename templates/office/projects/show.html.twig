@@ -21,7 +21,7 @@
         </div>
     {% endfor %}
 
-    <a class="small_link" href="{{ path('office') }}">&lt;&lt; Retour</a>
+    <a class="small_link" href="{{ path('index_project') }}">&lt;&lt; Retour</a>
     <h3>Gestion du projet "{{ projet.titre }}"</h3>
         <div style="display: flex; justify-content: center; margin-bottom: 20px;">
             <button onclick="location.href='{{ path('edit_project', {'id' : projet.id}) }}'" class="btn btn-warning">
@@ -57,7 +57,7 @@
         </tr>
         <tr>
             <th>Description</th>
-            <td>{{ projet.description }}</td>
+            <td>{{ projet.description|raw }}</td>
         </tr>
         <tr>
             <th>État</th>
