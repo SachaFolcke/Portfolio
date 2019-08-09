@@ -127,7 +127,12 @@ $(function() {
 function scrollTimeline() {
     let current = $('.current')[0];
     let timeline = $('.timeline')[0];
-    timeline.scrollLeft = current.offsetLeft - (($(window).width()/2) - (340/2));
+    let cubeWidth = 360;
+
+    if($(window).width() <= 639) {
+        cubeWidth = 240;
+    }
+    timeline.scrollLeft = current.offsetLeft - (($(window).width()/2) - (cubeWidth/2));
 }
 
 $(document).ready ( function(){

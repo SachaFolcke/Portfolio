@@ -4,7 +4,6 @@
     flex-wrap: nowrap;
     flex-direction: row;
     overflow: auto;
-    width: fit-content;
     padding-bottom: 50px;
 }
 
@@ -76,4 +75,29 @@
 
 .time-cube.future {
     border: 4px solid #656565;
+}
+
+@media screen and (max-width: 639px) {
+
+    .time-cube {
+        height: 175px;
+        flex-basis: 200px;
+    }
+
+    .current {
+        height: 200px;
+        flex-basis: 225px;
+    }
+
+    .time-cube-title {
+        font-size: 24px;
+    }
+
+    .time-cube-period {
+        font-size: 16px;
+    }
+
+    .time-cube-description {
+        font-size: 16px;
+    }
 }
