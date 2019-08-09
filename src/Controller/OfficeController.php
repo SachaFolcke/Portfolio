@@ -736,7 +736,7 @@ class OfficeController extends AbstractController
         if($form->isSubmitted() && $form->isValid()) {
 
             $element->setOrderIndex(
-                $em->getRepository(TimelineElement::class)->getMaxOrder());
+                $em->getRepository(TimelineElement::class)->getMaxOrder() + 1);
             $element->setCurrent(false);
 
             $em->persist($element);
