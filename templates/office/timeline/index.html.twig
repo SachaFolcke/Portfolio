@@ -50,7 +50,7 @@
                     <button onclick="location.href='{{ path('edit_timeline', {'id' : elem.id}) }}'" class="btn btn-warning btn-block">
                         <span class="oi oi-pencil" aria-hidden="true"></span> Modifier
                     </button>
-                    <button class="btn btn-danger btn-block">
+                    <button onclick="location.href='{{ path('delete_timeline', {'id' : elem.id}) }}'" class="btn btn-danger btn-block">
                         <span class="oi oi-trash" aria-hidden="true"></span> Supprimer
                     </button>
                     <button onclick="location.href='{{ path('order_timeline_up', {'id' : elem.id}) }}'" class="btn btn-custom btn-block">

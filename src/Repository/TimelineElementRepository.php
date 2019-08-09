@@ -52,7 +52,7 @@ class TimelineElementRepository extends ServiceEntityRepository
      */
     public function findAllByOrderGreaterThan($order) {
 
-        $qb = $this->createQueryBuilder('p');
+        $qb = $this->createQueryBuilder('t');
 
         $qb->select('t')
             ->where('t.order_index > :order')
