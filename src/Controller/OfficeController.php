@@ -809,6 +809,10 @@ class OfficeController extends AbstractController
 
         $em->remove($element);
         $em->flush();
+
+        $this->addFlash('success','Élément correctement supprimé !');
+
+        return $this->redirectToRoute('index_timeline');
     }
 
     /**
@@ -835,6 +839,8 @@ class OfficeController extends AbstractController
         $element->setCurrent(true);
         $em->persist($element);
         $em->flush();
+
+        $this->addFlash('success','Élément actuel correctement modifié !');
 
         return $this->redirectToRoute('index_timeline');
 
