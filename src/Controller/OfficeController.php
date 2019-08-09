@@ -240,6 +240,10 @@ class OfficeController extends AbstractController
 
         $photo = $em->getRepository(PhotosProjet::class)->findOneBy(['id' => $id_photo]);
 
+        if(!$photo){
+            throw new NotFoundHttpException;
+        }
+
         $path = $photo->getPath();
         $filesystem = new Filesystem();
         $filesystem->remove($path);
@@ -343,6 +347,10 @@ class OfficeController extends AbstractController
 
         $state = $em->getRepository(ProjectState::class)
             ->find(['id' => $id]);
+
+        if(!$state){
+            throw new NotFoundHttpException;
+        }
 
         $em->remove($state);
         $em->flush();
@@ -536,6 +544,10 @@ class OfficeController extends AbstractController
         $category = $em->getRepository(SkillCategory::class)
                     ->find($id);
 
+        if(!$category){
+            throw new NotFoundHttpException;
+        }
+
         $form = $this->createForm(SkillCategoryType::class, $category);
         $form->handleRequest($request);
 
@@ -589,6 +601,10 @@ class OfficeController extends AbstractController
 
         $category = $em->getRepository(SkillCategory::class)
             ->find($id);
+
+        if(!$category){
+            throw new NotFoundHttpException;
+        }
 
         if($category->getIconPath() != null) {
             $fs = new Filesystem();
@@ -646,6 +662,10 @@ class OfficeController extends AbstractController
         $row = $em->getRepository(SkillRow::class)
                ->find($id);
 
+        if(!$row){
+            throw new NotFoundHttpException;
+        }
+
         $form = $this->createForm(SkillRowType::class, $row);
         $form->handleRequest($request);
 
@@ -670,6 +690,10 @@ class OfficeController extends AbstractController
 
         $row = $em->getRepository(SkillRow::class)
                ->find($id);
+
+        if(!$row){
+            throw new NotFoundHttpException;
+        }
 
         foreach(($em->getRepository(SkillRow::class)
             ->findAllByOrderGreaterThan($row->getOrderIndex(), $row->getCategory())) as $r) {
@@ -737,6 +761,10 @@ class OfficeController extends AbstractController
         $element = $em->getRepository(TimelineElement::class)
                    ->find($id);
 
+        if(!$element){
+            throw new NotFoundHttpException;
+        }
+
         $form = $this->createForm(TimelineElementType::class, $element);
         $form->handleRequest($request);
 
@@ -768,6 +796,10 @@ class OfficeController extends AbstractController
         $element = $em->getRepository(TimelineElement::class)
                    ->find($id);
 
+        if(!$element){
+            throw new NotFoundHttpException;
+        }
+
         foreach(($em->getRepository(TimelineElement::class)
                     ->findAllByOrderGreaterThan($element->getOrderIndex())) as $e) {
 
@@ -796,6 +828,10 @@ class OfficeController extends AbstractController
         $element = $em->getRepository(TimelineElement::class)
                       ->find($id);
 
+        if(!$element){
+            throw new NotFoundHttpException;
+        }
+
         $element->setCurrent(true);
         $em->persist($element);
         $em->flush();
@@ -812,6 +848,10 @@ class OfficeController extends AbstractController
 
         $project = $em->getRepository(Projet::class)
                    ->find($id);
+
+        if(!$project){
+            throw new NotFoundHttpException;
+        }
 
         if($project->getOrderIndex() > 1) {
 
@@ -841,6 +881,10 @@ class OfficeController extends AbstractController
         $category = $em->getRepository(SkillCategory::class)
             ->find($id);
 
+        if(!$category){
+            throw new NotFoundHttpException;
+        }
+
         if($category->getOrderIndex() > 1) {
 
             $cat = $em->getRepository(SkillCategory::class)
@@ -868,6 +912,10 @@ class OfficeController extends AbstractController
 
         $row = $em->getRepository(SkillRow::class)
             ->find($id);
+
+        if(!$row){
+            throw new NotFoundHttpException;
+        }
 
         if($row->getOrderIndex() > 1) {
 
@@ -897,6 +945,10 @@ class OfficeController extends AbstractController
 
         $element = $em->getRepository(TimelineElement::class)
                        ->find($id);
+
+        if(!$element){
+            throw new NotFoundHttpException;
+        }
 
         if($element->getOrderIndex() > 1) {
 

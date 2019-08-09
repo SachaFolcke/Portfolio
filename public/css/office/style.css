@@ -231,6 +231,7 @@ button {
     border: 3px solid rgb(119,68,139);
     border-radius: 10px;
     cursor: pointer;
+    background-color: #e9e9e9;
 }
 
 .office-category h3 {
@@ -311,7 +312,8 @@ button {
     }
 
     #contenu {
-        width: 100%;
+        min-width: 100vw;
+        width: fit-content;
         padding-left: 0;
         padding-right: 0;
     }
@@ -325,5 +327,9 @@ button {
         font-size: 10px;
         padding: 0;
         border: 1px solid black;
+    }
+
+    .skill-table {
+        margin: 0 0 10px;
     }
 }

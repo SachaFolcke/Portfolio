@@ -78,6 +78,7 @@
         <h2 data-aos="fade-zoom-in" data-aos-duration="400">Compétences et personnalité</h2>
         <div id="contain">
             {% set i = 0 %}
+            {% set last = skills|length %}
             {% for skill in skills %}
                 {% set rows = skill.skillRows %}
                 <div class="element" data-aos="fade-zoom-in" data-aos-duration="400" data-aos-delay="{{ i * 400 }}">
@@ -92,6 +93,9 @@
                     {% endfor %}
                 </div>
             {% set i = i + 1 %}
+                {% if i < last %}
+                    <hr class="skills-hr">
+                {% endif %}
             {% endfor %}
         </div>
     </div>
@@ -165,7 +169,7 @@
         </div>
     </div>
 </div>
-    <div id="office_access"><a href="{{ path('office') }}">Accès à la gestion du portfolio</a></div>
+    <div id="office-access"><a href="{{ path('office') }}">Accès à la gestion du portfolio</a></div>
 
 
 {% endblock %}
