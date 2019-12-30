@@ -62,7 +62,7 @@
                     <div class="time-cube-content">
                         <div class="time-cube-title">{{ time.title }}</div>
                         <div class="time-cube-period">{{ time.period }}</div>
-                        <div class="time-cube-description">{{ time.description }}</div>
+                        <div class="time-cube-description">{{ time.description|raw }}</div>
                     </div>
                     {% if time.current == 1 %}
                         {% set post_current = true %}
