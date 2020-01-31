@@ -16,6 +16,7 @@ return new class extends DefaultDeployer
             // the repository branch to deploy
             ->repositoryBranch('master')
             ->composerInstallFlags('--prefer-dist --no-interaction --no-dev')
+            ->sharedFilesAndDirs(['public/img/', '.env.local', 'var/log'])
         ;
     }
 
