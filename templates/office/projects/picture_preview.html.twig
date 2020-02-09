@@ -2,7 +2,8 @@
     {% for photo in photos %}
         <div class="one-photo">
             <img src="{{ asset(photo.path) }}">
-            <button onclick="location.href='{{ path('delete_photo', {'id_photo': photo.id, 'id': photo.idProjet}) }}'"
+            <button onclick="{% if is_granted('ROLE_ADMIN') %}location.href='{{ path('delete_photo', {'id_photo': photo.id, 'id': photo.idProjet}) }}'
+                    {% else %}alert(getRandom403String());{% endif %}"
                     class="btn btn-danger">
                 <span class="oi oi-trash" title="trash" aria-hidden="true"></span> Supprimer
             </button>

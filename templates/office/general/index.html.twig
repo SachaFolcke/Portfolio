@@ -17,7 +17,8 @@
     <a class="small_link" href="{{ path('office') }}">&lt;&lt; Retour</a>
     <h3>Infos générales du portfolio</h3>
 
-    <button onclick="location.href='{{ path('edit_general') }}'" class="btn btn-warning center-button">
+    <button onclick="{% if is_granted('ROLE_ADMIN') %}location.href='{{ path('edit_general') }}'
+                    {% else %}alert(getRandom403String());{% endif %}" class="btn btn-warning center-button">
         <span class="oi oi-pencil" title="pencil" aria-hidden="true"></span> Modifier
     </button>
 

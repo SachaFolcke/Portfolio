@@ -16,20 +16,30 @@
     {% endfor %}
 
     <h3>Connexion</h3>
+    <div class="row">
+        <div class="col-sm-12 col-md-6">
+            <form id="login-form" method="post">
+                <div class="form-group">
+                    <label for="username">Username :</label>
+                    <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}">
 
-    <form id="login-form" method="post">
-        <div class="form-group">
-            <label for="username">Username :</label>
-            <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}">
+                    <label for="password">Password :</label>
+                    <input class="form-control" type="password" id="password" name="_password">
 
-            <label for="password">Password :</label>
-            <input class="form-control" type="password" id="password" name="_password">
-
-            <button type="submit" class="center-button btn btn-primary">Se connecter</button>
+                    <button type="submit" class="center-button btn btn-custom">Se connecter</button>
+                </div>
+            </form>
         </div>
-    </form>
 
-    <p style="text-align: center">Pas de compte ? Vous pouvez vous inscrire rapidement <a href="{{ path('registration') }}">ici</a>.</p>
+        <div id="invite-login" class="col-sm-12 col-md-6 d-flex flex-column align-items-center mt-auto mb-auto">
+            <p class="invite-text">Ou visitez le back-office en tant qu'invité</p><br />
+            <a href="{{ path('login_invite') }}">
+                <button type="submit" form="invite-form" class="btn btn-custom">Visiter en tant qu'invité</button>
+            </a>
+        </div>
+
+    </div>
+
 {% endblock %}
 
 

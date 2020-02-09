@@ -4,9 +4,9 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -14,6 +14,7 @@ class RegistrationController extends AbstractController
 {
     /**
      * @Route("/register", name="registration")
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
