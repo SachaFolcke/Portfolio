@@ -19,7 +19,8 @@
     <h3>Mes compétences</h3>
 
     <div style="display: flex; justify-content: center; margin-bottom: 20px;">
-        <button class="btn btn-success" onclick="location.href='{{ path('add_skill_category')}}'" >
+        <button class="btn btn-success" onclick="{% if is_granted('ROLE_ADMIN') %}location.href='{{ path('add_skill_category')}}'
+                {% else %}alert(getRandom403String());{% endif %}" >
             Ajouter une catégorie
         </button>
     </div>
@@ -52,11 +53,14 @@
                         <td>
                             {{ row.text|raw }}
                             <div style="display: inline-block">
-                                <span onclick="location.href='{{ path('edit_skill_row', {'id' : row.id}) }}'"
+                                <span onclick="{% if is_granted('ROLE_ADMIN') %}location.href='{{ path('edit_skill_row', {'id' : row.id}) }}'
+                                        {% else %}alert(getRandom403String());{% endif %}"
                                       class="oi oi-pencil edit-button ml-2" title="Modifier" aria-hidden="true"></span>
-                                <span onclick="location.href='{{ path('delete_skill_row', {'id' : row.id}) }}'"
+                                <span onclick="{% if is_granted('ROLE_ADMIN') %}location.href='{{ path('delete_skill_row', {'id' : row.id}) }}'
+                                        {% else %}alert(getRandom403String());{% endif %}"
                                       class="oi oi-x delete-button ml-1" title="Supprimer" aria-hidden="true"></span>
-                                <span onclick="location.href='{{ path('order_skill_row_up', {'id' : row.id}) }}'"
+                                <span onclick="{% if is_granted('ROLE_ADMIN') %}location.href='{{ path('order_skill_row_up', {'id' : row.id}) }}'
+                                        {% else %}alert(getRandom403String());{% endif %}"
                                       class="oi oi-arrow-thick-top order-up-button ml-1" title="Remonter" aria-hidden="true"></span>
                             </div>
                             <br />
@@ -66,16 +70,20 @@
 
                 <tr>
                     <td>
-                        <button class="btn btn-success icon-button" onclick="location.href='{{ path('add_skill_row')}}'" >
+                        <button class="btn btn-success icon-button" onclick="{% if is_granted('ROLE_ADMIN') %}location.href='{{ path('add_skill_row')}}'
+                                {% else %}alert(getRandom403String());{% endif %}" >
                             <span class="oi oi-plus" title="Ajouter une ligne" aria-hidden="true"></span>
                         </button>
-                        <button class="btn btn-warning icon-button" onclick="location.href='{{ path('edit_skill_category', {'id' : category.id}) }}'">
+                        <button class="btn btn-warning icon-button" onclick="{% if is_granted('ROLE_ADMIN') %}location.href='{{ path('edit_skill_category', {'id' : category.id}) }}'
+                                {% else %}alert(getRandom403String());{% endif %}">
                             <span class="oi oi-pencil" title="Modifier catégorie" aria-hidden="true"></span>
                         </button>
-                        <button class="btn btn-danger icon-button" onclick="location.href='{{ path('delete_skill_category', {'id' : category.id}) }}'">
+                        <button class="btn btn-danger icon-button" onclick="{% if is_granted('ROLE_ADMIN') %}location.href='{{ path('delete_skill_category', {'id' : category.id}) }}'
+                                {% else %}alert(getRandom403String());{% endif %}">
                             <span class="oi oi-trash" title="Supprimer catégorie" aria-hidden="true"></span>
                         </button>
-                        <button class="btn btn-custom icon-button" onclick="location.href='{{ path('order_skill_cat_up', {'id': category.id}) }}'">
+                        <button class="btn btn-custom icon-button" onclick="{% if is_granted('ROLE_ADMIN') %}location.href='{{ path('order_skill_cat_up', {'id': category.id}) }}'
+                                {% else %}alert(getRandom403String());{% endif %}">
                             <span class="oi oi-arrow-thick-top" title="Remonter" aria-hidden="true"></span>
                         </button>
                     </td>

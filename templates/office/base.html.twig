@@ -6,20 +6,16 @@
 {% block title %}Back-office du portfolio{% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link href="{{ asset('css/iconic/css/open-iconic-bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('css/office/style.css') }}" rel="stylesheet">
     <meta name="robots" content="noindex" />
 {% endblock %}
 
 {% block javascripts %}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="{{ asset('js/office.js') }}"></script>
 {% endblock %}
 
 {% block body %}
@@ -31,5 +27,12 @@
 
         {% endblock %}
     </div>
+
+    {% if app.user is not null %}
+        <div id="connected-as">
+            Connecté en tant que <span class="font-weight-bold">{{ app.user.username }}</span>.
+            <a id="logout" href="{{ path('logout') }}">Déconnexion</a>
+        </div>
+    {% endif %}
 
 {% endblock %}

@@ -26,7 +26,8 @@
     <h3>Gérer les projets</h3>
 
     <div class="text-right">
-        <button onclick="location.href='{{ path('add_project') }}'" class="btn btn-success">
+        <button onclick="{% if is_granted('ROLE_ADMIN') %}location.href='{{ path('add_project') }}'
+                {% else %}alert(getRandom403String()); return false;{% endif %}" class="btn btn-success">
              <span class="oi oi-plus" title="plus" aria-hidden="true"></span> Ajouter un projet
         </button>
     </div>
@@ -60,16 +61,19 @@
                 <td>{{ projet.compoGroupe }}</td>
                 <td>{{ projet.catchPhrase }}</td>
                 <td>
-                    <button onclick="location.href='{{ path('show_project', {'id': projet.id}) }}'" class="btn btn-primary btn-block">
+                    <button onclick="location.href='{{ path('show_project', {'id': projet.id}) }}'
+                                    " class="btn btn-primary btn-block">
                         <span class="oi oi-spreadsheet" aria-hidden="true"></span> Afficher
                     </button>
                     <a href="{{ path('delete_project', {'id': projet.id}) }}"
-                       onclick="return confirm('Voulez-vous vraiment supprimer le projet {{ projet.titre }} ?')">
+                                onclick="{% if is_granted('ROLE_ADMIN') %}return confirm('Voulez-vous vraiment supprimer le projet {{ projet.titre }} ?')
+                             {% else %}alert(getRandom403String()); return false;{% endif %}">
                         <button class="btn btn-danger btn-block">
                             <span class="oi oi-trash" aria-hidden="true"></span> Supprimer
                         </button>
                     </a>
-                    <button onclick="location.href='{{ path('order_project_up', {'id': projet.id}) }}'" class="btn btn-custom btn-block">
+                    <button onclick="{% if is_granted('ROLE_ADMIN') %}location.href='{{ path('order_project_up', {'id': projet.id}) }}'
+                                    {% else %}alert(getRandom403String());{% endif %}" class="btn btn-custom btn-block">
                         <span class="oi oi-arrow-thick-top" title="Remonter" aria-hidden="true"></span> Remonter
                     </button>
                 </td>

@@ -24,11 +24,13 @@
     <a class="small_link" href="{{ path('index_project') }}">&lt;&lt; Retour</a>
     <h3>Gestion du projet "{{ projet.titre }}"</h3>
         <div style="display: flex; justify-content: center; margin-bottom: 20px;">
-            <button onclick="location.href='{{ path('edit_project', {'id' : projet.id}) }}'" class="btn btn-warning">
+            <button onclick="{% if is_granted('ROLE_ADMIN') %}location.href='{{ path('edit_project', {'id' : projet.id}) }}'
+                             {% else %}alert(getRandom403String());{% endif %}" class="btn btn-warning">
                 <span class="oi oi-pencil" title="pencil" aria-hidden="true"></span> Modifier
             </button>
             <a href="{{ path('delete_project', {'id': projet.id}) }}" style="text-decoration: none"
-               onclick="return confirm('Voulez-vous vraiment supprimer le projet {{ projet.titre }} ?')">
+               onclick="{% if is_granted('ROLE_ADMIN') %}return confirm('Voulez-vous vraiment supprimer le projet {{ projet.titre }} ?')
+                       {% else %}alert(getRandom403String()); return false;{% endif %}">
                 <button class="btn btn-danger">
                     <span class="oi oi-trash" title="trash" aria-hidden="true"></span> Supprimer
                 </button>
@@ -83,7 +85,8 @@
 
     <h4>Photos du projet</h4>
 
-    <button onclick="location.href='{{ path('add_photo', {'id': projet.id}) }}'" class="center-button btn btn-custom">
+    <button onclick="{% if is_granted('ROLE_ADMIN') %}location.href='{{ path('add_photo', {'id': projet.id}) }}'
+                    {% else %}alert(getRandom403String());{% endif %}" class="center-button btn btn-custom">
         <span class="oi oi-image" title="image" aria-hidden="true"></span> Ajouter une photo au projet
     </button>
 
