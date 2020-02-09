@@ -1,7 +1,8 @@
 <h4>Gérer les états possibles des projets</h4>
 
 <div class="text-right">
-    <button onclick="location.href='{{ path('add_state') }}'" class="btn btn-success text-right">
+    <button onclick="{% if is_granted('ROLE_ADMIN') %}location.href='{{ path('add_state') }}'
+            {% else %}alert(getRandom403String());{% endif %}" class="btn btn-success text-right">
         <span class="oi oi-plus" title="plus" aria-hidden="true"></span> Ajouter un état
     </button>
 </div>
@@ -26,7 +27,8 @@
                     <span class="oi oi-spreadsheet" title="spreadsheet" aria-hidden="true"></span> Afficher
                 </button>
                 <a href="{{ path('delete_state', {'id': state.id}) }}" style="text-decoration: none"
-                   onclick="return confirm('Voulez-vous vraiment supprimer l\'état {{ state.title }} ?')">
+                   onclick="{% if is_granted('ROLE_ADMIN') %}return confirm('Voulez-vous vraiment supprimer l\'état {{ state.title }} ?')
+                           {% else %}alert(getRandom403String()); return false;{% endif %}">
                     <button class="btn btn-danger btn-block">
                         <span class="oi oi-trash" title="trash" aria-hidden="true"></span> Supprimer
                     </button>

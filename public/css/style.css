@@ -380,18 +380,25 @@ hr {
     text-align: center;
 }
 
-#office-access {
+#footer {
+    position: relative;
+    bottom: 0;
     width: 100%;
-    height: auto;
+}
+
+#office-access {
+    width: 50px;
+    height: 40px;
     text-align: center;
     background-color: rgb(119,68,139);
     border-top: 2px solid rgb(55, 30, 70);
     padding-top: 10px;
-    padding-bottom: 10px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
 }
 
 #office-access a {
-    font-family: 'Amaranth', sans-serif;
     font-size: 28px;
     color: #fff;
     text-decoration: none;

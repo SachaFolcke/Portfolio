@@ -19,11 +19,13 @@
     <h3>Gestion de l'état "{{ state.title }}"</h3>
 
     <div style="display: flex; justify-content: center; margin-bottom: 20px;">
-        <button onclick="location.href='{{ path('edit_state', {'id' : state.id}) }}'" class="btn btn-warning">
+        <button onclick="{% if is_granted('ROLE_ADMIN') %}location.href='{{ path('edit_state', {'id' : state.id}) }}'
+                {% else %}alert(getRandom403String());{% endif %}" class="btn btn-warning">
             <span class="oi oi-pencil" title="pencil" aria-hidden="true"></span> Modifier
         </button>
         <a href="{{ path('delete_state', {'id': state.id}) }}" style="text-decoration: none"
-           onclick="return confirm('Voulez-vous vraiment supprimer l\'état {{ state.title }} ?')">
+           onclick="{% if is_granted('ROLE_ADMIN') %}return confirm('Voulez-vous vraiment supprimer l\'état {{ state.title }} ?')
+                   {% else %}alert(getRandom403String()); return false;{% endif %}">
             <button class="btn btn-danger">
                 <span class="oi oi-trash" title="trash" aria-hidden="true"></span> Supprimer
             </button>
